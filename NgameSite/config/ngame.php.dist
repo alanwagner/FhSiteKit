@@ -1,0 +1,9 @@
+<?php
+
+return array(
+    'db' => array(
+        'dsn'            => 'mysql:dbname=sil_ngame;host=localhost',
+        'username'       => 'root',
+        'password'       => '',
+    ),
+);
