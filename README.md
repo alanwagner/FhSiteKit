@@ -1,4 +1,4 @@
-Farther Horizon Site Kit (FHSK)
+Farther Horizon Site Kit
 ===
 
 Installation
