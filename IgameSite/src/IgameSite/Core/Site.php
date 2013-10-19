@@ -16,7 +16,7 @@ class Site extends FhskSite
 {
     /**
      * Site name (overrides parent)
-     * @const string
+     * @staticvar string
      */
-    const SITE_NAME = 'Igame';
+    public static $siteName = 'Igame';
 }

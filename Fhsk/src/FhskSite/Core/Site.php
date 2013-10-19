@@ -14,13 +14,12 @@ class Site
 {
     /**
      * Site name
-     * @var string
+     * @staticvar string
      */
-    const SITE_NAME = 'Fhsk';
+    public static $siteName = 'Fhsk';
 
     /**
      * Get site key from REQUEST_URI
-     *
      * @return string
      */
     public static function getKey()
@@ -34,6 +33,6 @@ class Site
      */
     public function getName()
     {
-        return static::SITE_NAME;
+        return static::$siteName;
     }
 }
