@@ -26,7 +26,7 @@ return array(
             'patternAdmin' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/:site/admin/pattern[/][:action][/:id]',
+                    'route'    => '/:siteKey/admin/pattern[/][:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',

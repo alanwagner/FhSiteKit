@@ -32,7 +32,6 @@ class Site extends AbstractHelper implements ServiceLocatorAwareInterface
 
     /**
      * Provide site properties to the view
-     *
      * @param string $prop
      * @return string
      */
@@ -44,7 +43,7 @@ class Site extends AbstractHelper implements ServiceLocatorAwareInterface
                 $val = FhskSite::getKey();
                 break;
             case self::PROP_NAME :
-                $val = $this->getServiceLocator()->get('FhskSite')->getName();
+                $val = $this->getGlobalServiceLocator()->get('FhskSite')->getName();
         }
 
         return $val;
@@ -52,6 +51,8 @@ class Site extends AbstractHelper implements ServiceLocatorAwareInterface
 
     /**
      * Set service locator
+     *
+     * Is set with Zend\View\HelperPluginManager
      *
      * @param ServiceLocatorInterface $serviceLocator
      */
@@ -63,14 +64,25 @@ class Site extends AbstractHelper implements ServiceLocatorAwareInterface
     /**
      * Get service locator
      *
+     * Returns Zend\View\HelperPluginManager
+     *
      * @return ServiceLocatorInterface
      */
     public function getServiceLocator()
     {
-        //  $services is set with Zend\View\HelperPluginManager
-        //  so we need to call _its_ getServiceLocator()
-        //  to get the one we want
+        return $this->services;
+    }
 
-        return $this->services->getServiceLocator();
+    /**
+     * Get application-wide service locator
+     *
+     * $services is set with Zend\View\HelperPluginManager
+     * so we need to call its getServiceLocator() to get the application-wide one
+     *
+     * @return Zend\ServiceManager\ServiceManager
+     */
+    public function getGlobalServiceLocator()
+    {
+        return $this->getServiceLocator()->getServiceLocator();
     }
 }
