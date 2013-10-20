@@ -10,6 +10,11 @@
 
 namespace SilPattern\Model;
 
+use Zend\Stdlib\ArrayObject;
+
+/**
+ * The Pattern entity
+ */
 class Pattern
 {
     public $id;
@@ -17,11 +22,37 @@ class Pattern
     public $content;
     public $description;
 
-    public function exchangeArray($data)
+    /**
+     * Exchange the current array with another array or object.
+     *
+     * @param  array|object $input
+     * @return array        Returns the old array
+     * @see ArrayObject::exchangeArray()
+     */
+    public function exchangeArray($input)
     {
-        $this->id          = (!empty($data['id'])) ? $data['id'] : null;
-        $this->name        = (!empty($data['name'])) ? $data['name'] : null;
-        $this->content     = (!empty($data['content'])) ? $data['content'] : null;
-        $this->description = (!empty($data['description'])) ? $data['description'] : null;
+        // handle arrayobject, iterators and the like:
+        if (is_object($input) && ($input instanceof ArrayObject || $input instanceof \ArrayObject)) {
+            $input = $input->getArrayCopy();
+        }
+        if (!is_array($input)) {
+            $input = (array) $input;
+        }
+
+        $propList = array(
+            'id',
+            'name',
+            'content',
+            'description',
+        );
+
+        $old = array();
+
+        foreach ($propList as $prop) {
+            $old[$prop] = $this->$prop;
+            $this->$prop = (!empty($input[$prop])) ? $input[$prop] : null;
+        }
+
+        return $old;
     }
 }

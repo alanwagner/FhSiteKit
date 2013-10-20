@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhskSiteTest;
+namespace SilPatternTest;
 
 use Zend\Loader\AutoloaderFactory;
 use Zend\Mvc\Service\ServiceManagerConfig;
@@ -46,8 +46,7 @@ class Bootstrap
                 'module_paths' => $zf2ModulePaths,
             ),
             'modules' => array(
-                'Fhsk',
-                'MockSite'
+                'SilPattern',
             ),
         );
 
@@ -66,6 +65,11 @@ class Bootstrap
     public static function getServiceManager()
     {
         return static::$serviceManager;
+    }
+
+    public static function getTestDirPath()
+    {
+        return __DIR__;
     }
 
     protected static function initAutoloader()
@@ -100,7 +104,7 @@ class Bootstrap
                 'autoregister_zf' => true,
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/' . __NAMESPACE__,
-                    'FhskSite'    => __DIR__ . '/../src/FhskSite',
+                    'FhskSite'    => __DIR__ . '/../../Fhsk/src/FhskSite',
                 ),
             ),
         ));

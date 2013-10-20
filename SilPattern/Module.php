@@ -15,6 +15,9 @@ use SilPattern\Model\PatternTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
+/**
+ * SilPattern Module setup class
+ */
 class Module
 {
     public function getConfig()
