@@ -10,13 +10,24 @@
 
 namespace IgameSite;
 
+/**
+ * Igame site Module setup class
+ */
 class Module
 {
+    /**
+     * Get module config
+     * @return array
+     */
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
 
+    /**
+     * Get module autoloader config
+     * @return array
+     */
     public function getAutoloaderConfig()
     {
         return array(
@@ -30,6 +41,11 @@ class Module
             ),
         );
     }
+
+    /**
+     * Get module service config
+     * @return array
+     */
     public function getServiceConfig()
     {
         return array(

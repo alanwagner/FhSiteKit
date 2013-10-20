@@ -10,13 +10,24 @@
 
 namespace MockSite;
 
+/**
+ * Mock Site module for unit tests
+ */
 class Module
 {
+    /**
+     * Get module config
+     * @return array
+     */
     public function getConfig()
     {
         return array();
     }
 
+    /**
+     * Get module autoloader config
+     * @return array
+     */
     public function getAutoloaderConfig()
     {
         return array(
@@ -27,6 +38,11 @@ class Module
             ),
         );
     }
+
+    /**
+     * Get module service config
+     * @return array
+     */
     public function getServiceConfig()
     {
         return array(

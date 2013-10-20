@@ -10,6 +10,9 @@
 
 namespace FhskSite\Core;
 
+/**
+ * Base class for core Site properties and methods
+ */
 class Site
 {
     /**

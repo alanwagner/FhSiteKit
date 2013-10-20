@@ -12,11 +12,15 @@ namespace MockSite\Core;
 
 use FhskSite\Core\Site as FhskSite;
 
+/**
+ * Mock site core Site properties and methods
+ */
 class Site extends FhskSite
 {
     /**
-     * Site name (overrides parent)
+     * Site name
      * @staticvar string
+     * @see FhskSite\Core\Site::$siteName
      */
     public static $siteName = 'MockName';
 }

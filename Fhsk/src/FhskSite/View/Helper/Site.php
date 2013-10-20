@@ -15,13 +15,24 @@ use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Helper\AbstractHelper;
 
+/**
+ * Helper to provide Site properties to the view
+ */
 class Site extends AbstractHelper implements ServiceLocatorAwareInterface
 {
     /**
-     * Property names
+     * Invokable property to get the starting path for the Site's URLs.
+     *
+     * The first element of the returned path is the siteKey.
+     *
      * @var string
      */
     const PROP_PATH = 'path';
+
+    /**
+     * Invokable property to get the Site name
+     * @var string
+     */
     const PROP_NAME = 'name';
 
     /**
@@ -31,8 +42,8 @@ class Site extends AbstractHelper implements ServiceLocatorAwareInterface
     protected $services;
 
     /**
-     * Provide site properties to the view
-     * @param string $prop
+     * Provide Site properties to the view
+     * @param string $prop  One of: 'path', 'name'
      * @return string
      */
     public function __invoke($prop)

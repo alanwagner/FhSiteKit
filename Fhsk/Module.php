@@ -10,13 +10,24 @@
 
 namespace Fhsk;
 
+/**
+ * Fhsk Module setup class
+ */
 class Module
 {
+    /**
+     * Get module config
+     * @return array
+     */
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
 
+    /**
+     * Get module autoloader config
+     * @return array
+     */
     public function getAutoloaderConfig()
     {
         return array(

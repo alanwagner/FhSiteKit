@@ -10,10 +10,13 @@
 
 namespace FhskSiteTest\Core;
 
-use FhskSiteTest\Bootstrap;
 use FhskSite\Core\Site;
+use FhskSiteTest\Bootstrap;
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Tests on the core Site class
+ */
 class SiteTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()

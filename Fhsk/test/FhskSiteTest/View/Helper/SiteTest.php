@@ -10,11 +10,13 @@
 
 namespace FhskSiteTest\View\Helper;
 
-use FhskSiteTest\Bootstrap;
-
 use FhskSite\View\Helper\Site;
+use FhskSiteTest\Bootstrap;
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Tests on the 'site' view helper
+ */
 class SiteTest extends PHPUnit_Framework_TestCase
 {
     /**
