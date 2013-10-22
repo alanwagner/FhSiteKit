@@ -27,6 +27,7 @@ CREATE TABLE `pattern` (
   `name` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `description` text,
+  `is_archived` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -40,4 +41,4 @@ CREATE TABLE `pattern` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-19 23:45:47
+-- Dump completed on 2013-10-22 23:14:48

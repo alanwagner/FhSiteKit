@@ -11,6 +11,7 @@
 namespace NdgPattern\Model;
 
 use FhskEntity\Model\Entity;
+use Zend\InputFilter\InputFilter;
 
 /**
  * The Pattern entity
@@ -21,6 +22,7 @@ class Pattern extends Entity
     public $name;
     public $content;
     public $description;
+    public $is_archived;
 
     /**
      * Get array of names of entity's public properties
@@ -34,6 +36,66 @@ class Pattern extends Entity
             'name',
             'content',
             'description',
+            'is_archived',
         );
+    }
+
+    /**
+     * Get the input filter
+     * @return \Zend\InputFilter\InputFilter
+     */
+    public function getInputFilter()
+    {
+        if (!$this->inputFilter) {
+            $inputFilter = new InputFilter();
+
+            $inputFilter->add(array(
+                'name'     => 'id',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'Int'),
+                ),
+            ));
+
+            $inputFilter->add(array(
+                'name'     => 'name',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 255,
+                        ),
+                    ),
+                ),
+            ));
+
+            $inputFilter->add(array(
+                'name'     => 'content',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+            ));
+
+            $inputFilter->add(array(
+                'name'     => 'description',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'StringTrim'),
+                ),
+            ));
+
+            $this->inputFilter = $inputFilter;
+        }
+
+        return $this->inputFilter;
     }
 }

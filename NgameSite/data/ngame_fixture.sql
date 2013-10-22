@@ -21,9 +21,9 @@
 
 LOCK TABLES `pattern` WRITE;
 /*!40000 ALTER TABLE `pattern` DISABLE KEYS */;
-INSERT INTO `pattern` VALUES (1,'Solo game','1',NULL);
-INSERT INTO `pattern` VALUES (2,'Pair game','1 2\n2 1',NULL);
-INSERT INTO `pattern` VALUES (3,'Three-node net','1 2 3\n2 1 3\n3 1 2',NULL);
+INSERT INTO `pattern` VALUES (1,'Solo game','1',NULL,0);
+INSERT INTO `pattern` VALUES (2,'Pair game','1 2\n2 1',NULL,0);
+INSERT INTO `pattern` VALUES (3,'Three-node net','1 2 3\n2 1 3\n3 1 2',NULL,0);
 /*!40000 ALTER TABLE `pattern` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -36,4 +36,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-19 23:46:00
+-- Dump completed on 2013-10-22 23:15:16

@@ -7,8 +7,10 @@
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GPLv3 License
  * @author    Alan Wagner (mail@alanwagner.org)
  */
-?>
 
-<p>
-    <a href="<?php echo $this->url('patternAdmin', array('siteKey' => $this->site('path'), 'action'=>'add'));?>">Add new pattern</a>
-</p>
+$form->setAttribute('action', $this->url('patternAdmin', array('action' => 'add', 'siteKey' => $this->site('path'))));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formCollection($form);
+echo $this->form()->closeTag();
