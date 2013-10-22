@@ -50,7 +50,7 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 + $modules = array(
 +     'Fhsk',
 +     'Application',
-+     'SilPattern',
++     'NdgPattern',
 + );
 + 
 + switch ($siteKey) {

@@ -9,34 +9,30 @@
  */
 
 return array(
-    'view_helpers' => array(
-        'invokables' => array(
-            'site' => 'FhskSite\View\Helper\Site'
-        ),
-    ),
     'view_manager' => array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
     ),
+
     'controllers' => array(
         'invokables' => array(
-            'Entity\Controller\Admin' => 'FhskEntity\Controller\AdminController'
+            'Pattern\Controller\Admin' => 'NdgPattern\Controller\AdminController'
         ),
     ),
 
     'router' => array(
         'routes' => array(
-            'entityAdmin' => array(
+            'patternAdmin' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/:siteKey/admin/entity[/][:action][/:id]',
+                    'route'    => '/:siteKey/admin/pattern[/][:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'Entity\Controller\Admin',
+                        'controller' => 'Pattern\Controller\Admin',
                         'action'     => 'list',
                     ),
                 ),

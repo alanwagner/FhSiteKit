@@ -36,8 +36,22 @@ class Module
             ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    'FhskSite' => __DIR__ . '/src/FhskSite',
+                    'FhskEntity' => __DIR__ . '/src/FhskEntity',
                 ),
+            ),
+        );
+    }
+
+    /**
+     * Get module service config
+     * @return array
+     */
+    public function getServiceConfig()
+    {
+        return array(
+            'invokables' => array(
+                'FhskSite' => 'FhskSite\Core\Site',
             ),
         );
     }
