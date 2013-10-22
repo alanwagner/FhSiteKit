@@ -15,11 +15,11 @@ git clone https://github.com/alanwagner/FHSK.git module
 
 ### 3.  Install databases
 ```bash
-mysql -uroot -e"create database sil_ngame; create database sil_igame"
-mysql -uroot sil_ngame < NgameSite/data/ngame_schema.sql
-mysql -uroot sil_ngame < NgameSite/data/ngame_fixture.sql
-mysql -uroot sil_igame < IgameSite/data/igame_schema.sql
-mysql -uroot sil_igame < IgameSite/data/igame_fixture.sql
+mysql -uroot -e"create database ndg_ngame; create database ndg_igame"
+mysql -uroot ndg_ngame < NgameSite/data/ngame_schema.sql
+mysql -uroot ndg_ngame < NgameSite/data/ngame_fixture.sql
+mysql -uroot ndg_igame < IgameSite/data/igame_schema.sql
+mysql -uroot ndg_igame < IgameSite/data/igame_fixture.sql
 ```
 
 ### 4.  Modify index.php
@@ -48,8 +48,8 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 + $siteKey = FhskSite\Core\Site::getKey();
 + 
 + $modules = array(
-+     'Fhsk',
 +     'Application',
++     'Fhsk',
 +     'NdgPattern',
 + );
 + 
