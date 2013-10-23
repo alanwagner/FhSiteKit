@@ -46,7 +46,7 @@ class Bootstrap
                 'module_paths' => $zf2ModulePaths,
             ),
             'modules' => array(
-                'Fhsk',
+                'FhSiteKit',
                 'MockSite'
             ),
         );
@@ -66,6 +66,11 @@ class Bootstrap
     public static function getServiceManager()
     {
         return static::$serviceManager;
+    }
+
+    public static function getTestDirPath()
+    {
+        return __DIR__;
     }
 
     protected static function initAutoloader()
@@ -101,6 +106,7 @@ class Bootstrap
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/' . __NAMESPACE__,
                     'FhskSite'    => __DIR__ . '/../src/FhskSite',
+                    'FhskEntity'  => __DIR__ . '/../src/FhskEntity',
                 ),
             ),
         ));

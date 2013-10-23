@@ -10,6 +10,8 @@
 
 namespace FhskEntity\Model;
 
+use Zend\Filter\Int;
+
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
@@ -20,6 +22,12 @@ use Zend\Stdlib\ArrayObject;
  */
 class Entity implements InputFilterAwareInterface
 {
+    /**
+     * The entity id property
+     * @var int
+     */
+    public $id;
+
     /**
      * Input filter
      * @var InputFilter
@@ -33,7 +41,7 @@ class Entity implements InputFilterAwareInterface
      */
     public static function getPropList()
     {
-        return array();
+        return array('id');
     }
 
     /**

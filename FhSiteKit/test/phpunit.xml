@@ -4,6 +4,7 @@
     <testsuites>
         <testsuite name="fhsk">
             <directory>./FhskSiteTest</directory>
+            <directory>./FhskEntityTest</directory>
         </testsuite>
     </testsuites>
 </phpunit>

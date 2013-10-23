@@ -14,10 +14,4 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
-
-    'controllers' => array(
-        'invokables' => array(
-            'Site\Controller\Admin' => 'NdgSite\Controller\AdminController'
-        ),
-    ),
 );
