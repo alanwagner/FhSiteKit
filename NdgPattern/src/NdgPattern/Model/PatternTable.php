@@ -27,6 +27,12 @@ class PatternTable
         return $resultSet;
     }
 
+    public function fetchByIsArchived($isArchived)
+    {
+        $resultSet = $this->tableGateway->select(array('is_archived' => $isArchived));
+        return $resultSet;
+    }
+
     public function getPattern($id)
     {
         $id  = (int) $id;
@@ -44,6 +50,7 @@ class PatternTable
             'name'        => $pattern->name,
             'content'     => $pattern->content,
             'description' => $pattern->description,
+            'is_archived' => $pattern->is_archived,
         );
 
         $id = (int) $pattern->id;

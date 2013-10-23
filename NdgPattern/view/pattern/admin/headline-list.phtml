@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-$title = sprintf('%s Patterns', $this->site('name'));
+$title = sprintf('%s %s Patterns', (! empty($this->isArchiveList) ? 'Archived' : 'Active'), $this->site('name'));
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>

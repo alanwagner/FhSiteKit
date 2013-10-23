@@ -18,15 +18,14 @@ class PatternForm extends Form
             'name' => 'name',
             'type' => 'Text',
             'options' => array(
-                'label'    => 'Pattern Name',
-                'required' => true,
+                'label'    => 'Pattern Name *',
             ),
         ));
         $this->add(array(
             'name' => 'content',
             'type' => 'TextArea',
             'options' => array(
-                'label' => 'Content',
+                'label' => 'Content *',
             ),
             'attributes' => array(
                 'rows' => '20',

@@ -8,7 +8,15 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-$form->setAttribute('action', $this->url('patternAdmin', array('action' => 'add', 'siteKey' => $this->site('path'))));
+$params = array(
+    'action'  => $this->formAction,
+    'siteKey' => $this->site('path'),
+);
+if (! empty($this->id)) {
+    $params['id'] = $this->id;
+}
+
+$form->setAttribute('action', $this->url('patternAdmin', $params));
 $form->prepare();
 
 echo $this->form()->openTag($form);

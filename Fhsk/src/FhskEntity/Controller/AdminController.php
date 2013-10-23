@@ -60,6 +60,8 @@ class AdminController extends AbstractActionController
      */
     protected function generateViewModel($data, $action = null)
     {
+        $data = $this->addRouteInfo($data);
+
         $view = new ViewModel($data);
         $view->setTemplate($this->getTemplate('page', $action));
 
@@ -137,5 +139,14 @@ class AdminController extends AbstractActionController
         }
 
         return null;
+    }
+
+    protected function addRouteInfo($data)
+    {
+        $data['templateNamespace']  = static::$templateNamespace;
+        $data['templateController'] = static::$templateController;
+        $data['routeAction']        = $this->params()->fromRoute('action');
+
+        return $data;
     }
 }

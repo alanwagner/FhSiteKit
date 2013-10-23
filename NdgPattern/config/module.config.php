@@ -37,6 +37,19 @@ return array(
                     ),
                 ),
             ),
+            'patternToggleArchived' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/:siteKey/admin/pattern/toggle-archived/:id/:returnAction',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Pattern\Controller\Admin',
+                        'action'     => 'toggleArchived',
+                    ),
+                ),
+            ),
         ),
     ),
 
