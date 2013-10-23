@@ -30,7 +30,7 @@ This will make methods of `FhskSite\Core\Site` available via the autoloader even
 // Setup autoloading
 require 'init_autoloader.php';
 
-+ $loader->add('FhskSite', 'module/Fhsk/src');
++ $loader->add('FhskSite', 'module/FhSiteKit/src');
 
 // Run the application!
 Zend\Mvc\Application::init(require 'config/application.config.php')->run();
@@ -49,7 +49,8 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 + 
 + $modules = array(
 +     'Application',
-+     'Fhsk',
++     'FhSiteKit',
++     'NdgSite',
 +     'NdgPattern',
 + );
 + 

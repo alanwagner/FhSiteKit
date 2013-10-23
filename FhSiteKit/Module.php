@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace Fhsk;
+namespace FhSiteKit;
 
 /**
  * Fhsk Module setup class
