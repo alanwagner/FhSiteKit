@@ -24,8 +24,8 @@
             array('siteKey' => $this->site('path'), 'action'=>'edit', 'id' => $pattern->id));?>">Edit</a>
         <a href="<?php echo $this->url('patternAdmin',
             array('siteKey' => $this->site('path'), 'action'=>'add', 'id' => $pattern->id));?>">Clone</a>
-        <a href="<?php echo $this->url('patternToggleArchived',
-            array('siteKey' => $this->site('path'), 'id' => $pattern->id, 'returnAction' => $this->routeAction));?>"><?php if (empty($pattern->is_archived)): ?>Archive<?php else: ?>Unarchive<?php endif; ?></a>
+        <a href="<?php echo $this->url('patternAdmin',
+            array('siteKey' => $this->site('path'), 'id' => $pattern->id, 'action' => 'toggle-archived', 'returnAction' => $this->routeAction));?>"><?php if (empty($pattern->is_archived)): ?>Archive<?php else: ?>Unarchive<?php endif; ?></a>
     </td>
 </tr>
 <?php endforeach; ?>

@@ -26,7 +26,7 @@ return array(
             'patternAdmin' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/:siteKey/admin/pattern[/][:action][/:id]',
+                    'route'    => '/:siteKey/admin/pattern[/][:action][/:id][/:returnAction]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -34,19 +34,6 @@ return array(
                     'defaults' => array(
                         'controller' => 'Pattern\Controller\Admin',
                         'action'     => 'list',
-                    ),
-                ),
-            ),
-            'patternToggleArchived' => array(
-                'type'    => 'segment',
-                'options' => array(
-                    'route'    => '/:siteKey/admin/pattern/toggle-archived/:id/:returnAction',
-                    'constraints' => array(
-                        'id'     => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'Pattern\Controller\Admin',
-                        'action'     => 'toggleArchived',
                     ),
                 ),
             ),
