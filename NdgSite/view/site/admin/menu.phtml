@@ -1,0 +1,23 @@
+<?php
+/**
+ * Farther Horizon Site Kit
+ *
+ * @link       http://github.com/alanwagner/FHSK for the canonical source repository
+ * @copyright Copyright (c) 2013 Farther Horizon SARL (http://www.fartherhorizon.com)
+ * @license   http://www.gnu.org/licenses/gpl-3.0.html GPLv3 License
+ * @author    Alan Wagner (mail@alanwagner.org)
+ */
+?>
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="<?php echo $this->url('siteAdmin', array('siteKey' => $this->site('path'))); ?>"><?php echo $this->site('name') ?> Admin</a>
+</div>
+<div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+        <li class="active"><a href="<?php echo $this->url('patternAdmin', array('siteKey' => $this->site('path'))) ?>"><?php echo $this->translate('Patterns') ?></a></li>
+    </ul>
+</div><!--/.nav-collapse -->
