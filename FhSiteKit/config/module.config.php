@@ -21,12 +21,26 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Entity\Controller\Admin' => 'FhskEntity\Controller\AdminController'
+            'Entity\Controller\Admin' => 'FhskEntity\Controller\AdminController',
+            'Site\Controller\Admin' => 'FhskSite\Controller\AdminController',
         ),
     ),
 
     'router' => array(
         'routes' => array(
+            'siteAdmin' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/:siteKey/admin/site[/][:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Site\Controller\Admin',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
             'entityAdmin' => array(
                 'type'    => 'segment',
                 'options' => array(

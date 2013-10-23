@@ -8,16 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-return array(
-    'view_manager' => array(
-        'template_path_stack' => array(
-            __DIR__ . '/../view',
-        ),
-    ),
-
-    'controllers' => array(
-        'invokables' => array(
-            'Site\Controller\Admin' => 'NdgSite\Controller\AdminController'
-        ),
-    ),
-);
+$title = sprintf('%s Admin', $this->site('name'));
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>

@@ -7,17 +7,8 @@
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GPLv3 License
  * @author    Alan Wagner (mail@alanwagner.org)
  */
+?>
 
-return array(
-    'view_manager' => array(
-        'template_path_stack' => array(
-            __DIR__ . '/../view',
-        ),
-    ),
-
-    'controllers' => array(
-        'invokables' => array(
-            'Site\Controller\Admin' => 'NdgSite\Controller\AdminController'
-        ),
-    ),
-);
+<p>
+    <a href="<?php echo $this->url('siteAdmin', array('siteKey' => 'fhsk'));?>">FhskSite admin</a>
+</p>
