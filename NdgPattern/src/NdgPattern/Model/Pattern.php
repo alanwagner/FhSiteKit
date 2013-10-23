@@ -23,6 +23,8 @@ class Pattern extends Entity
     public $content;
     public $description;
     public $is_archived;
+    public $created_at;
+    public $updated_at;
 
     /**
      * Get array of names of entity's public properties
@@ -37,6 +39,8 @@ class Pattern extends Entity
             'content',
             'description',
             'is_archived',
+            'created_at',
+            'updated_at',
         );
     }
 

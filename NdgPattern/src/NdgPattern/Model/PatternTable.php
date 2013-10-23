@@ -50,11 +50,12 @@ class PatternTable
             'name'        => $pattern->name,
             'content'     => $pattern->content,
             'description' => $pattern->description,
-            'is_archived' => $pattern->is_archived,
+            'is_archived' => empty($pattern->is_archived) ? 0 : 1,
         );
 
         $id = (int) $pattern->id;
         if ($id == 0) {
+            $data['created_at'] = date('Y-m-d H:i:s');
             $this->tableGateway->insert($data);
         } else {
             if ($this->getPattern($id)) {

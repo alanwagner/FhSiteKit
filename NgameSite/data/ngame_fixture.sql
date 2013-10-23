@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.32, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: sil_ngame
+-- Host: localhost    Database: ndg_ngame
 -- ------------------------------------------------------
 -- Server version	5.5.32-0ubuntu0.12.04.1
 
@@ -21,9 +21,9 @@
 
 LOCK TABLES `pattern` WRITE;
 /*!40000 ALTER TABLE `pattern` DISABLE KEYS */;
-INSERT INTO `pattern` VALUES (1,'Solo game','1',NULL,0);
-INSERT INTO `pattern` VALUES (2,'Pair game','1 2\n2 1',NULL,0);
-INSERT INTO `pattern` VALUES (3,'Three-node net','1 2 3\n2 1 3\n3 1 2',NULL,0);
+INSERT INTO `pattern` VALUES (1,'Solo game','1',NULL,0,'2013-10-23 03:23:40','2013-10-23 01:23:40');
+INSERT INTO `pattern` VALUES (2,'Pair game','1 2\r\n2 1','N=2, Z=1',0,'2013-10-23 03:24:01','2013-10-23 01:24:01');
+INSERT INTO `pattern` VALUES (3,'Three-node net','1 2 3\r\n2 1 3\r\n3 1 2','N=3, Z=2',0,'2013-10-23 03:24:38','2013-10-23 01:24:38');
 /*!40000 ALTER TABLE `pattern` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -36,4 +36,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-22 23:15:16
+-- Dump completed on 2013-10-23  3:24:50

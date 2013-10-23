@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.32, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: sil_igame
+-- Host: localhost    Database: ndg_igame
 -- ------------------------------------------------------
 -- Server version	5.5.32-0ubuntu0.12.04.1
 
@@ -21,9 +21,9 @@
 
 LOCK TABLES `pattern` WRITE;
 /*!40000 ALTER TABLE `pattern` DISABLE KEYS */;
-INSERT INTO `pattern` VALUES (1,'Solo investor','1',NULL,0);
-INSERT INTO `pattern` VALUES (2,'Two investors','1 2\n2 1',NULL,0);
-INSERT INTO `pattern` VALUES (3,'Three-investor net','1 2 3\n2 1 3\n3 1 2',NULL,0);
+INSERT INTO `pattern` VALUES (1,'Solo investor','1','Single (one-shot) investor',0,'2013-10-23 03:19:37','2013-10-23 01:19:37');
+INSERT INTO `pattern` VALUES (2,'Two investors','1 2\r\n2 1','N=2, Z=1',0,'2013-10-23 03:20:22','2013-10-23 01:20:22');
+INSERT INTO `pattern` VALUES (3,'Three-investor net','1 2 3\r\n2 1 3\r\n3 1 2','N=3, Z=2',0,'2013-10-23 03:20:54','2013-10-23 01:20:54');
 /*!40000 ALTER TABLE `pattern` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -36,4 +36,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-22 23:15:39
+-- Dump completed on 2013-10-23  3:22:44
