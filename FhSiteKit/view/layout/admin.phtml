@@ -37,11 +37,7 @@ echo $this->doctype();
 
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <?php echo $this->menu; ?>
-            </div>
-        </nav>
+        <?php echo $this->menu; ?>
         <div class="container">
             <?php echo $this->content; ?>
             <hr>
