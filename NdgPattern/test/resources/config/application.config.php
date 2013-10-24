@@ -9,8 +9,8 @@
  */
 
 $modules = array(
-    'Fhsk',
     'Application',
+    'FhSiteKit',
     'NdgPattern',
     'MockSite',
 );

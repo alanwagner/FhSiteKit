@@ -26,6 +26,9 @@ class PatternTest extends PHPUnit_Framework_TestCase
         $this->assertNull($pattern->name);
         $this->assertNull($pattern->content);
         $this->assertNull($pattern->description);
+        $this->assertNull($pattern->is_archived);
+        $this->assertNull($pattern->created_at);
+        $this->assertNull($pattern->updated_at);
     }
 
     public function testExchangeArraySetsPropertiesCorrectly()
@@ -37,6 +40,9 @@ class PatternTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data['name'], $pattern->name);
         $this->assertSame($data['content'], $pattern->content);
         $this->assertSame($data['description'], $pattern->description);
+        $this->assertSame($data['is_archived'], $pattern->is_archived);
+        $this->assertSame($data['created_at'], $pattern->created_at);
+        $this->assertSame($data['updated_at'], $pattern->updated_at);
     }
 
     public function testExchangeArraySetsPropertiesToNullIfKeysAreNotPresent()
@@ -48,6 +54,37 @@ class PatternTest extends PHPUnit_Framework_TestCase
         $this->assertNull($pattern->name);
         $this->assertNull($pattern->content);
         $this->assertNull($pattern->description);
+        $this->assertNull($pattern->is_archived);
+        $this->assertNull($pattern->created_at);
+        $this->assertNull($pattern->updated_at);
+    }
+
+    public function testGetArrayCopyReturnsAnArrayWithPropertyValues()
+    {
+        $pattern = $this->getPatternWithData();
+        $data  = $this->getDataArray();
+        $copyArray = $pattern->getArrayCopy();
+
+        $this->assertSame($data['id'], $copyArray['id']);
+        $this->assertSame($data['name'], $copyArray['name']);
+        $this->assertSame($data['content'], $copyArray['content']);
+        $this->assertSame($data['description'], $copyArray['description']);
+        $this->assertSame($data['is_archived'], $copyArray['is_archived']);
+        $this->assertSame($data['created_at'], $copyArray['created_at']);
+        $this->assertSame($data['updated_at'], $copyArray['updated_at']);
+    }
+
+    public function testInputFiltersAreSetCorrectly()
+    {
+        $pattern = new Pattern();
+
+        $inputFilter = $pattern->getInputFilter();
+
+        $this->assertSame(4, $inputFilter->count());
+        $this->assertTrue($inputFilter->has('id'));
+        $this->assertTrue($inputFilter->has('name'));
+        $this->assertTrue($inputFilter->has('content'));
+        $this->assertTrue($inputFilter->has('description'));
     }
 
     /**
@@ -70,10 +107,13 @@ class PatternTest extends PHPUnit_Framework_TestCase
     protected function getDataArray()
     {
         return array(
-            'id'          => 123,
+            'id'          => 420,
             'name'        => 'pattern name',
             'content'     => "1 2 3\n2 1 3\n3 1 2",
             'description' => 'N=3, Z=2',
+            'is_archived' => 0,
+            'created_at'  => date('Y-m-d H:i:s'),
+            'updated_at'  => date('Y-m-d H:i:s'),
         );
     }
 }

@@ -67,7 +67,7 @@ class Entity implements InputFilterAwareInterface
 
         foreach ($propList as $prop) {
             $old[$prop] = $this->$prop;
-            $this->$prop = (!empty($input[$prop])) ? $input[$prop] : null;
+            $this->$prop = (! isset($input[$prop])) ? null : $input[$prop];
         }
 
         return $old;

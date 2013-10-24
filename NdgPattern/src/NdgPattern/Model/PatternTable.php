@@ -12,6 +12,9 @@ namespace NdgPattern\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
+/**
+ * Pattern table gateway
+ */
 class PatternTable
 {
     protected $tableGateway;

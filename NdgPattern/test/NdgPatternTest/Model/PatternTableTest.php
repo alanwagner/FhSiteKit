@@ -56,12 +56,61 @@ class PatternTableTest extends PHPUnit_Framework_TestCase
         );
         $mockTableGateway->expects($this->once())
             ->method('select')
-            ->with(array('id' => 123))
+            ->with(array('id' => 420))
             ->will($this->returnValue($resultSet));
 
         $patternTable = new PatternTable($mockTableGateway);
 
-        $this->assertSame($pattern, $patternTable->getPattern(123));
+        $this->assertSame($pattern, $patternTable->getPattern(420));
+    }
+
+    public function testCanRetrieveActivePatterns()
+    {
+        $pattern = $this->getPatternWithData();
+        $resultSet = new ResultSet();
+        $resultSet->setArrayObjectPrototype(new Pattern());
+        $resultSet->initialize(array($pattern));
+
+        $mockTableGateway = $this->getMock(
+            'Zend\Db\TableGateway\TableGateway',
+            array('select'),
+            array(),
+            '',
+            false
+        );
+        $mockTableGateway->expects($this->once())
+            ->method('select')
+            ->with(array('is_archived' => 0))
+            ->will($this->returnValue($resultSet));
+
+        $patternTable = new PatternTable($mockTableGateway);
+
+        $this->assertSame($pattern, $patternTable->fetchByIsArchived(0)->current());
+    }
+
+    public function testCanRetrieveArchivedPatterns()
+    {
+        $pattern = $this->getPatternWithData();
+        $pattern->is_archived = 1;
+        $resultSet = new ResultSet();
+        $resultSet->setArrayObjectPrototype(new Pattern());
+        $resultSet->initialize(array($pattern));
+
+        $mockTableGateway = $this->getMock(
+            'Zend\Db\TableGateway\TableGateway',
+            array('select'),
+            array(),
+            '',
+            false
+        );
+        $mockTableGateway->expects($this->once())
+            ->method('select')
+            ->with(array('is_archived' => 1))
+            ->will($this->returnValue($resultSet));
+
+        $patternTable = new PatternTable($mockTableGateway);
+
+        $this->assertSame($pattern, $patternTable->fetchByIsArchived(1)->current());
     }
 
     public function testCanDeleteAPatternByItsId()
@@ -75,19 +124,22 @@ class PatternTableTest extends PHPUnit_Framework_TestCase
         );
         $mockTableGateway->expects($this->once())
             ->method('delete')
-            ->with(array('id' => 123));
+            ->with(array('id' => 420));
 
         $patternTable = new PatternTable($mockTableGateway);
-        $patternTable->deletePattern(123);
+        $patternTable->deletePattern(420);
     }
 
     public function testSavePatternWillInsertNewPatternsIfTheyDontAlreadyHaveAnId()
     {
         $patternData = $this->getDataArray();
+        $created = $patternData['created_at'];
         unset($patternData['id']);
+        unset($patternData['created_at']);
 
         $pattern     = new Pattern();
         $pattern->exchangeArray($patternData);
+        $patternData['created_at'] = $created;
 
         $mockTableGateway = $this->getMock(
             'Zend\Db\TableGateway\TableGateway',
@@ -120,15 +172,16 @@ class PatternTableTest extends PHPUnit_Framework_TestCase
         );
         $mockTableGateway->expects($this->once())
             ->method('select')
-            ->with(array('id' => 123))
+            ->with(array('id' => 420))
             ->will($this->returnValue($resultSet));
 
         $patternData = $this->getDataArray();
         unset($patternData['id']);
+        unset($patternData['created_at']);
 
         $mockTableGateway->expects($this->once())
             ->method('update')
-            ->with($patternData, array('id' => 123));
+            ->with($patternData, array('id' => 420));
 
         $patternTable = new PatternTable($mockTableGateway);
         $patternTable->savePattern($pattern);
@@ -149,16 +202,16 @@ class PatternTableTest extends PHPUnit_Framework_TestCase
         );
         $mockTableGateway->expects($this->once())
             ->method('select')
-            ->with(array('id' => 123))
+            ->with(array('id' => 420))
             ->will($this->returnValue($resultSet));
 
         $patternTable = new PatternTable($mockTableGateway);
 
         try {
-            $patternTable->getPattern(123);
+            $patternTable->getPattern(420);
         }
         catch (\Exception $e) {
-            $this->assertSame('Could not find row 123', $e->getMessage());
+            $this->assertSame('Could not find row 420', $e->getMessage());
             return;
         }
 
@@ -185,10 +238,12 @@ class PatternTableTest extends PHPUnit_Framework_TestCase
     protected function getDataArray()
     {
         return array(
-            'id'          => 123,
+            'id'          => 420,
             'name'        => 'pattern name',
             'content'     => "1 2 3\n2 1 3\n3 1 2",
             'description' => 'N=3, Z=2',
+            'is_archived' => 0,
+            'created_at'  => date('Y-m-d H:i:s'),
         );
     }
 }

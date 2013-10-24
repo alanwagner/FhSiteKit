@@ -17,7 +17,7 @@ use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 /**
  * Tests on the Admin Controller
  */
-class PatternTest extends AbstractHttpControllerTestCase
+class AdminControllerTest extends AbstractHttpControllerTestCase
 {
     protected $traceError = true;
 
@@ -36,7 +36,8 @@ class PatternTest extends AbstractHttpControllerTestCase
             ->getMock();
 
         $patternTableMock->expects($this->once())
-            ->method('fetchAll')
+            ->method('fetchByIsArchived')
+            ->with(0)
             ->will($this->returnValue(array()));
 
         $serviceManager = $this->getApplicationServiceLocator();
