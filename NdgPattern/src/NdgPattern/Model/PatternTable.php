@@ -57,7 +57,7 @@ class PatternTable
      * Get a single pattern by id
      * @param int $id
      * @throws \Exception
-     * @return Ambigous <multitype:, ArrayObject, NULL, \ArrayObject, unknown>
+     * @return Pattern
      */
     public function getPattern($id)
     {
