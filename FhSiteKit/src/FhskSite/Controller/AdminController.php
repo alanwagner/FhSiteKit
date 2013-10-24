@@ -56,7 +56,7 @@ class AdminController extends AbstractActionController
 
     /**
      * Handle an index page request
-     * @return ViewModel
+     * @return \Zend\View\Model\ViewModel
      */
     public function indexAction()
     {
@@ -73,7 +73,7 @@ class AdminController extends AbstractActionController
      *
      * @param array $data
      * @param string $action
-     * @return ViewModel
+     * @return \Zend\View\Model\ViewModel
      */
     protected function generateViewModel($data, $action = null)
     {

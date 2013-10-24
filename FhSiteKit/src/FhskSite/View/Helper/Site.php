@@ -90,7 +90,7 @@ class Site extends AbstractHelper implements ServiceLocatorAwareInterface
      * $services is set with Zend\View\HelperPluginManager
      * so we need to call its getServiceLocator() to get the application-wide one
      *
-     * @return Zend\ServiceManager\ServiceManager
+     * @return \Zend\ServiceManager\ServiceManager
      */
     public function getGlobalServiceLocator()
     {

@@ -17,25 +17,48 @@ use Zend\Db\TableGateway\TableGateway;
  */
 class PatternTable
 {
+    /**
+     * The table gateway
+     * @var TableGateway
+     */
     protected $tableGateway;
 
+    /**
+     * Constructor
+     * @param TableGateway $tableGateway
+     */
     public function __construct(TableGateway $tableGateway)
     {
         $this->tableGateway = $tableGateway;
     }
 
+    /**
+     * Fetch all patterns
+     * @return \Zend\Db\ResultSet\ResultSet
+     */
     public function fetchAll()
     {
         $resultSet = $this->tableGateway->select();
         return $resultSet;
     }
 
+    /**
+     * Fetch only active or archived patterns
+     * @param int $isArchived  0 or 1
+     * @return \Zend\Db\ResultSet\ResultSet
+     */
     public function fetchByIsArchived($isArchived)
     {
         $resultSet = $this->tableGateway->select(array('is_archived' => $isArchived));
         return $resultSet;
     }
 
+    /**
+     * Get a single pattern by id
+     * @param int $id
+     * @throws \Exception
+     * @return Ambigous <multitype:, ArrayObject, NULL, \ArrayObject, unknown>
+     */
     public function getPattern($id)
     {
         $id  = (int) $id;
@@ -47,6 +70,14 @@ class PatternTable
         return $row;
     }
 
+    /**
+     * Prepare and save pattern data
+     *
+     * Could be creating a new pattern or updating an existing one
+     *
+     * @param Pattern $pattern
+     * @throws \Exception
+     */
     public function savePattern(Pattern $pattern)
     {
         $data = array(
@@ -69,6 +100,10 @@ class PatternTable
         }
     }
 
+    /**
+     * Delete a pattern
+     * @param int $id
+     */
     public function deletePattern($id)
     {
         $this->tableGateway->delete(array('id' => $id));

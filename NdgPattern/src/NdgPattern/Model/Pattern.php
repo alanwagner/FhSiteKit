@@ -28,7 +28,6 @@ class Pattern extends Entity
 
     /**
      * Get array of names of entity's public properties
-     *
      * @return array
      */
     public static function getPropList()

@@ -15,12 +15,30 @@ use FhskSite\Core\Site as FhskSite;
 use NdgPattern\Form\PatternForm;
 use NdgPattern\Model\Pattern;
 
+/**
+ * Pattern admin controller
+ */
 class AdminController extends FhskAdminController
 {
+    /**
+     * Template namespace
+     * @var string
+     */
     protected static $templateNamespace  = 'pattern';
 
+    /**
+     * The pattern table
+     * @var unknown_type
+     */
     protected $patternTable;
 
+    /**
+     * Handle a list page request
+     *
+     * This shows only active patterns
+     *
+     * @return \Zend\View\Model\ViewModel
+     */
     public function listAction()
     {
         $data = array(
@@ -31,6 +49,10 @@ class AdminController extends FhskAdminController
         return $view;
     }
 
+    /**
+     * Handle a request for a list of archived patterns
+     * @return \Zend\View\Model\ViewModel
+     */
     public function listArchivedAction()
     {
         $data = array(
@@ -42,6 +64,13 @@ class AdminController extends FhskAdminController
         return $view;
     }
 
+    /**
+     * Handle an add form page request or post submission
+     *
+     * Pre-populate the form if a pattern id param is set (cloning)
+     *
+     * @return \Zend\View\Model\ViewModel|\Zend\Http\Response
+     */
     public function addAction()
     {
         $form = new PatternForm();
@@ -89,6 +118,10 @@ class AdminController extends FhskAdminController
         return $view;
     }
 
+    /**
+     * Handle an edit form page request or post submission
+     * @return \Zend\View\Model\ViewModel|\Zend\Http\Response
+     */
     public function editAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -142,6 +175,10 @@ class AdminController extends FhskAdminController
         return $view;
     }
 
+    /**
+     * Handle a toggleArchived page request
+     * @return \Zend\Http\Response
+     */
     public function toggleArchivedAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -162,6 +199,10 @@ class AdminController extends FhskAdminController
         return $this->redirect()->toRoute('patternAdmin', array('siteKey' => FhskSite::getKey(), 'action' => $this->params()->fromRoute('returnAction', '')));
     }
 
+    /**
+     * Get the Pattern Table
+     * @return unknown_type
+     */
     public function getPatternTable()
     {
         if (! $this->patternTable) {

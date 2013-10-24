@@ -25,7 +25,7 @@ class AdminController extends FhskAdminController
 
     /**
      * Handle a list page request
-     * @return ViewModel
+     * @return \Zend\View\Model\ViewModel
      */
     public function listAction() {
         $data = array();
@@ -36,7 +36,7 @@ class AdminController extends FhskAdminController
 
     /**
      * Handle an add form page request or post submission
-     * @return ViewModel
+     * @return \Zend\View\Model\ViewModel
      */
     public function addAction() {
         $data = array();
