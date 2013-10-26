@@ -31,41 +31,53 @@ class PatternForm extends Form
             'type' => 'Hidden',
         ));
         $this->add(array(
-            'name' => 'name',
-            'type' => 'Text',
-            'options' => array(
-                'label'    => 'Pattern Name *',
+                'name' => 'name',
+                'type' => 'Text',
+                'options' => array(
+                    'label'    => 'Pattern Name *',
+                ),
             ),
+            array(
+                'priority' => 5000,
         ));
         $this->add(array(
-            'name' => 'content',
-            'type' => 'TextArea',
-            'options' => array(
-                'label' => 'Content *',
+                'name' => 'content',
+                'type' => 'TextArea',
+                'options' => array(
+                    'label' => 'Content *',
+                ),
+                'attributes' => array(
+                    'rows' => '20',
+                    'cols' => '80',
+                ),
             ),
-            'attributes' => array(
-                'rows' => '20',
-                'cols' => '80',
-            ),
+            array(
+                'priority' => 4000,
         ));
         $this->add(array(
-            'name' => 'description',
-            'type' => 'TextArea',
-            'options' => array(
-                'label' => 'Description',
+                'name' => 'description',
+                'type' => 'TextArea',
+                'options' => array(
+                    'label' => 'Description',
+                ),
+                'attributes' => array(
+                    'rows' => '10',
+                    'cols' => '40',
+                ),
             ),
-            'attributes' => array(
-                'rows' => '10',
-                'cols' => '40',
-            ),
+            array(
+                'priority' => 3000,
         ));
         $this->add(array(
-            'name' => 'submit',
-            'type' => 'Submit',
-            'attributes' => array(
-                'value' => 'Submit',
-                'id' => 'submitbutton',
+                'name' => 'submit',
+                'type' => 'Submit',
+                'attributes' => array(
+                    'value' => 'Submit',
+                    'id' => 'submitbutton',
+                ),
             ),
+            array(
+                'priority' => 1000,
         ));
     }
 }
