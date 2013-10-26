@@ -15,11 +15,11 @@ git clone https://github.com/alanwagner/FHSK.git module
 
 ### 3.  Install databases
 ```bash
-mysql -uroot -e"create database ndg_ngame; create database ndg_igame"
-mysql -uroot ndg_ngame < NgameSite/data/ngame_schema.sql
-mysql -uroot ndg_ngame < NgameSite/data/ngame_fixture.sql
-mysql -uroot ndg_igame < IgameSite/data/igame_schema.sql
-mysql -uroot ndg_igame < IgameSite/data/igame_fixture.sql
+mysql -uroot -e"create database ndg_pennshape; create database ndg_ngame; create database ndg_igame"
+mysql -uroot ndg_pennshape < PennShapeSite/data/pennshape_schema.sql
+mysql -uroot ndg_pennshape < PennShapeSite/data/pennshape_fixture.sql
+mysql -uroot ndg_ngame <     NgameSite/data/ngame_schema.sql
+mysql -uroot ndg_igame <     IgameSite/data/igame_schema.sql
 ```
 
 ### 4.  Modify index.php
@@ -55,6 +55,9 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 + );
 + 
 + switch ($siteKey) {
++     case 'pennshape' :
++         $modules[] = 'PennShapeSite';
++         break;
 +     case 'ngame' :
 +         $modules[] = 'NgameSite';
 +         break;
@@ -83,8 +86,9 @@ return array(
 The dist files contain the database configs
 
 ```bash
-cp NgameSite/config/ngame.php.dist config/autoload/ngame.php
-cp IgameSite/config/igame.php.dist config/autoload/igame.php
+cp  PennShapeSite/config/pennshape.php.dist  config/autoload/pennshape.php
+cp  NgameSite/config/ngame.php.dist          config/autoload/ngame.php
+cp  IgameSite/config/igame.php.dist          config/autoload/igame.php
 ```
 
 You can also clean up `config/autoload/global.php` and `local.php`
@@ -106,7 +110,7 @@ return array(
 Testing
 -------------------------
 
-http://fhsk.local/ngame/admin/site
+http://fhsk.local/pennshape/admin/site
 
 ```bash
 ./bin/phpunit.sh
