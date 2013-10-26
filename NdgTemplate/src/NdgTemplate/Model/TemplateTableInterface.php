@@ -10,12 +10,13 @@
 
 namespace NdgTemplate\Model;
 
+use FhskEntity\Model\EntityTableInterface;
 use Zend\Db\TableGateway\TableGateway;
 
 /**
  * Template table interface
  */
-interface TemplateTableInterface
+interface TemplateTableInterface extends EntityTableInterface
 {
     /**
      * Fetch all templates

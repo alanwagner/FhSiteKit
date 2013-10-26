@@ -63,7 +63,8 @@ class Module
                 },
                 'Template\Model\TemplateTable' =>  function($sm) {
                     $tableGateway = $sm->get('Template\Model\TemplateTableGateway');
-                    $table = new TemplateTable($tableGateway);
+                    $patternTable = $sm->get('Pattern\Model\PatternTable');
+                    $table = new TemplateTable($tableGateway, $patternTable);
 
                     return $table;
                 },

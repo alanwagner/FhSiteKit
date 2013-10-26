@@ -11,6 +11,7 @@
 namespace NdgTemplate\Model;
 
 use FhskEntity\Model\EntityTable;
+use NdgPattern\Model\PatternTableInterface;
 use Zend\Db\Sql\Select;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -19,6 +20,23 @@ use Zend\Db\TableGateway\TableGateway;
  */
 class TemplateTable extends EntityTable implements TemplateTableInterface
 {
+    /**
+     * Pattern Table
+     * @var PatternTableInterface
+     */
+    protected $patternTable;
+
+    /**
+     * Constructor
+     * @param TableGateway $tableGateway
+     * @param PatternTableInterface $patternTable
+     */
+    public function __construct(TableGateway $tableGateway, PatternTableInterface $patternTable)
+    {
+        $this->patternTable = $patternTable;
+        parent::__construct($tableGateway);
+    }
+
     /**
      * Fetch all templates
      * @return \Zend\Db\ResultSet\ResultSet
@@ -52,8 +70,9 @@ class TemplateTable extends EntityTable implements TemplateTableInterface
         $tableName = $this->tableGateway->getTable();
         $select = new Select($tableName);
         $select->where(array($tableName.'.is_archived' => $isArchived));
+        $patternTableName = $this->patternTable->getTableGateway()->getTable();
         $select->join(
-            array('p' => 'pattern'),
+            array('p' => $patternTableName),
             'p.id = ' . $tableName . '.pattern_id',
             array(
                 'pattern__name' => 'name',

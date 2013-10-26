@@ -45,4 +45,13 @@ class EntityTable
 
         $this->tableGateway = new TableGateway($table, $adapter, $features, $resultSetPrototype, $sql);
     }
+
+    /**
+     * Get table gateway
+     * @return TableGateway
+     */
+    public function getTableGateway()
+    {
+        return $this->tableGateway;
+    }
 }
