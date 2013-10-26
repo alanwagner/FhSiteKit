@@ -106,6 +106,8 @@ return array(
 Testing
 -------------------------
 
-http://fhsk.local/ngame/admin/pattern
+http://fhsk.local/ngame/admin/site
 
-http://fhsk.local/igame/admin/pattern
+```bash
+./bin/phpunit.sh
+```
