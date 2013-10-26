@@ -65,7 +65,7 @@ class PatternTable implements PatternTableInterface
         $rowset = $this->tableGateway->select(array('id' => $id));
         $row = $rowset->current();
         if (!$row) {
-            throw new \Exception("Could not find row $id");
+            throw new \Exception(sprintf('Could not find row %d', $id));
         }
         return $row;
     }
@@ -95,7 +95,7 @@ class PatternTable implements PatternTableInterface
             if ($this->getPattern($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
             } else {
-                throw new \Exception('Pattern id does not exist');
+                throw new \Exception(sprintf('Pattern %d does not exist', $id));
             }
         }
     }

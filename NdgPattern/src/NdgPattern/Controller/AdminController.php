@@ -74,7 +74,7 @@ class AdminController extends FhskAdminController
      */
     public function addAction()
     {
-        $form = new PatternForm();
+        $form = $this->getPatternForm();
         $form->get('submit')->setValue('Add');
 
         //  If cloning, populate form with values from selected Pattern
@@ -96,7 +96,7 @@ class AdminController extends FhskAdminController
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $pattern = new Pattern();
+            $pattern = $this->getNewPatternEntity();
             $form->setInputFilter($pattern->getInputFilter());
             $form->setData($request->getPost());
 
@@ -145,7 +145,7 @@ class AdminController extends FhskAdminController
             ));
         }
 
-        $form  = new patternForm();
+        $form = $this->getPatternForm();
         $form->bind($pattern);
         $form->get('submit')->setAttribute('value', 'Edit');
 
@@ -203,14 +203,52 @@ class AdminController extends FhskAdminController
     /**
      * Get the Pattern Table
      * @return PatternTableInterface
+     * @throws \Exception
      */
     protected function getPatternTable()
     {
         if (! $this->patternTable) {
-            $sm = $this->getServiceLocator();
-            $this->patternTable = $sm->get('Pattern\Model\PatternTable');
+            $patternTable = $this->getServiceLocator()
+                ->get('Pattern\Model\PatternTable');
+            if (! $patternTable instanceof PatternTableInterface) {
+                throw new \Exception(sprintf('Pattern table must be an instance of NdgPattern\Model\PatternTableInterface, "%s" given.', get_class($patternTable)));
+            }
+            $this->patternTable = $patternTable;
         }
 
         return $this->patternTable;
+    }
+
+    /**
+     * Get the pattern form
+     * @return PatternForm
+     * @throws \Exception
+     */
+    protected function getPatternForm()
+    {
+        $form = $this->getServiceLocator()
+            ->get('FormElementManager')
+            ->get('Pattern\Form\PatternForm');
+        if (! $form instanceof PatternForm) {
+            throw new \Exception(sprintf('Pattern form must be an instance of NdgPattern\Form\PatternForm, "%s" given.', get_class($form)));
+        }
+
+        return $form;
+    }
+
+    /**
+     * Get a new Pattern entity
+     * @return Pattern
+     * @throws \Exception
+     */
+    protected function getNewPatternEntity()
+    {
+        $pattern = $this->getServiceLocator()
+            ->get('Pattern\Model\PatternEntity');
+        if (! $pattern instanceof Pattern) {
+            throw new \Exception(sprintf('New Pattern entity must be an instance of NdgPattern\Model\Pattern, "%s" given.', get_class($pattern)));
+        }
+
+        return $pattern;
     }
 }

@@ -10,15 +10,17 @@
 
 namespace NdgPattern;
 
+use NdgPattern\Form\PatternForm;
 use NdgPattern\Model\Pattern;
 use NdgPattern\Model\PatternTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
+use Zend\ModuleManager\Feature\FormElementProviderInterface;
 
 /**
  * NdgPattern Module setup class
  */
-class Module
+class Module implements FormElementProviderInterface
 {
     /**
      * Get module config
@@ -55,20 +57,41 @@ class Module
     {
         return array(
             'factories' => array(
+                'Pattern\Model\PatternEntity' =>  function($sm) {
+                    $pattern = new Pattern();
+
+                    return $pattern;
+                },
                 'Pattern\Model\PatternTable' =>  function($sm) {
-                    $tableGateway = $sm->get('PatternTableGateway');
+                    $tableGateway = $sm->get('Pattern\Model\PatternTableGateway');
                     $table = new PatternTable($tableGateway);
 
                     return $table;
                 },
-                'PatternTableGateway' => function ($sm) {
+                'Pattern\Model\PatternTableGateway' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Pattern());
+                    $resultSetPrototype->setArrayObjectPrototype($sm->get('Pattern\Model\PatternEntity'));
 
                     return new TableGateway('pattern', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
+        );
+    }
+
+    /**
+     * Get form element config
+     * @return array
+     */
+    public function getFormElementConfig()
+    {
+        return array(
+            'factories' => array(
+                'Pattern\Form\PatternForm' => function($sm) {
+
+                    return new PatternForm();
+                }
+            )
         );
     }
 }
