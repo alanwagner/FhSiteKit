@@ -53,6 +53,7 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 +     'FhSiteKit',
 +     'NdgSite',
 +     'NdgPattern',
++     'NdgTemplate',
 + );
 + 
 + switch ($siteKey) {
