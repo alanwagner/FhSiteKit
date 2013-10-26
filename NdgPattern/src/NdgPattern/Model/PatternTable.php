@@ -10,28 +10,14 @@
 
 namespace NdgPattern\Model;
 
+use FhskEntity\Model\EntityTable;
 use Zend\Db\TableGateway\TableGateway;
 
 /**
  * Pattern table gateway
  */
-class PatternTable implements PatternTableInterface
+class PatternTable extends EntityTable implements PatternTableInterface
 {
-    /**
-     * The table gateway
-     * @var TableGateway
-     */
-    protected $tableGateway;
-
-    /**
-     * Constructor
-     * @param TableGateway $tableGateway
-     */
-    public function __construct(TableGateway $tableGateway)
-    {
-        $this->tableGateway = $tableGateway;
-    }
-
     /**
      * Fetch all patterns
      * @return \Zend\Db\ResultSet\ResultSet
