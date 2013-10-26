@@ -14,6 +14,7 @@ use FhskEntity\Controller\AdminController as FhskAdminController;
 use FhskSite\Core\Site as FhskSite;
 use NdgPattern\Form\PatternForm;
 use NdgPattern\Model\Pattern;
+use NdgPattern\Model\PatternTableInterface;
 
 /**
  * Pattern admin controller
@@ -28,7 +29,7 @@ class AdminController extends FhskAdminController
 
     /**
      * The pattern table
-     * @var unknown_type
+     * @var PatternTableInterface
      */
     protected $patternTable;
 
@@ -201,14 +202,15 @@ class AdminController extends FhskAdminController
 
     /**
      * Get the Pattern Table
-     * @return unknown_type
+     * @return PatternTableInterface
      */
-    public function getPatternTable()
+    protected function getPatternTable()
     {
         if (! $this->patternTable) {
             $sm = $this->getServiceLocator();
             $this->patternTable = $sm->get('Pattern\Model\PatternTable');
         }
+
         return $this->patternTable;
     }
 }

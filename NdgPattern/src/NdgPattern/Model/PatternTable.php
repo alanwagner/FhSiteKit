@@ -15,7 +15,7 @@ use Zend\Db\TableGateway\TableGateway;
 /**
  * Pattern table gateway
  */
-class PatternTable
+class PatternTable implements PatternTableInterface
 {
     /**
      * The table gateway
