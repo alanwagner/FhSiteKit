@@ -123,5 +123,6 @@ Testing
 http://fhsk.local/pennshape/admin/site
 
 ```bash
+cd module
 ./bin/phpunit.sh
 ```
