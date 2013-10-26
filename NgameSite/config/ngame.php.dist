@@ -10,7 +10,7 @@
 
 return array(
     'db' => array(
-        'dsn'            => 'mysql:dbname=sil_ngame;host=localhost',
+        'dsn'            => 'mysql:dbname=ndg_ngame;host=localhost',
         'username'       => 'root',
         'password'       => '',
     ),
