@@ -27,8 +27,8 @@ class PatternForm extends Form
         parent::__construct('pattern');
 
         $this->add(array(
-            'name' => 'id',
-            'type' => 'Hidden',
+                'name' => 'id',
+                'type' => 'Hidden',
         ));
         $this->add(array(
                 'name' => 'name',
