@@ -1,0 +1,45 @@
+
+div.fhsk-logo {
+    background: url("../img/fh-logo.png") no-repeat scroll 0px 0px transparent;
+    position:           absolute;
+    top:                1px;
+    left:               1px;
+    height:             48px;
+    width:              48px;
+}
+
+div.fhsk-links {
+    padding-top:        0.5em;
+    padding-bottom:     1.5em;
+}
+
+div.fhsk-form {
+    padding-bottom:     2em;
+}
+
+label,
+label  span {
+    display:            block;
+}
+
+label {
+    padding-bottom:     1em;
+}
+
+.table  tr  td.noTopBorder {
+    border-top-width:   0px;
+}
+
+td.actionLinks  a {
+    display:            inline-block;
+    padding-left:       1em;
+}
+
+div.pattern-content {
+    display:            none;
+    overflow:           hidden;
+}
+
+tr.fhsk-hover-highlight {
+    background-color:   papayawhip;
+}

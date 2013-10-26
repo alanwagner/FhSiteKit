@@ -15,6 +15,7 @@ git clone https://github.com/alanwagner/FHSK.git module
 
 ### 3.  Install databases
 ```bash
+cd module
 mysql -uroot -e"create database ndg_pennshape; create database ndg_ngame; create database ndg_igame"
 mysql -uroot ndg_pennshape < PennShapeSite/data/pennshape_schema.sql
 mysql -uroot ndg_pennshape < PennShapeSite/data/pennshape_fixture.sql
@@ -86,9 +87,10 @@ return array(
 The dist files contain the database configs
 
 ```bash
-cp  PennShapeSite/config/pennshape.php.dist  config/autoload/pennshape.php
-cp  NgameSite/config/ngame.php.dist          config/autoload/ngame.php
-cp  IgameSite/config/igame.php.dist          config/autoload/igame.php
+cd module
+cp  PennShapeSite/config/pennshape.php.dist  ../config/autoload/pennshape.php
+cp  NgameSite/config/ngame.php.dist          ../config/autoload/ngame.php
+cp  IgameSite/config/igame.php.dist          ../config/autoload/igame.php
 ```
 
 You can also clean up `config/autoload/global.php` and `local.php`
@@ -107,6 +109,14 @@ return array(
 -    ),
 );
 ```
+
+### 7.  Install resources
+```bash
+cd module
+cp  FhSiteKit/public/css/fhsk-style.css  ../public/css/fhsk-style.css
+cp  FhSiteKit/public/js/fhsk.js          ../public/js/fhsk.js
+```
+
 Testing
 -------------------------
 
