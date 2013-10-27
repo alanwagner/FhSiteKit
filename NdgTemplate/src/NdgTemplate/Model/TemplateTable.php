@@ -30,11 +30,12 @@ class TemplateTable extends EntityTable implements TemplateTableInterface
      * Constructor
      * @param TableGateway $tableGateway
      * @param PatternTableInterface $patternTable
+     * @param TableGateway $rowDataTableGateway
      */
-    public function __construct(TableGateway $tableGateway, PatternTableInterface $patternTable)
+    public function __construct(TableGateway $tableGateway, PatternTableInterface $patternTable, TableGateway $rowDataTableGateway = null)
     {
         $this->patternTable = $patternTable;
-        parent::__construct($tableGateway);
+        parent::__construct($tableGateway, $rowDataTableGateway);
     }
 
     /**

@@ -10,6 +10,7 @@
 
 namespace NdgTemplate;
 
+use FhskEntity\Model\RowData;
 use NdgTemplate\Form\TemplateForm;
 use NdgTemplate\Model\Template;
 use NdgTemplate\Model\TemplateTable;
@@ -63,8 +64,9 @@ class Module
                 },
                 'Template\Model\TemplateTable' =>  function($sm) {
                     $tableGateway = $sm->get('Template\Model\TemplateTableGateway');
+                    $rowDataTableGateway = $sm->get('Template\Model\TemplateRowDataTableGateway');
                     $patternTable = $sm->get('Pattern\Model\PatternTable');
-                    $table = new TemplateTable($tableGateway, $patternTable);
+                    $table = new TemplateTable($tableGateway, $patternTable, $rowDataTableGateway);
 
                     return $table;
                 },
@@ -72,6 +74,13 @@ class Module
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype($sm->get('Template\Model\TemplateEntity'));
+
+                    return new TableGateway('template', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Template\Model\TemplateRowDataTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new RowData());
 
                     return new TableGateway('template', $dbAdapter, null, $resultSetPrototype);
                 },

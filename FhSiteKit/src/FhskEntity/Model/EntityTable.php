@@ -25,25 +25,27 @@ class EntityTable
     protected $tableGateway;
 
     /**
+     * The table gateway to use for queries that take a RowData result object prototype
+     * @var TableGateway
+     */
+    protected $rowDataTableGateway;
+
+    /**
      * Constructor
      * @param TableGateway $tableGateway
+     * @param TableGateway $rowDataTableGateway
      */
-    public function __construct(TableGateway $tableGateway)
+    public function __construct(TableGateway $tableGateway, TableGateway $rowDataTableGateway = null)
     {
         $this->tableGateway = $tableGateway;
+        if ($rowDataTableGateway !== null) {
+            $this->rowDataTableGateway = $rowDataTableGateway;
+        }
     }
 
     protected function useRowDataResult()
     {
-        $tableGateway = $this->tableGateway;
-        $table = $tableGateway->getTable();
-        $adapter = $tableGateway->getAdapter();
-        $features = $tableGateway->getFeatureSet();
-        $resultSetPrototype = new ResultSet();
-        $resultSetPrototype->setArrayObjectPrototype(new RowData());
-        $sql = $tableGateway->getSql();
-
-        $this->tableGateway = new TableGateway($table, $adapter, $features, $resultSetPrototype, $sql);
+        $this->tableGateway = $this->rowDataTableGateway;
     }
 
     /**

@@ -218,6 +218,21 @@ class PatternTableTest extends PHPUnit_Framework_TestCase
         $this->fail('Expected exception was not thrown');
     }
 
+    public function testGetTableGateway()
+    {
+        $mockTableGateway = $this->getMock(
+            'Zend\Db\TableGateway\TableGateway',
+            array('select'),
+            array(),
+            '',
+            false
+        );
+
+        $patternTable = new PatternTable($mockTableGateway);
+
+        $this->assertSame($mockTableGateway, $patternTable->getTableGateway());
+    }
+
     /**
      * Get Pattern entity initialized with standard data
      * @return NdgPattern\Model\Pattern

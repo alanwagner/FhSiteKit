@@ -10,10 +10,14 @@
 
 namespace NdgTemplateTest\Model;
 
+use FhskEntity\Model\RowData;
 use NdgPattern\Model\PatternTable;
 use NdgTemplate\Model\TemplateTable;
 use NdgTemplate\Model\Template;
 use NdgTemplateTest\Bootstrap;
+use Zend\Db\Adapter\Adapter;
+use Zend\Db\Adapter\Driver\Pdo\Pdo;
+use Zend\Db\Adapter\Platform\Mysql;
 use Zend\Db\ResultSet\ResultSet;
 use PHPUnit_Framework_TestCase;
 
@@ -113,6 +117,73 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
         $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable());
 
         $this->assertSame($template, $templateTable->fetchByIsArchived(1)->current());
+    }
+
+    public function testCanRetrieveActiveDataRows()
+    {
+        $rowData = $this->getRowWithData();
+        $rowData->is_archived = 0;
+        $resultSet = new ResultSet();
+        $resultSet->setArrayObjectPrototype(new RowData());
+        $resultSet->initialize(array($rowData));
+
+        $mockTableGateway = $this->getMock(
+            'Zend\Db\TableGateway\TableGateway',
+            array(),
+            array('template'),
+            '',
+            false
+        );
+        $mockTableGateway->expects($this->never())
+            ->method('selectWith');
+
+        $mockRowDataTableGateway = $this->getMock(
+            'Zend\Db\TableGateway\TableGateway',
+            array(),
+            array('template'),
+            '',
+            false
+        );
+        $mockRowDataTableGateway->expects($this->once())
+            ->method('selectWith')
+            ->will($this->returnValue($resultSet));
+
+        $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable(), $mockRowDataTableGateway);
+
+        $this->assertSame($rowData, $templateTable->fetchDataWithPatternByIsArchived(0)->current());
+    }
+
+    public function testCanRetrieveArchivedDataRows()
+    {
+        $rowData = $this->getRowWithData();
+        $resultSet = new ResultSet();
+        $resultSet->setArrayObjectPrototype(new RowData());
+        $resultSet->initialize(array($rowData));
+
+        $mockTableGateway = $this->getMock(
+            'Zend\Db\TableGateway\TableGateway',
+            array(),
+            array('template'),
+            '',
+            false
+        );
+        $mockTableGateway->expects($this->never())
+            ->method('selectWith');
+
+        $mockRowDataTableGateway = $this->getMock(
+            'Zend\Db\TableGateway\TableGateway',
+            array(),
+            array('template'),
+            '',
+            false
+        );
+        $mockRowDataTableGateway->expects($this->once())
+            ->method('selectWith')
+            ->will($this->returnValue($resultSet));
+
+        $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable(), $mockRowDataTableGateway);
+
+        $this->assertSame($rowData, $templateTable->fetchDataWithPatternByIsArchived(1)->current());
     }
 
     public function testCanDeleteATemplateByItsId()
@@ -222,6 +293,21 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
         $this->fail('Expected exception was not thrown');
     }
 
+    public function testGetTableGateway()
+    {
+        $mockTableGateway = $this->getMock(
+            'Zend\Db\TableGateway\TableGateway',
+            array('select'),
+            array(),
+            '',
+            false
+        );
+
+        $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable());
+
+        $this->assertSame($mockTableGateway, $templateTable->getTableGateway());
+    }
+
     protected function getPatternTable()
     {
         $mockTableGateway = $this->getMock(
@@ -265,5 +351,20 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
             'created_at'    => date('Y-m-d H:i:s'),
             'updated_at'    => date('Y-m-d H:i:s'),
         );
+    }
+
+    /**
+     * Get a RowData object initialized with data
+     */
+    protected function getRowWithData()
+    {
+        $rowData = new RowData();
+        $data = $this->getTemplateDataArray();
+        $data['pattern__name'] = 'pattern_name';
+        $data['pattern__content'] = "1 2 3\n2 1 3\n3 1 2";
+
+        $rowData->exchangeArray($data);
+
+        return $rowData;
     }
 }
