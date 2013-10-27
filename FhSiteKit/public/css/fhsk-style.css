@@ -24,6 +24,9 @@ div.fhsk-links {
 div.fhsk-form {
     padding-bottom:     2em;
 }
+div.fhsk-form  li {
+    color:              firebrick;
+}
 
 label,
 label  span {
