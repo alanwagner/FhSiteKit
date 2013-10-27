@@ -7,3 +7,10 @@
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GPLv3 License
  * @author    Alan Wagner (mail@alanwagner.org)
  */
+?>
+
+<?php foreach ($this->messages as $namespace => $messages): ?>
+    <?php foreach ($messages as $message): ?>
+        <p class="alert-<?php echo $namespace ?>"><?php echo $message; ?></p>
+    <?php endforeach; ?>
+<?php endforeach;

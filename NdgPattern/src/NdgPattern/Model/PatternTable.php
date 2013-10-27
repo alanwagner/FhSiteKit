@@ -62,6 +62,7 @@ class PatternTable extends EntityTable implements PatternTableInterface
      * Could be creating a new pattern or updating an existing one
      *
      * @param Pattern $pattern
+     * @return Pattern
      * @throws \Exception
      */
     public function savePattern(Pattern $pattern)
@@ -77,6 +78,7 @@ class PatternTable extends EntityTable implements PatternTableInterface
         if ($id == 0) {
             $data['created_at'] = date('Y-m-d H:i:s');
             $this->tableGateway->insert($data);
+            $id = $this->tableGateway->getLastInsertValue();
         } else {
             if ($this->getPattern($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
@@ -84,6 +86,8 @@ class PatternTable extends EntityTable implements PatternTableInterface
                 throw new \Exception(sprintf('Pattern %d does not exist', $id));
             }
         }
+
+        return $this->getPattern($id);
     }
 
     /**

@@ -15,6 +15,7 @@ use FhskSite\Core\Site as FhskSite;
 use NdgTemplate\Form\TemplateForm;
 use NdgTemplate\Model\Template;
 use NdgTemplate\Model\TemplateTableInterface;
+use Zend\Mvc\Controller\Plugin\FlashMessenger;
 
 /**
  * Template admin controller
@@ -86,6 +87,10 @@ class AdminController extends FhskAdminController
                 $template = $this->getTemplateTable()->getTemplate($id);
             }
             catch (\Exception $ex) {
+                $this->storeFlashMessage(
+                    sprintf('No template found with id %d', $id),
+                    FlashMessenger::NAMESPACE_ERROR
+                );
                 return $this->redirect()->toRoute('templateAdmin', array('siteKey' => FhskSite::getKey()));
             }
 
@@ -102,7 +107,11 @@ class AdminController extends FhskAdminController
 
             if ($form->isValid()) {
                 $template->exchangeArray($form->getData());
-                $this->getTemplateTable()->saveTemplate($template);
+                $template = $this->getTemplateTable()->saveTemplate($template);
+                $this->storeFlashMessage(
+                    sprintf('Template %d (%s) added', $template->id, $template->name),
+                    FlashMessenger::NAMESPACE_SUCCESS
+                );
 
                 // Redirect to list of templates
 
@@ -140,6 +149,10 @@ class AdminController extends FhskAdminController
             $template = $this->gettemplateTable()->getTemplate($id);
         }
         catch (\Exception $ex) {
+            $this->storeFlashMessage(
+                sprintf('No template found with id %d', $id),
+                FlashMessenger::NAMESPACE_ERROR
+            );
             return $this->redirect()->toRoute('templateAdmin', array(
                 'siteKey' => FhskSite::getKey(),
             ));
@@ -156,6 +169,10 @@ class AdminController extends FhskAdminController
 
             if ($form->isValid()) {
                 $this->getTemplateTable()->saveTemplate($template);
+                $this->storeFlashMessage(
+                    sprintf('Template %d (%s) updated', $template->id, $template->name),
+                    FlashMessenger::NAMESPACE_SUCCESS
+                );
 
                 // Redirect to list of templates
 
@@ -190,11 +207,19 @@ class AdminController extends FhskAdminController
                 $template = $this->getTemplateTable()->getTemplate($id);
             }
             catch (\Exception $ex) {
+                $this->storeFlashMessage(
+                    sprintf('No template found with id %d', $id),
+                    FlashMessenger::NAMESPACE_ERROR
+                );
                 return $this->redirect()->toRoute('templateAdmin', array('siteKey' => FhskSite::getKey()));
             }
 
             $template->is_archived = empty($template->is_archived) ? 1 : 0;
             $this->getTemplateTable()->saveTemplate($template);
+            $this->storeFlashMessage(
+                sprintf('Template %d (%s) %s', $template->id, $template->name, (empty($template->is_archived) ? 'unarchived' : 'archived')),
+                FlashMessenger::NAMESPACE_SUCCESS
+            );
         }
 
         return $this->redirect()->toRoute('templateAdmin', array('siteKey' => FhskSite::getKey(), 'action' => $this->params()->fromRoute('returnAction', '')));

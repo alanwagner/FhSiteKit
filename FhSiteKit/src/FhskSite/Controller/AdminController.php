@@ -11,6 +11,7 @@
 namespace FhskSite\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\Controller\Plugin\FlashMessenger;
 use Zend\Mvc\MvcEvent;
 use Zend\View\Model\ViewModel;
 
@@ -77,7 +78,8 @@ class AdminController extends AbstractActionController
      */
     protected function generateViewModel($data, $action = null)
     {
-        $data = $this->addRouteInfo($data);
+        $data = $this->addRouteInfoToViewData($data);
+        $data = $this->addFlashMessagesToViewData($data);
 
         $view = new ViewModel($data);
         $view->setTemplate($this->getTemplate('page', $action));
@@ -100,6 +102,12 @@ class AdminController extends AbstractActionController
             $view->addChild($formView, 'form');
         }
 
+        if (! empty($data['messages'])) {
+            $messagesView = new ViewModel($data);
+            $messagesView->setTemplate($this->getTemplate('messages', $action, 'admin', 'site'));
+            $view->addChild($messagesView, 'messages');
+        }
+
         //  Take care of menu in layout as well
         $menuView = new ViewModel($data);
         $menuView->setTemplate($this->getTemplate('menu', $action, 'admin', 'site'));
@@ -113,8 +121,9 @@ class AdminController extends AbstractActionController
      *
      * Looks for
      *    namespace/controller/block-action
-     * or namespace/controller/block-form  (if action is 'add' or 'edit')
+     * or namespace/controller/block-'form'  (if action is 'add' or 'edit')
      * or namespace/controller/block
+     * or 'site'/controller/block
      *
      * @param string $block
      * @param string $action
@@ -170,7 +179,61 @@ class AdminController extends AbstractActionController
             return $template;
         }
 
+        $template = sprintf(
+            '%s/%s/%s',
+            'site',
+            $controller,
+            $block
+        );
+        if ($templatePathStack->resolve($template)) {
+
+            return $template;
+        }
+
         return null;
+    }
+
+    /**
+     * Add flash messages to view data
+     * @param array $data
+     * @param string $namespace
+     * @return array
+     */
+    protected function storeFlashMessage($message, $namespace = FlashMessenger::NAMESPACE_INFO)
+    {
+        $flashMessenger = $this->flashMessenger();
+        switch ($namespace) {
+            case FlashMessenger::NAMESPACE_SUCCESS:
+                $flashMessenger->addSuccessMessage($message);
+                break;
+            case FlashMessenger::NAMESPACE_ERROR:
+                $flashMessenger->addErrorMessage($message);
+                break;
+            case FlashMessenger::NAMESPACE_INFO:
+            default:
+                $flashMessenger->addInfoMessage($message);
+                break;
+        }
+    }
+
+    /**
+     * Add flash messages to view data
+     * @param array $data
+     * @return array
+     */
+    protected function addFlashMessagesToViewData($data)
+    {
+        if ($this->flashMessenger()->hasInfoMessages()) {
+            $data['messages']['info'] = $this->flashMessenger()->getInfoMessages();
+        }
+        if ($this->flashMessenger()->hasSuccessMessages()) {
+            $data['messages']['success'] = $this->flashMessenger()->getSuccessMessages();
+        }
+        if ($this->flashMessenger()->hasErrorMessages()) {
+            $data['messages']['warning'] = $this->flashMessenger()->getErrorMessages();
+        }
+
+        return $data;
     }
 
     /**
@@ -178,7 +241,7 @@ class AdminController extends AbstractActionController
      * @param array $data
      * @return array
      */
-    protected function addRouteInfo($data)
+    protected function addRouteInfoToViewData($data)
     {
         $data['templateNamespace']  = static::$templateNamespace;
         $data['templateController'] = static::$templateController;

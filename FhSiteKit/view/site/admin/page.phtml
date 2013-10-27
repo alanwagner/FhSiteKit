@@ -9,6 +9,11 @@
  */
 
 ?>
+<?php if (isset($this->messages)): ?>
+    <div class="fhsk-block fhsk-messages alert-success">
+        <?php echo $this->messages; ?>
+    </div>
+<?php endif; ?>
 <div class="fhsk-block fhsk-headline">
     <?php echo $this->headline; ?>
 </div>

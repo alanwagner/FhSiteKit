@@ -108,6 +108,7 @@ class TemplateTable extends EntityTable implements TemplateTableInterface
      * Could be creating a new template or updating an existing one
      *
      * @param Template $template
+     * @return Template
      * @throws \Exception
      */
     public function saveTemplate(Template $template)
@@ -125,6 +126,7 @@ class TemplateTable extends EntityTable implements TemplateTableInterface
         if ($id == 0) {
             $data['created_at'] = date('Y-m-d H:i:s');
             $this->tableGateway->insert($data);
+            $id = $this->tableGateway->getLastInsertValue();
         } else {
             if ($this->getTemplate($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
@@ -132,6 +134,8 @@ class TemplateTable extends EntityTable implements TemplateTableInterface
                 throw new \Exception(sprintf('Template %d does not exist', $id));
             }
         }
+
+        return $this->getTemplate($id);
     }
 
     /**

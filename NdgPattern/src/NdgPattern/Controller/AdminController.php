@@ -15,6 +15,7 @@ use FhskSite\Core\Site as FhskSite;
 use NdgPattern\Form\PatternForm;
 use NdgPattern\Model\Pattern;
 use NdgPattern\Model\PatternTableInterface;
+use Zend\Mvc\Controller\Plugin\FlashMessenger;
 
 /**
  * Pattern admin controller
@@ -86,6 +87,10 @@ class AdminController extends FhskAdminController
                 $pattern = $this->getPatternTable()->getPattern($id);
             }
             catch (\Exception $ex) {
+                $this->storeFlashMessage(
+                    sprintf('No pattern found with id %d', $id),
+                    FlashMessenger::NAMESPACE_ERROR
+                );
                 return $this->redirect()->toRoute('patternAdmin', array('siteKey' => FhskSite::getKey()));
             }
 
@@ -102,7 +107,11 @@ class AdminController extends FhskAdminController
 
             if ($form->isValid()) {
                 $pattern->exchangeArray($form->getData());
-                $this->getPatternTable()->savePattern($pattern);
+                $pattern = $this->getPatternTable()->savePattern($pattern);
+                $this->storeFlashMessage(
+                    sprintf('Pattern %d (%s) added', $pattern->id, $pattern->name),
+                    FlashMessenger::NAMESPACE_SUCCESS
+                );
 
                 // Redirect to list of patterns
 
@@ -140,6 +149,10 @@ class AdminController extends FhskAdminController
             $pattern = $this->getpatternTable()->getPattern($id);
         }
         catch (\Exception $ex) {
+            $this->storeFlashMessage(
+                sprintf('No pattern found with id %d', $id),
+                FlashMessenger::NAMESPACE_ERROR
+            );
             return $this->redirect()->toRoute('patternAdmin', array(
                 'siteKey' => FhskSite::getKey(),
             ));
@@ -156,6 +169,10 @@ class AdminController extends FhskAdminController
 
             if ($form->isValid()) {
                 $this->getPatternTable()->savePattern($pattern);
+                $this->storeFlashMessage(
+                    sprintf('Pattern %d (%s) updated', $pattern->id, $pattern->name),
+                    FlashMessenger::NAMESPACE_SUCCESS
+                );
 
                 // Redirect to list of patterns
 
@@ -190,11 +207,19 @@ class AdminController extends FhskAdminController
                 $pattern = $this->getPatternTable()->getPattern($id);
             }
             catch (\Exception $ex) {
+                $this->storeFlashMessage(
+                    sprintf('No pattern found with id %d', $id),
+                    FlashMessenger::NAMESPACE_ERROR
+                );
                 return $this->redirect()->toRoute('patternAdmin', array('siteKey' => FhskSite::getKey()));
             }
 
             $pattern->is_archived = empty($pattern->is_archived) ? 1 : 0;
             $this->getPatternTable()->savePattern($pattern);
+            $this->storeFlashMessage(
+                sprintf('Pattern %d (%s) %s', $pattern->id, $pattern->name, (empty($pattern->is_archived) ? 'unarchived' : 'archived')),
+                FlashMessenger::NAMESPACE_SUCCESS
+            );
         }
 
         return $this->redirect()->toRoute('patternAdmin', array('siteKey' => FhskSite::getKey(), 'action' => $this->params()->fromRoute('returnAction', '')));
