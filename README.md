@@ -127,3 +127,8 @@ http://fhsk.local/pennshape/admin/site
 cd module
 ./bin/phpunit.sh
 ```
+
+API Doc
+-------------------------
+
+http://fhsitekit.com/apigen
