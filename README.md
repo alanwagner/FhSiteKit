@@ -92,6 +92,7 @@ cd module
 cp  PennShapeSite/config/pennshape.php.dist  ../config/autoload/pennshape.php
 cp  NgameSite/config/ngame.php.dist          ../config/autoload/ngame.php
 cp  IgameSite/config/igame.php.dist          ../config/autoload/igame.php
+cp  FhSiteKit/config/local.php.dist          ../config/autoload/local.php
 ```
 
 You can also clean up `config/autoload/global.php` and `local.php`
