@@ -143,4 +143,4 @@ Add phpunit to `composer.json` and run `php composer.phar update` if you need to
 API Doc
 -------------------------
 
-http://fhsitekit.com/apigen
+http://FhSiteKit.com/apigen
