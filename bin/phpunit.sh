@@ -1,3 +1,3 @@
-phpunit -c FhSiteKit/test;
-phpunit -c NdgPattern/test;
-phpunit -c NdgTemplate/test;
+../vendor/phpunit/phpunit/phpunit.php  -c FhSiteKit/test;
+../vendor/phpunit/phpunit/phpunit.php  -c NdgPattern/test;
+../vendor/phpunit/phpunit/phpunit.php  -c NdgTemplate/test;
