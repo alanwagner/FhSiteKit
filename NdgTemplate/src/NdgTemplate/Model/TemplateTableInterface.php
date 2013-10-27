@@ -32,6 +32,13 @@ interface TemplateTableInterface extends EntityTableInterface
     public function fetchByIsArchived($isArchived);
 
     /**
+     * Fetch RowData only on active or archived patterns, with pattern data
+     * @param int $isArchived  0 or 1
+     * @return \Zend\Db\ResultSet\ResultSet
+     */
+    public function fetchDataWithPatternByIsArchived($isArchived);
+
+    /**
      * Get a single template by id
      * @param int $id
      * @throws \Exception
