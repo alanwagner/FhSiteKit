@@ -23,7 +23,7 @@ mysql -uroot ndg_ngame <     NgameSite/data/ngame_schema.sql
 mysql -uroot ndg_igame <     IgameSite/data/igame_schema.sql
 ```
 
-### 4.  Modify index.php
+### 4.  Modify `index.php`
 
 This will make methods of `FhskSite\Core\Site` available via the autoloader even before the modules have been processed.
 
@@ -37,7 +37,7 @@ require 'init_autoloader.php';
 Zend\Mvc\Application::init(require 'config/application.config.php')->run();
 ```
 
-### 5.  Modify application.config.php
+### 5.  Modify `application.config.php`
 
 For in-depth understanding of this step and the next, see ZF2 Advanced Configuration Tricks:
 
@@ -126,6 +126,18 @@ http://fhsk.local/pennshape/admin/site
 ```bash
 cd module
 ./bin/phpunit.sh
+```
+
+Add phpunit to `composer.json` and run `php composer.phar update` if you need to install phpunit into your project.
+
+```diff
+    "require": {
+        "php": ">=5.3.3",
+-        "zendframework/zendframework": "2.2.*"
++        "zendframework/zendframework": "2.2.*",
++        "phpunit/phpunit": "3.7.*"
+    }
+}
 ```
 
 API Doc
