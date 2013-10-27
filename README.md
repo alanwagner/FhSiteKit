@@ -131,4 +131,4 @@ cd module
 API Doc
 -------------------------
 
-http://fhsitekit.com/apigen
+http://FhSiteKit.com/apigen
