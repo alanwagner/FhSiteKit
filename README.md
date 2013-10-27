@@ -111,7 +111,7 @@ return array(
 );
 ```
 
-### 7.  Install resources
+### 7.  Install web assets
 ```bash
 cd module
 cp  FhSiteKit/public/css/fhsk-style.css  ../public/css/fhsk-style.css
