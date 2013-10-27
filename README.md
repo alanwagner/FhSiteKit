@@ -114,8 +114,7 @@ return array(
 ### 7.  Install web assets
 ```bash
 cd module
-cp  FhSiteKit/public/css/fhsk-style.css  ../public/css/fhsk-style.css
-cp  FhSiteKit/public/js/fhsk.js          ../public/js/fhsk.js
+cp -Ri ./*/public/* ../public/.
 ```
 
 Testing
