@@ -107,7 +107,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getPatternDataArray();
         $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/add';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
 
@@ -132,7 +132,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getPatternDataArray();
         $postData['name'] = '';
         $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/add';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
@@ -162,7 +162,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getPatternDataArray();
         $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/add/421';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
 
@@ -220,7 +220,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getPatternDataArray();
         $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/edit/420';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
 
@@ -251,7 +251,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getPatternDataArray();
         $postData['name'] = '';
         $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/edit/420';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
@@ -281,7 +281,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getPatternDataArray();
         $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/edit/421';
         $this->dispatch($_SERVER['REQUEST_URI']);
 
@@ -309,7 +309,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getPatternDataArray();
         $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/edit';
         $this->dispatch($_SERVER['REQUEST_URI']);
 
@@ -333,7 +333,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
             ->with(420)
             ->will($this->returnValue($pattern));
 
-        $data = $this->getDataArray();
+        $data = $this->getPatternDataArray();
         $data['is_archived'] = 0;
         $pattern->exchangeArray($data);
         $patternTableMock->expects($this->once())
@@ -418,17 +418,17 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
     protected function getPatternWithData()
     {
         $pattern = new Pattern();
-        $data  = $this->getDataArray();
+        $data  = $this->getPatternDataArray();
         $pattern->exchangeArray($data);
 
         return $pattern;
     }
 
     /**
-     * Get standard data as array
+     * Get standard pattern data as array
      * @return array
      */
-    protected function getDataArray()
+    protected function getPatternDataArray()
     {
         return array(
             'id'          => 420,

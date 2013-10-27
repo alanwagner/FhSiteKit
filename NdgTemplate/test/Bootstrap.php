@@ -47,6 +47,7 @@ class Bootstrap
             ),
             'modules' => array(
                 'FhSiteKit',
+                'NdgPattern',
                 'NdgTemplate',
             ),
         );

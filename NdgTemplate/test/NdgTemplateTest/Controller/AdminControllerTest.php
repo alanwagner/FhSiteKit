@@ -10,6 +10,7 @@
 
 namespace NdgTemplateTest\Controller;
 
+use NdgPattern\Model\Pattern;
 use NdgTemplate\Controller\AdminController;
 use NdgTemplate\Model\Template;
 use NdgTemplateTest\Bootstrap;
@@ -38,7 +39,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
             ->getMock();
 
         $templateTableMock->expects($this->once())
-            ->method('fetchByIsArchived')
+            ->method('fetchDataWithPatternByIsArchived')
             ->with(0)
             ->will($this->returnValue(array()));
 
@@ -63,7 +64,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
             ->getMock();
 
         $templateTableMock->expects($this->once())
-            ->method('fetchByIsArchived')
+            ->method('fetchDataWithPatternByIsArchived')
             ->with(1)
             ->will($this->returnValue(array()));
 
@@ -83,6 +84,20 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testAddActionCanBeAccessed()
     {
+        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $pattern = $this->getPatternWithData();
+        $patternTableMock->expects($this->once())
+            ->method('fetchByIsArchived')
+            ->with(0)
+            ->will($this->returnValue(array($pattern)));
+
+        $serviceManager = $this->getApplicationServiceLocator();
+        $serviceManager->setAllowOverride(true);
+        $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
+
         $_SERVER['REQUEST_URI'] = '/mock/admin/template/add';
         $this->dispatch($_SERVER['REQUEST_URI']);
         $this->assertResponseStatusCode(200);
@@ -103,11 +118,22 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
             ->method('saveTemplate')
             ->will($this->returnValue(null));
 
+        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $pattern = $this->getPatternWithData();
+        $patternTableMock->expects($this->once())
+            ->method('fetchByIsArchived')
+            ->with(0)
+            ->will($this->returnValue(array($pattern)));
+
         $serviceManager = $this->getApplicationServiceLocator();
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Template\Model\TemplateTable', $templateTableMock);
+        $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getTemplateDataArray();
         $_SERVER['REQUEST_URI'] = '/mock/admin/template/add';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
 
@@ -128,11 +154,22 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $templateTableMock->expects($this->never())
             ->method('saveTemplate');
 
+        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $pattern = $this->getPatternWithData();
+        $patternTableMock->expects($this->once())
+            ->method('fetchByIsArchived')
+            ->with(0)
+            ->will($this->returnValue(array($pattern)));
+
         $serviceManager = $this->getApplicationServiceLocator();
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Template\Model\TemplateTable', $templateTableMock);
+        $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getTemplateDataArray();
         $postData['name'] = '';
         $_SERVER['REQUEST_URI'] = '/mock/admin/template/add';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
@@ -158,11 +195,22 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $templateTableMock->expects($this->never())
             ->method('saveTemplate');
 
+        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $pattern = $this->getPatternWithData();
+        $patternTableMock->expects($this->once())
+            ->method('fetchByIsArchived')
+            ->with(0)
+            ->will($this->returnValue(array($pattern)));
+
         $serviceManager = $this->getApplicationServiceLocator();
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Template\Model\TemplateTable', $templateTableMock);
+        $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getTemplateDataArray();
         $_SERVER['REQUEST_URI'] = '/mock/admin/template/add/421';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
 
@@ -186,9 +234,20 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
             ->with(420)
             ->will($this->returnValue($template));
 
+        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $pattern = $this->getPatternWithData();
+        $patternTableMock->expects($this->once())
+            ->method('fetchByIsArchived')
+            ->with(0)
+            ->will($this->returnValue(array($pattern)));
+
         $serviceManager = $this->getApplicationServiceLocator();
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Template\Model\TemplateTable', $templateTableMock);
+        $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
         $_SERVER['REQUEST_URI'] = '/mock/admin/template/edit/420';
         $this->dispatch($_SERVER['REQUEST_URI']);
@@ -216,11 +275,22 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
             ->method('saveTemplate')
             ->will($this->returnValue(null));
 
+        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $pattern = $this->getPatternWithData();
+        $patternTableMock->expects($this->once())
+            ->method('fetchByIsArchived')
+            ->with(0)
+            ->will($this->returnValue(array($pattern)));
+
         $serviceManager = $this->getApplicationServiceLocator();
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Template\Model\TemplateTable', $templateTableMock);
+        $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getTemplateDataArray();
         $_SERVER['REQUEST_URI'] = '/mock/admin/template/edit/420';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
 
@@ -247,11 +317,22 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $templateTableMock->expects($this->never())
             ->method('saveTemplate');
 
+        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $pattern = $this->getPatternWithData();
+        $patternTableMock->expects($this->once())
+            ->method('fetchByIsArchived')
+            ->with(0)
+            ->will($this->returnValue(array($pattern)));
+
         $serviceManager = $this->getApplicationServiceLocator();
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Template\Model\TemplateTable', $templateTableMock);
+        $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getTemplateDataArray();
         $postData['name'] = '';
         $_SERVER['REQUEST_URI'] = '/mock/admin/template/edit/420';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
@@ -281,7 +362,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Template\Model\TemplateTable', $templateTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getTemplateDataArray();
         $_SERVER['REQUEST_URI'] = '/mock/admin/template/edit/421';
         $this->dispatch($_SERVER['REQUEST_URI']);
 
@@ -309,7 +390,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setAllowOverride(true);
         $serviceManager->setService('Template\Model\TemplateTable', $templateTableMock);
 
-        $postData = $this->getDataArray();
+        $postData = $this->getTemplateDataArray();
         $_SERVER['REQUEST_URI'] = '/mock/admin/template/edit';
         $this->dispatch($_SERVER['REQUEST_URI']);
 
@@ -333,7 +414,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
             ->with(420)
             ->will($this->returnValue($template));
 
-        $data = $this->getDataArray();
+        $data = $this->getTemplateDataArray();
         $data['is_archived'] = 0;
         $template->exchangeArray($data);
         $templateTableMock->expects($this->once())
@@ -418,24 +499,56 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
     protected function getTemplateWithData()
     {
         $template = new Template();
-        $data  = $this->getDataArray();
+        $data  = $this->getTemplateDataArray();
         $template->exchangeArray($data);
 
         return $template;
     }
 
     /**
-     * Get standard data as array
+     * Get standard template data as array
      * @return array
      */
-    protected function getDataArray()
+    protected function getTemplateDataArray()
+    {
+        return array(
+            'id'            => 420,
+            'pattern_id'    => 429,
+            'name'          => 'template name',
+            'description'   => 'N=3, Z=2',
+            'instance_name' => '4.## Cond 1 #pattern',
+            'serial'        => 19,
+            'is_archived'   => 1,
+            'created_at'    => date('Y-m-d H:i:s'),
+            'updated_at'    => date('Y-m-d H:i:s'),
+        );
+    }
+
+    /**
+     * Get Pattern entity initialized with standard data
+     * @return NdgPattern\Model\Pattern
+     */
+    protected function getPatternWithData()
+    {
+        $pattern = new Pattern();
+        $data  = $this->getPatternDataArray();
+        $pattern->exchangeArray($data);
+
+        return $pattern;
+    }
+
+    /**
+     * Get standard pattern data as array
+     * @return array
+     */
+    protected function getPatternDataArray()
     {
         return array(
             'id'          => 420,
-            'name'        => 'template name',
+            'name'        => 'pattern name',
             'content'     => "1 2 3\n2 1 3\n3 1 2",
             'description' => 'N=3, Z=2',
-            'is_archived' => 1,
+            'is_archived' => 0,
             'created_at'  => date('Y-m-d H:i:s'),
             'updated_at'  => date('Y-m-d H:i:s'),
         );

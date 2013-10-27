@@ -10,8 +10,10 @@
 
 namespace NdgTemplateTest\Model;
 
+use NdgPattern\Model\PatternTable;
 use NdgTemplate\Model\TemplateTable;
 use NdgTemplate\Model\Template;
+use NdgTemplateTest\Bootstrap;
 use Zend\Db\ResultSet\ResultSet;
 use PHPUnit_Framework_TestCase;
 
@@ -35,7 +37,7 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
             ->with()
             ->will($this->returnValue($resultSet));
 
-        $templateTable = new TemplateTable($mockTableGateway);
+        $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable());
 
         $this->assertSame($resultSet, $templateTable->fetchAll());
     }
@@ -59,7 +61,7 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
             ->with(array('id' => 420))
             ->will($this->returnValue($resultSet));
 
-        $templateTable = new TemplateTable($mockTableGateway);
+        $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable());
 
         $this->assertSame($template, $templateTable->getTemplate(420));
     }
@@ -83,7 +85,7 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
             ->with(array('is_archived' => 0))
             ->will($this->returnValue($resultSet));
 
-        $templateTable = new TemplateTable($mockTableGateway);
+        $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable());
 
         $this->assertSame($template, $templateTable->fetchByIsArchived(0)->current());
     }
@@ -108,7 +110,7 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
             ->with(array('is_archived' => 1))
             ->will($this->returnValue($resultSet));
 
-        $templateTable = new TemplateTable($mockTableGateway);
+        $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable());
 
         $this->assertSame($template, $templateTable->fetchByIsArchived(1)->current());
     }
@@ -126,16 +128,17 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
             ->method('delete')
             ->with(array('id' => 420));
 
-        $templateTable = new TemplateTable($mockTableGateway);
+        $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable());
         $templateTable->deleteTemplate(420);
     }
 
     public function testSaveTemplateWillInsertNewTemplatesIfTheyDontAlreadyHaveAnId()
     {
-        $templateData = $this->getDataArray();
+        $templateData = $this->getTemplateDataArray();
         $created = $templateData['created_at'];
         unset($templateData['id']);
         unset($templateData['created_at']);
+        unset($templateData['updated_at']);
 
         $template     = new Template();
         $template->exchangeArray($templateData);
@@ -152,7 +155,7 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
             ->method('insert')
             ->with($templateData);
 
-        $templateTable = new TemplateTable($mockTableGateway);
+        $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable());
         $templateTable->saveTemplate($template);
     }
 
@@ -175,15 +178,16 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
             ->with(array('id' => 420))
             ->will($this->returnValue($resultSet));
 
-        $templateData = $this->getDataArray();
+        $templateData = $this->getTemplateDataArray();
         unset($templateData['id']);
         unset($templateData['created_at']);
+        unset($templateData['updated_at']);
 
         $mockTableGateway->expects($this->once())
             ->method('update')
             ->with($templateData, array('id' => 420));
 
-        $templateTable = new TemplateTable($mockTableGateway);
+        $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable());
         $templateTable->saveTemplate($template);
     }
 
@@ -205,7 +209,7 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
             ->with(array('id' => 420))
             ->will($this->returnValue($resultSet));
 
-        $templateTable = new TemplateTable($mockTableGateway);
+        $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable());
 
         try {
             $templateTable->getTemplate(420);
@@ -218,6 +222,19 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
         $this->fail('Expected exception was not thrown');
     }
 
+    protected function getPatternTable()
+    {
+        $mockTableGateway = $this->getMock(
+            'Zend\Db\TableGateway\TableGateway',
+            array('pattern'),
+            array(),
+            '',
+            false
+        );
+
+        return new PatternTable($mockTableGateway);
+    }
+
     /**
      * Get Template entity initialized with standard data
      * @return NdgTemplate\Model\Template
@@ -225,25 +242,28 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
     protected function getTemplateWithData()
     {
         $template = new Template();
-        $data  = $this->getDataArray();
+        $data  = $this->getTemplateDataArray();
         $template->exchangeArray($data);
 
         return $template;
     }
 
     /**
-     * Get standard data as array
+     * Get standard template data as array
      * @return array
      */
-    protected function getDataArray()
+    protected function getTemplateDataArray()
     {
         return array(
-            'id'          => 420,
-            'name'        => 'template name',
-            'content'     => "1 2 3\n2 1 3\n3 1 2",
-            'description' => 'N=3, Z=2',
-            'is_archived' => 0,
-            'created_at'  => date('Y-m-d H:i:s'),
+            'id'            => 420,
+            'pattern_id'    => 429,
+            'name'          => 'template name',
+            'description'   => 'N=3, Z=2',
+            'instance_name' => '4.## Cond 1 #pattern',
+            'serial'        => 19,
+            'is_archived'   => 1,
+            'created_at'    => date('Y-m-d H:i:s'),
+            'updated_at'    => date('Y-m-d H:i:s'),
         );
     }
 }

@@ -11,6 +11,7 @@
 $modules = array(
     'Application',
     'FhSiteKit',
+    'NdgPattern',
     'NdgTemplate',
     'MockSite',
 );

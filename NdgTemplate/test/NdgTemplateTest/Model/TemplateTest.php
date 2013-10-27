@@ -23,9 +23,11 @@ class TemplateTest extends PHPUnit_Framework_TestCase
         $template = new Template();
 
         $this->assertNull($template->id);
+        $this->assertNull($template->pattern_id);
         $this->assertNull($template->name);
-        $this->assertNull($template->content);
         $this->assertNull($template->description);
+        $this->assertNull($template->instance_name);
+        $this->assertNull($template->serial);
         $this->assertNull($template->is_archived);
         $this->assertNull($template->created_at);
         $this->assertNull($template->updated_at);
@@ -34,12 +36,14 @@ class TemplateTest extends PHPUnit_Framework_TestCase
     public function testExchangeArraySetsPropertiesCorrectly()
     {
         $template = $this->getTemplateWithData();
-        $data  = $this->getDataArray();
+        $data  = $this->getTemplateDataArray();
 
         $this->assertSame($data['id'], $template->id);
+        $this->assertSame($data['pattern_id'], $template->pattern_id);
         $this->assertSame($data['name'], $template->name);
-        $this->assertSame($data['content'], $template->content);
         $this->assertSame($data['description'], $template->description);
+        $this->assertSame($data['instance_name'], $template->instance_name);
+        $this->assertSame($data['serial'], $template->serial);
         $this->assertSame($data['is_archived'], $template->is_archived);
         $this->assertSame($data['created_at'], $template->created_at);
         $this->assertSame($data['updated_at'], $template->updated_at);
@@ -51,9 +55,11 @@ class TemplateTest extends PHPUnit_Framework_TestCase
         $template->exchangeArray(array());
 
         $this->assertNull($template->id);
+        $this->assertNull($template->pattern_id);
         $this->assertNull($template->name);
-        $this->assertNull($template->content);
         $this->assertNull($template->description);
+        $this->assertNull($template->instance_name);
+        $this->assertNull($template->serial);
         $this->assertNull($template->is_archived);
         $this->assertNull($template->created_at);
         $this->assertNull($template->updated_at);
@@ -62,13 +68,15 @@ class TemplateTest extends PHPUnit_Framework_TestCase
     public function testGetArrayCopyReturnsAnArrayWithPropertyValues()
     {
         $template = $this->getTemplateWithData();
-        $data  = $this->getDataArray();
+        $data  = $this->getTemplateDataArray();
         $copyArray = $template->getArrayCopy();
 
         $this->assertSame($data['id'], $copyArray['id']);
+        $this->assertSame($data['pattern_id'], $copyArray['pattern_id']);
         $this->assertSame($data['name'], $copyArray['name']);
-        $this->assertSame($data['content'], $copyArray['content']);
         $this->assertSame($data['description'], $copyArray['description']);
+        $this->assertSame($data['instance_name'], $copyArray['instance_name']);
+        $this->assertSame($data['serial'], $copyArray['serial']);
         $this->assertSame($data['is_archived'], $copyArray['is_archived']);
         $this->assertSame($data['created_at'], $copyArray['created_at']);
         $this->assertSame($data['updated_at'], $copyArray['updated_at']);
@@ -80,11 +88,12 @@ class TemplateTest extends PHPUnit_Framework_TestCase
 
         $inputFilter = $template->getInputFilter();
 
-        $this->assertSame(4, $inputFilter->count());
+        $this->assertSame(5, $inputFilter->count());
         $this->assertTrue($inputFilter->has('id'));
+        $this->assertTrue($inputFilter->has('pattern_id'));
         $this->assertTrue($inputFilter->has('name'));
-        $this->assertTrue($inputFilter->has('content'));
         $this->assertTrue($inputFilter->has('description'));
+        $this->assertTrue($inputFilter->has('instance_name'));
     }
 
     /**
@@ -94,26 +103,28 @@ class TemplateTest extends PHPUnit_Framework_TestCase
     protected function getTemplateWithData()
     {
         $template = new Template();
-        $data  = $this->getDataArray();
+        $data  = $this->getTemplateDataArray();
         $template->exchangeArray($data);
 
         return $template;
     }
 
     /**
-     * Get standard data as array
+     * Get standard template data as array
      * @return array
      */
-    protected function getDataArray()
+    protected function getTemplateDataArray()
     {
         return array(
-            'id'          => 420,
-            'name'        => 'template name',
-            'content'     => "1 2 3\n2 1 3\n3 1 2",
-            'description' => 'N=3, Z=2',
-            'is_archived' => 0,
-            'created_at'  => date('Y-m-d H:i:s'),
-            'updated_at'  => date('Y-m-d H:i:s'),
+            'id'            => 420,
+            'pattern_id'    => 429,
+            'name'          => 'template name',
+            'description'   => 'N=3, Z=2',
+            'instance_name' => '4.## Cond 1 #pattern',
+            'serial'        => 19,
+            'is_archived'   => 1,
+            'created_at'    => date('Y-m-d H:i:s'),
+            'updated_at'    => date('Y-m-d H:i:s'),
         );
     }
 }
