@@ -111,7 +111,9 @@ class AdminController extends AbstractActionController
     /**
      * Get the template string
      *
-     * Looks for namespace/controller/block-action
+     * Looks for
+     *    namespace/controller/block-action
+     * or namespace/controller/block-form  (if action is 'add' or 'edit')
      * or namespace/controller/block
      *
      * @param string $block
@@ -142,6 +144,19 @@ class AdminController extends AbstractActionController
             if ($templatePathStack->resolve($template)) {
 
                 return $template;
+            }
+            if (in_array($action, array('add', 'edit'))) {
+                $template = sprintf(
+                    '%s/%s/%s-%s',
+                    $namespace,
+                    $controller,
+                    $block,
+                    'form'
+                );
+                if ($templatePathStack->resolve($template)) {
+
+                    return $template;
+                }
             }
         }
         $template = sprintf(
