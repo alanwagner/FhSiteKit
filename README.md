@@ -7,7 +7,7 @@ Installation
 ### 1.  Get the ZF2 Skeleton Application working
 http://framework.zend.com/manual/2.2/en/user-guide/skeleton-application.html
 
-### 2.  Replace your `module/` directory with a clone of FHSK
+### 2.  Replace your `module/` directory with a clone of FhSiteKit
 ```bash
 rm -Rf module
 git https://github.com/alanwagner/FhSiteKit.git  module
@@ -121,7 +121,7 @@ rsync -av ./*/public/ ../public/
 Testing
 -------------------------
 
-http://fhsk.local/pennshape/admin/site
+http://fhsitekit.local/pennshape/admin/site
 
 ```bash
 cd module
