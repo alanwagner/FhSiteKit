@@ -54,3 +54,7 @@ div.pattern-content {
 tr.fhsk-hover-highlight {
     background-color:   papayawhip;
 }
+
+div.fhsk-messages  p {
+	padding-left:       0.4em;
+}
