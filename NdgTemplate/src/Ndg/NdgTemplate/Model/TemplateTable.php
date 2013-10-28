@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace NdgTemplate\Model;
+namespace Ndg\NdgTemplate\Model;
 
 use FhskEntity\Model\EntityTable;
 use Ndg\NdgPattern\Model\PatternTableInterface;

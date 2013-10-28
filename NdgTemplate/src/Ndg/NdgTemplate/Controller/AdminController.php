@@ -8,13 +8,13 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace NdgTemplate\Controller;
+namespace Ndg\NdgTemplate\Controller;
 
 use FhskEntity\Controller\AdminController as FhskAdminController;
 use FhskSite\Core\Site as FhskSite;
-use NdgTemplate\Form\TemplateForm;
-use NdgTemplate\Model\Template;
-use NdgTemplate\Model\TemplateTableInterface;
+use Ndg\NdgTemplate\Form\TemplateForm;
+use Ndg\NdgTemplate\Model\Template;
+use Ndg\NdgTemplate\Model\TemplateTableInterface;
 use Zend\Mvc\Controller\Plugin\FlashMessenger;
 
 /**
@@ -235,7 +235,7 @@ class AdminController extends FhskAdminController
             $templateTable = $this->getServiceLocator()
                 ->get('Template\Model\TemplateTable');
             if (! $templateTable instanceof TemplateTableInterface) {
-                throw new \Exception(sprintf('Template table must be an instance of NdgTemplate\Model\TemplateTableInterface, "%s" given.', get_class($templateTable)));
+                throw new \Exception(sprintf('Template table must be an instance of Ndg\NdgTemplate\Model\TemplateTableInterface, "%s" given.', get_class($templateTable)));
             }
             $this->templateTable = $templateTable;
         }
@@ -254,7 +254,7 @@ class AdminController extends FhskAdminController
             ->get('FormElementManager')
             ->get('Template\Form\TemplateForm');
         if (! $form instanceof TemplateForm) {
-            throw new \Exception(sprintf('Template form must be an instance of NdgTemplate\Form\TemplateForm, "%s" given.', get_class($form)));
+            throw new \Exception(sprintf('Template form must be an instance of Ndg\NdgTemplate\Form\TemplateForm, "%s" given.', get_class($form)));
         }
 
         return $form;
@@ -270,7 +270,7 @@ class AdminController extends FhskAdminController
         $template = $this->getServiceLocator()
             ->get('Template\Model\TemplateEntity');
         if (! $template instanceof Template) {
-            throw new \Exception(sprintf('New Template entity must be an instance of NdgTemplate\Model\Template, "%s" given.', get_class($template)));
+            throw new \Exception(sprintf('New Template entity must be an instance of Ndg\NdgTemplate\Model\Template, "%s" given.', get_class($template)));
         }
 
         return $template;

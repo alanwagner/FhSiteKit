@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace NdgTemplate\Form;
+namespace Ndg\NdgTemplate\Form;
 
 use Ndg\NdgPattern\Model\PatternTableInterface;
 use Zend\Form\Form;
