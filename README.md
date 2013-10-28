@@ -112,10 +112,13 @@ return array(
 );
 ```
 
-### 7.  Install web assets
+### 7.  Create links to web assets
 ```bash
-cd module
-rsync -av ./*/public/ ../public/
+cd public/css
+ln -s ../../module/*/public/css/*
+
+cd public/js
+ln -s ../../module/*/public/js/*
 ```
 
 Testing
