@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace NdgPattern\Model;
+namespace Ndg\NdgPattern\Model;
 
 use FhskEntity\Model\EntityTable;
 use Zend\Db\TableGateway\TableGateway;

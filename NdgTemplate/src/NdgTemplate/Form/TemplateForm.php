@@ -10,7 +10,7 @@
 
 namespace NdgTemplate\Form;
 
-use NdgPattern\Model\PatternTableInterface;
+use Ndg\NdgPattern\Model\PatternTableInterface;
 use Zend\Form\Form;
 
 /**

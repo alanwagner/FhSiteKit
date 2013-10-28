@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace NdgPattern\Form;
+namespace Ndg\NdgPattern\Form;
 
 use Zend\Form\Form;
 

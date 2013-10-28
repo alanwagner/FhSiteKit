@@ -17,7 +17,7 @@ return array(
 
     'controllers' => array(
         'invokables' => array(
-            'Pattern\Controller\Admin' => 'NdgPattern\Controller\AdminController'
+            'Pattern\Controller\Admin' => 'Ndg\NdgPattern\Controller\AdminController'
         ),
     ),
 

@@ -8,13 +8,13 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace NdgPattern\Controller;
+namespace Ndg\NdgPattern\Controller;
 
 use FhskEntity\Controller\AdminController as FhskAdminController;
 use FhskSite\Core\Site as FhskSite;
-use NdgPattern\Form\PatternForm;
-use NdgPattern\Model\Pattern;
-use NdgPattern\Model\PatternTableInterface;
+use Ndg\NdgPattern\Form\PatternForm;
+use Ndg\NdgPattern\Model\Pattern;
+use Ndg\NdgPattern\Model\PatternTableInterface;
 use Zend\Mvc\Controller\Plugin\FlashMessenger;
 
 /**
@@ -236,7 +236,7 @@ class AdminController extends FhskAdminController
             $patternTable = $this->getServiceLocator()
                 ->get('Pattern\Model\PatternTable');
             if (! $patternTable instanceof PatternTableInterface) {
-                throw new \Exception(sprintf('Pattern table must be an instance of NdgPattern\Model\PatternTableInterface, "%s" given.', get_class($patternTable)));
+                throw new \Exception(sprintf('Pattern table must be an instance of Ndg\NdgPattern\Model\PatternTableInterface, "%s" given.', get_class($patternTable)));
             }
             $this->patternTable = $patternTable;
         }
@@ -255,7 +255,7 @@ class AdminController extends FhskAdminController
             ->get('FormElementManager')
             ->get('Pattern\Form\PatternForm');
         if (! $form instanceof PatternForm) {
-            throw new \Exception(sprintf('Pattern form must be an instance of NdgPattern\Form\PatternForm, "%s" given.', get_class($form)));
+            throw new \Exception(sprintf('Pattern form must be an instance of Ndg\NdgPattern\Form\PatternForm, "%s" given.', get_class($form)));
         }
 
         return $form;
@@ -271,7 +271,7 @@ class AdminController extends FhskAdminController
         $pattern = $this->getServiceLocator()
             ->get('Pattern\Model\PatternEntity');
         if (! $pattern instanceof Pattern) {
-            throw new \Exception(sprintf('New Pattern entity must be an instance of NdgPattern\Model\Pattern, "%s" given.', get_class($pattern)));
+            throw new \Exception(sprintf('New Pattern entity must be an instance of Ndg\NdgPattern\Model\Pattern, "%s" given.', get_class($pattern)));
         }
 
         return $pattern;

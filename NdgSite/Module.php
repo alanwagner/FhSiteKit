@@ -10,8 +10,8 @@
 
 namespace NdgSite;
 
-use NdgPattern\Model\Pattern;
-use NdgPattern\Model\PatternTable;
+use Ndg\NdgPattern\Model\Pattern;
+use Ndg\NdgPattern\Model\PatternTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 

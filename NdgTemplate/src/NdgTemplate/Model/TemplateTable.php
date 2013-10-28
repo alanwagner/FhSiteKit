@@ -11,7 +11,7 @@
 namespace NdgTemplate\Model;
 
 use FhskEntity\Model\EntityTable;
-use NdgPattern\Model\PatternTableInterface;
+use Ndg\NdgPattern\Model\PatternTableInterface;
 use Zend\Db\Sql\Select;
 use Zend\Db\TableGateway\TableGateway;
 

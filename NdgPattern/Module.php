@@ -8,11 +8,11 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace NdgPattern;
+namespace Ndg\NdgPattern;
 
-use NdgPattern\Form\PatternForm;
-use NdgPattern\Model\Pattern;
-use NdgPattern\Model\PatternTable;
+use Ndg\NdgPattern\Form\PatternForm;
+use Ndg\NdgPattern\Model\Pattern;
+use Ndg\NdgPattern\Model\PatternTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
@@ -43,7 +43,7 @@ class Module implements FormElementProviderInterface
             ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    'Ndg\NdgPattern' => __DIR__ . '/src/Ndg/NdgPattern',
                 ),
             ),
         );
