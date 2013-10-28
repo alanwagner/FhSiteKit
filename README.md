@@ -10,7 +10,7 @@ http://framework.zend.com/manual/2.2/en/user-guide/skeleton-application.html
 ### 2.  Replace your `module/` directory with a clone of FHSK
 ```bash
 rm -Rf module
-git clone https://github.com/alanwagner/FHSK.git module
+git https://github.com/alanwagner/FhSiteKit.git  module
 ```
 
 ### 3.  Install databases
@@ -115,7 +115,7 @@ return array(
 ### 7.  Install web assets
 ```bash
 cd module
-cp -Ri ./*/public/* ../public/.
+rsync -av ./*/public/ ../public/
 ```
 
 Testing
