@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace PennShapeSite\Core;
+namespace Ndg\PennShape\PennShapeSite\Core;
 
 use FhskSite\Core\Site as FhskSite;
 

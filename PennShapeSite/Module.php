@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace PennShapeSite;
+namespace Ndg\PennShape\PennShapeSite;
 
 /**
  * PennShape site Module setup class
@@ -36,7 +36,7 @@ class Module
             ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    'Ndg\PennShape\PennShapeSite' => __DIR__ . '/src/Ndg/PennShape/PennShapeSite',
                 ),
             ),
         );
@@ -50,7 +50,7 @@ class Module
     {
         return array(
             'invokables' => array(
-                'FhskSite' => 'PennShapeSite\Core\Site',
+                'FhskSite' => 'Ndg\PennShape\PennShapeSite\Core\Site',
             ),
         );
     }
