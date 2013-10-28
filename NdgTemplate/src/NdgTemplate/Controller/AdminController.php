@@ -73,10 +73,10 @@ class AdminController extends FhskAdminController
      *
      * @return \Zend\View\Model\ViewModel|\Zend\Http\Response
      */
-    public function addAction()
+    public function createAction()
     {
         $form = $this->getTemplateForm();
-        $form->get('submit')->setValue('Add');
+        $form->get('submit')->setValue('Create');
 
         //  If cloning, populate form with values from selected Template
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -121,9 +121,9 @@ class AdminController extends FhskAdminController
 
         $data = array(
             'form'       => $form,
-            'formAction' => 'add',
+            'formAction' => 'create',
         );
-        $view = $this->generateViewModel($data, 'add');
+        $view = $this->generateViewModel($data, 'create');
 
         return $view;
     }
@@ -138,7 +138,7 @@ class AdminController extends FhskAdminController
         if (!$id) {
 
             return $this->redirect()->toRoute('templateAdmin', array(
-                'action'  => 'add',
+                'action'  => 'create',
                 'siteKey' => FhskSite::getKey(),
             ));
         }

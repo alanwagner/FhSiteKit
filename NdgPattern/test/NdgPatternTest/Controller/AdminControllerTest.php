@@ -81,9 +81,9 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->assertMatchedRouteName('patternAdmin');
     }
 
-    public function testAddActionCanBeAccessed()
+    public function testCreateActionCanBeAccessed()
     {
-        $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/add';
+        $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/create';
         $this->dispatch($_SERVER['REQUEST_URI']);
         $this->assertResponseStatusCode(200);
 
@@ -93,7 +93,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->assertMatchedRouteName('patternAdmin');
     }
 
-    public function testAddActionRedirectsAfterValidPost()
+    public function testCreateActionRedirectsAfterValidPost()
     {
         $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()
@@ -109,7 +109,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
         $postData = $this->getPatternDataArray();
-        $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/add';
+        $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/create';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
 
         $this->assertResponseStatusCode(302);
@@ -120,7 +120,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->assertMatchedRouteName('patternAdmin');
     }
 
-    public function testAddActionStaysOnPageAfterInvalidPost()
+    public function testCreateActionStaysOnPageAfterInvalidPost()
     {
         $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()
@@ -135,7 +135,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
         $postData = $this->getPatternDataArray();
         $postData['name'] = '';
-        $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/add';
+        $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/create';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
 
         $this->assertResponseStatusCode(200);
@@ -145,7 +145,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->assertMatchedRouteName('patternAdmin');
     }
 
-    public function testAddActionRedirectsWhenCloningBadId()
+    public function testCreateActionRedirectsWhenCloningBadId()
     {
         $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()
@@ -164,7 +164,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
         $postData = $this->getPatternDataArray();
-        $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/add/421';
+        $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/create/421';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
 
         $this->assertResponseStatusCode(302);
@@ -294,7 +294,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->assertMatchedRouteName('patternAdmin');
     }
 
-    public function testEditActionRedirectsToAddFormWhenNoId()
+    public function testEditActionRedirectsToCreateFormWhenNoId()
     {
         $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()
@@ -315,7 +315,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch($_SERVER['REQUEST_URI']);
 
         $this->assertResponseStatusCode(302);
-        $this->assertRedirectTo('/mock/admin/pattern/add');
+        $this->assertRedirectTo('/mock/admin/pattern/create');
         $this->assertModuleName('NdgPattern');
         $this->assertControllerName('Pattern\Controller\Admin');
         $this->assertControllerClass('AdminController');

@@ -40,9 +40,9 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->assertMatchedRouteName('entityAdmin');
     }
 
-    public function testAddActionCanBeAccessed()
+    public function testCreateActionCanBeAccessed()
     {
-        $_SERVER['REQUEST_URI'] = '/mock/admin/entity/add';
+        $_SERVER['REQUEST_URI'] = '/mock/admin/entity/create';
         $this->dispatch($_SERVER['REQUEST_URI']);
         $this->assertResponseStatusCode(200);
 

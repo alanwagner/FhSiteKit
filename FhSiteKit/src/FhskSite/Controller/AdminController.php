@@ -121,7 +121,7 @@ class AdminController extends AbstractActionController
      *
      * Looks for
      *    namespace/controller/block-action
-     * or namespace/controller/block-'form'  (if action is 'add' or 'edit')
+     * or namespace/controller/block-'form'  (if action is 'create' or 'edit')
      * or namespace/controller/block
      * or 'site'/controller/block
      *
@@ -154,7 +154,7 @@ class AdminController extends AbstractActionController
 
                 return $template;
             }
-            if (in_array($action, array('add', 'edit'))) {
+            if (in_array($action, array('create', 'edit'))) {
                 $template = sprintf(
                     '%s/%s/%s-%s',
                     $namespace,

@@ -38,9 +38,9 @@ class AdminController extends FhskAdminController
      * Handle an add form page request or post submission
      * @return \Zend\View\Model\ViewModel
      */
-    public function addAction() {
+    public function createAction() {
         $data = array();
-        $view = $this->generateViewModel($data, 'add');
+        $view = $this->generateViewModel($data, 'create');
 
         return $view;
     }
