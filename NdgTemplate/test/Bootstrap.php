@@ -48,7 +48,7 @@ class Bootstrap
             'modules' => array(
                 'Application',
                 'FhSiteKit',
-                'NdgPattern',
+                'Ndg\NdgPattern',
                 'NdgTemplate',
             ),
         );
@@ -103,6 +103,9 @@ class Bootstrap
 
         include $zf2Path . '/Zend/Loader/AutoloaderFactory.php';
         AutoloaderFactory::factory(array(
+            'Zend\Loader\ClassMapAutoloader' => array(
+                __DIR__ . '/autoload_classmap.php',
+            ),
             'Zend\Loader\StandardAutoloader' => array(
                 'autoregister_zf' => true,
                 'namespaces' => array(

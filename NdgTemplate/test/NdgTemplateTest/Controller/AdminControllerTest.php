@@ -10,7 +10,7 @@
 
 namespace NdgTemplateTest\Controller;
 
-use NdgPattern\Model\Pattern;
+use Ndg\NdgPattern\Model\Pattern;
 use NdgTemplate\Controller\AdminController;
 use NdgTemplate\Model\Template;
 use NdgTemplateTest\Bootstrap;
@@ -84,7 +84,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testCreateActionCanBeAccessed()
     {
-        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+        $patternTableMock = $this->getMockBuilder('Ndg\NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -119,7 +119,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
             ->method('saveTemplate')
             ->will($this->returnValue($template));
 
-        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+        $patternTableMock = $this->getMockBuilder('Ndg\NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -155,7 +155,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $templateTableMock->expects($this->never())
             ->method('saveTemplate');
 
-        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+        $patternTableMock = $this->getMockBuilder('Ndg\NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -196,7 +196,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $templateTableMock->expects($this->never())
             ->method('saveTemplate');
 
-        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+        $patternTableMock = $this->getMockBuilder('Ndg\NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -235,7 +235,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
             ->with(420)
             ->will($this->returnValue($template));
 
-        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+        $patternTableMock = $this->getMockBuilder('Ndg\NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -276,7 +276,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
             ->method('saveTemplate')
             ->will($this->returnValue(null));
 
-        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+        $patternTableMock = $this->getMockBuilder('Ndg\NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -318,7 +318,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $templateTableMock->expects($this->never())
             ->method('saveTemplate');
 
-        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+        $patternTableMock = $this->getMockBuilder('Ndg\NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -527,7 +527,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     /**
      * Get Pattern entity initialized with standard data
-     * @return NdgPattern\Model\Pattern
+     * @return Ndg\NdgPattern\Model\Pattern
      */
     protected function getPatternWithData()
     {

@@ -10,11 +10,11 @@
 
 namespace NdgPatternTest\Form;
 
-use NdgPattern\Model\PatternTable;
+use Ndg\NdgPattern\Model\PatternTable;
 use NdgTemplate\Form\TemplateForm;
 use Zend\Db\ResultSet\ResultSet;
 
-use NdgPattern\Form\PatternForm;
+use Ndg\NdgPattern\Form\PatternForm;
 use PHPUnit_Framework_TestCase;
 
 /**

@@ -10,7 +10,7 @@
 
 namespace NdgPatternTest\Model;
 
-use NdgPattern\Model\Pattern;
+use Ndg\NdgPattern\Model\Pattern;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -89,7 +89,7 @@ class PatternTest extends PHPUnit_Framework_TestCase
 
     /**
      * Get Pattern entity initialized with standard data
-     * @return NdgPattern\Model\Pattern
+     * @return Ndg\NdgPattern\Model\Pattern
      */
     protected function getPatternWithData()
     {

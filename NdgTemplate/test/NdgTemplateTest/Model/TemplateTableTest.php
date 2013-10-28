@@ -11,7 +11,7 @@
 namespace NdgTemplateTest\Model;
 
 use FhskEntity\Model\RowData;
-use NdgPattern\Model\PatternTable;
+use Ndg\NdgPattern\Model\PatternTable;
 use NdgTemplate\Model\TemplateTable;
 use NdgTemplate\Model\Template;
 use NdgTemplateTest\Bootstrap;

@@ -10,8 +10,8 @@
 
 namespace NdgTemplateTest\Form;
 
-use NdgPattern\Model\PatternTable;
-use NdgPattern\Model\Pattern;
+use Ndg\NdgPattern\Model\PatternTable;
+use Ndg\NdgPattern\Model\Pattern;
 use NdgTemplate\Form\TemplateForm;
 use Zend\Db\ResultSet\ResultSet;
 use PHPUnit_Framework_TestCase;
@@ -42,7 +42,7 @@ class TemplateFormTest extends PHPUnit_Framework_TestCase
      */
     protected function getPatternTable()
     {
-        $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
+        $patternTableMock = $this->getMockBuilder('Ndg\NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -65,7 +65,7 @@ class TemplateFormTest extends PHPUnit_Framework_TestCase
 
     /**
      * Get Pattern entity initialized with standard data
-     * @return NdgPattern\Model\Pattern
+     * @return Ndg\NdgPattern\Model\Pattern
      */
     protected function getPatternWithData()
     {

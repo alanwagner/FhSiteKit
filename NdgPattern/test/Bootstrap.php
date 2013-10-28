@@ -47,7 +47,7 @@ class Bootstrap
             ),
             'modules' => array(
                 'FhSiteKit',
-                'NdgPattern',
+                'Ndg\NdgPattern',
             ),
         );
 
@@ -101,11 +101,14 @@ class Bootstrap
 
         include $zf2Path . '/Zend/Loader/AutoloaderFactory.php';
         AutoloaderFactory::factory(array(
+            'Zend\Loader\ClassMapAutoloader' => array(
+                __DIR__ . '/autoload_classmap.php',
+            ),
             'Zend\Loader\StandardAutoloader' => array(
                 'autoregister_zf' => true,
                 'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/' . __NAMESPACE__,
-                    'FhskSite'    => __DIR__ . '/../../Fhsk/src/FhskSite',
+                    'Ndg\NdgPattern' => __DIR__ . '/../../NdgPattern/src/Ndg/NdgPattern',
+                    'FhskSite'       => __DIR__ . '/../../Fhsk/src/FhskSite',
                 ),
             ),
         ));

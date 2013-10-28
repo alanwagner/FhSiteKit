@@ -10,8 +10,8 @@
 
 namespace NdgPatternTest\Model;
 
-use NdgPattern\Model\PatternTable;
-use NdgPattern\Model\Pattern;
+use Ndg\NdgPattern\Model\PatternTable;
+use Ndg\NdgPattern\Model\Pattern;
 use Zend\Db\ResultSet\ResultSet;
 use PHPUnit_Framework_TestCase;
 
@@ -242,7 +242,7 @@ class PatternTableTest extends PHPUnit_Framework_TestCase
 
     /**
      * Get Pattern entity initialized with standard data
-     * @return NdgPattern\Model\Pattern
+     * @return Ndg\NdgPattern\Model\Pattern
      */
     protected function getPatternWithData()
     {
