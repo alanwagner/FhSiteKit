@@ -52,7 +52,7 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 +     'Application',
 +     'FhSiteKit',
 +     'NdgSite',
-+     'NdgPattern',
++     'Ndg\NdgPattern',
 +     'NdgTemplate',
 + );
 + 
@@ -75,6 +75,10 @@ return array(
 
     // These are various options for the listeners attached to the ModuleManager
     'module_listener_options' => array(
++            'Ndg\NdgPattern' => './module/NdgPattern',
+            './module',
+            './vendor',
+        ),
 ```
 ```diff
         'config_glob_paths' => array(
