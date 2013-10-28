@@ -109,7 +109,7 @@ class AdminController extends FhskAdminController
                 $pattern->exchangeArray($form->getData());
                 $pattern = $this->getPatternTable()->savePattern($pattern);
                 $this->storeFlashMessage(
-                    sprintf('Pattern %d (%s) added', $pattern->id, $pattern->name),
+                    sprintf('Pattern %d (%s) created', $pattern->id, $pattern->name),
                     FlashMessenger::NAMESPACE_SUCCESS
                 );
 

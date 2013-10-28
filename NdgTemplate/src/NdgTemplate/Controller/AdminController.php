@@ -109,7 +109,7 @@ class AdminController extends FhskAdminController
                 $template->exchangeArray($form->getData());
                 $template = $this->getTemplateTable()->saveTemplate($template);
                 $this->storeFlashMessage(
-                    sprintf('Template %d (%s) added', $template->id, $template->name),
+                    sprintf('Template %d (%s) created', $template->id, $template->name),
                     FlashMessenger::NAMESPACE_SUCCESS
                 );
 
