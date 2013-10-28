@@ -217,7 +217,7 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
 
         $mockTableGateway = $this->getMock(
             'Zend\Db\TableGateway\TableGateway',
-            array('insert'),
+            array('insert', 'select'),
             array(),
             '',
             false
@@ -225,6 +225,13 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
         $mockTableGateway->expects($this->once())
             ->method('insert')
             ->with($templateData);
+
+        $resultSet = new ResultSet();
+        $resultSet->setArrayObjectPrototype(new Template());
+        $resultSet->initialize(array($this->getTemplateWithData()));
+        $mockTableGateway->expects($this->once())
+            ->method('select')
+            ->will($this->returnValue($resultSet));
 
         $templateTable = new TemplateTable($mockTableGateway, $this->getPatternTable());
         $templateTable->saveTemplate($template);
@@ -244,7 +251,7 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
             '',
             false
         );
-        $mockTableGateway->expects($this->once())
+        $mockTableGateway->expects($this->any())
             ->method('select')
             ->with(array('id' => 420))
             ->will($this->returnValue($resultSet));

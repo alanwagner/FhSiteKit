@@ -114,9 +114,10 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $template = $this->getTemplateWithData();
         $templateTableMock->expects($this->once())
             ->method('saveTemplate')
-            ->will($this->returnValue(null));
+            ->will($this->returnValue($template));
 
         $patternTableMock = $this->getMockBuilder('NdgPattern\Model\PatternTable')
             ->disableOriginalConstructor()

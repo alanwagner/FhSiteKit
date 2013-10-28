@@ -99,9 +99,10 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $pattern = $this->getPatternWithData();
         $patternTableMock->expects($this->once())
             ->method('savePattern')
-            ->will($this->returnValue(null));
+            ->will($this->returnValue($pattern));
 
         $serviceManager = $this->getApplicationServiceLocator();
         $serviceManager->setAllowOverride(true);

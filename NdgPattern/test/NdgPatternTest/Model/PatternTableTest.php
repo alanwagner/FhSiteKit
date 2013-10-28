@@ -143,7 +143,7 @@ class PatternTableTest extends PHPUnit_Framework_TestCase
 
         $mockTableGateway = $this->getMock(
             'Zend\Db\TableGateway\TableGateway',
-            array('insert'),
+            array('insert', 'select'),
             array(),
             '',
             false
@@ -151,6 +151,13 @@ class PatternTableTest extends PHPUnit_Framework_TestCase
         $mockTableGateway->expects($this->once())
             ->method('insert')
             ->with($patternData);
+
+        $resultSet = new ResultSet();
+        $resultSet->setArrayObjectPrototype(new Pattern());
+        $resultSet->initialize(array($this->getPatternWithData()));
+        $mockTableGateway->expects($this->once())
+            ->method('select')
+            ->will($this->returnValue($resultSet));;
 
         $patternTable = new PatternTable($mockTableGateway);
         $patternTable->savePattern($pattern);
@@ -170,7 +177,7 @@ class PatternTableTest extends PHPUnit_Framework_TestCase
             '',
             false
         );
-        $mockTableGateway->expects($this->once())
+        $mockTableGateway->expects($this->any())
             ->method('select')
             ->with(array('id' => 420))
             ->will($this->returnValue($resultSet));
