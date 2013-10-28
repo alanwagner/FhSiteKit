@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace NdgSite;
+namespace Ndg\NdgSite;
 
 use Ndg\NdgPattern\Model\Pattern;
 use Ndg\NdgPattern\Model\PatternTable;
@@ -41,7 +41,7 @@ class Module
             ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    'Ndg\NdgSite' => __DIR__ . '/src/Ndg/NdgSite',
                 ),
             ),
         );

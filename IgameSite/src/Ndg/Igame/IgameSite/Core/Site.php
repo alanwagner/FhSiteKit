@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace IgameSite\Core;
+namespace Ndg\Igame\IgameSite\Core;
 
 use FhskSite\Core\Site as FhskSite;
 

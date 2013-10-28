@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace IgameSite;
+namespace Ndg\Igame\IgameSite;
 
 /**
  * Igame site Module setup class
@@ -36,7 +36,7 @@ class Module
             ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    'Ndg\Igame\IgameSite' => __DIR__ . '/src/Ndg/Igame/IgameSite',
                 ),
             ),
         );
@@ -50,7 +50,7 @@ class Module
     {
         return array(
             'invokables' => array(
-                'FhskSite' => 'IgameSite\Core\Site',
+                'FhskSite' => 'Ndg\Igame\IgameSite\Core\Site',
             ),
         );
     }
