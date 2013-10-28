@@ -10,7 +10,7 @@
 
 namespace NdgTemplateTest\Model;
 
-use NdgTemplate\Model\Template;
+use Ndg\NdgTemplate\Model\Template;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -98,7 +98,7 @@ class TemplateTest extends PHPUnit_Framework_TestCase
 
     /**
      * Get Template entity initialized with standard data
-     * @return NdgTemplate\Model\Template
+     * @return Ndg\NdgTemplate\Model\Template
      */
     protected function getTemplateWithData()
     {

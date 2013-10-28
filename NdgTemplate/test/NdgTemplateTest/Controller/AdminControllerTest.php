@@ -11,8 +11,8 @@
 namespace NdgTemplateTest\Controller;
 
 use Ndg\NdgPattern\Model\Pattern;
-use NdgTemplate\Controller\AdminController;
-use NdgTemplate\Model\Template;
+use Ndg\NdgTemplate\Controller\AdminController;
+use Ndg\NdgTemplate\Model\Template;
 use NdgTemplateTest\Bootstrap;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
@@ -34,7 +34,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testListActionCanBeAccessed()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -51,7 +51,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch($_SERVER['REQUEST_URI']);
         $this->assertResponseStatusCode(200);
 
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -59,7 +59,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testListArchivedActionCanBeAccessed()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -76,7 +76,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch($_SERVER['REQUEST_URI']);
         $this->assertResponseStatusCode(200);
 
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -102,7 +102,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch($_SERVER['REQUEST_URI']);
         $this->assertResponseStatusCode(200);
 
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -110,7 +110,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testCreateActionRedirectsAfterValidPost()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -140,7 +140,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/mock/admin/template/');
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -148,7 +148,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testCreateActionStaysOnPageAfterInvalidPost()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -176,7 +176,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
 
         $this->assertResponseStatusCode(200);
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -184,7 +184,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testCreateActionRedirectsWhenCloningBadId()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -217,7 +217,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/mock/admin/template/');
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -225,7 +225,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testEditActionCanBeAccessed()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -254,7 +254,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch($_SERVER['REQUEST_URI']);
         $this->assertResponseStatusCode(200);
 
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -262,7 +262,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testEditActionRedirectsAfterValidPost()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -297,7 +297,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/mock/admin/template/');
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -305,7 +305,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testEditActionStaysOnPageAfterInvalidPost()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -339,7 +339,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
 
         $this->assertResponseStatusCode(200);
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -347,7 +347,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testEditActionRedirectsWhenBadId()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -369,7 +369,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/mock/admin/template/');
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -377,7 +377,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testEditActionRedirectsToCreationFormWhenNoId()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -397,7 +397,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/mock/admin/template/create');
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -405,7 +405,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testToggleArchivedActionCanBeAccessed()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -431,7 +431,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/mock/admin/template/list-archived');
 
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -439,7 +439,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testRedirectWhenTogglingWithBadId()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -460,7 +460,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/mock/admin/template/');
 
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -468,7 +468,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     public function testRedirectWhenTogglingWithNoId()
     {
-        $templateTableMock = $this->getMockBuilder('NdgTemplate\Model\TemplateTable')
+        $templateTableMock = $this->getMockBuilder('Ndg\NdgTemplate\Model\TemplateTable')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -487,7 +487,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/mock/admin/template/');
 
-        $this->assertModuleName('NdgTemplate');
+        $this->assertEquals('Ndg\NdgTemplate\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Template\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('templateAdmin');
@@ -495,7 +495,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
 
     /**
      * Get Template entity initialized with standard data
-     * @return NdgTemplate\Model\Template
+     * @return Ndg\NdgTemplate\Model\Template
      */
     protected function getTemplateWithData()
     {

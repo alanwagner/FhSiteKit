@@ -12,7 +12,7 @@ namespace NdgTemplateTest\Form;
 
 use Ndg\NdgPattern\Model\PatternTable;
 use Ndg\NdgPattern\Model\Pattern;
-use NdgTemplate\Form\TemplateForm;
+use Ndg\NdgTemplate\Form\TemplateForm;
 use Zend\Db\ResultSet\ResultSet;
 use PHPUnit_Framework_TestCase;
 

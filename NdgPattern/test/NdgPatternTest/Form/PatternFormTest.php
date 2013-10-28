@@ -11,7 +11,7 @@
 namespace NdgPatternTest\Form;
 
 use Ndg\NdgPattern\Model\PatternTable;
-use NdgTemplate\Form\TemplateForm;
+use Ndg\NdgTemplate\Form\TemplateForm;
 use Zend\Db\ResultSet\ResultSet;
 
 use Ndg\NdgPattern\Form\PatternForm;

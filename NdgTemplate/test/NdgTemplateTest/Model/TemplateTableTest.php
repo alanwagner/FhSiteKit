@@ -12,8 +12,8 @@ namespace NdgTemplateTest\Model;
 
 use FhskEntity\Model\RowData;
 use Ndg\NdgPattern\Model\PatternTable;
-use NdgTemplate\Model\TemplateTable;
-use NdgTemplate\Model\Template;
+use Ndg\NdgTemplate\Model\TemplateTable;
+use Ndg\NdgTemplate\Model\Template;
 use NdgTemplateTest\Bootstrap;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Adapter\Driver\Pdo\Pdo;
@@ -330,7 +330,7 @@ class TemplateTableTest extends PHPUnit_Framework_TestCase
 
     /**
      * Get Template entity initialized with standard data
-     * @return NdgTemplate\Model\Template
+     * @return Ndg\NdgTemplate\Model\Template
      */
     protected function getTemplateWithData()
     {

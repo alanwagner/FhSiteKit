@@ -49,7 +49,7 @@ class Bootstrap
                 'Application',
                 'FhSiteKit',
                 'Ndg\NdgPattern',
-                'NdgTemplate',
+                'Ndg\NdgTemplate',
             ),
         );
 
@@ -109,8 +109,8 @@ class Bootstrap
             'Zend\Loader\StandardAutoloader' => array(
                 'autoregister_zf' => true,
                 'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/' . __NAMESPACE__,
-                    'FhskSite'    => __DIR__ . '/../../Fhsk/src/FhskSite',
+                    'Ndg\NdgTemplate' => __DIR__ . '/../../NdgTemplate/src/Ndg/NdgTemplate',
+                    'FhskSite'        => __DIR__ . '/../../Fhsk/src/FhskSite',
                 ),
             ),
         ));

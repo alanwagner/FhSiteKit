@@ -12,7 +12,7 @@ $modules = array(
     'Application',
     'FhSiteKit',
     'Ndg\NdgPattern',
-    'NdgTemplate',
+    'Ndg\NdgTemplate',
     'MockSite',
 );
 
@@ -27,6 +27,7 @@ return array(
         // namespace, the value of that key the specific path to that module's
         // Module class.
         'module_paths' => array(
+            'Ndg\NdgTemplate' => './module/NdgTemplate',
             'Ndg\NdgPattern' => './module/NdgPattern',
             './module',
             './vendor',
