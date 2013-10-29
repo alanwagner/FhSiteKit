@@ -15,6 +15,9 @@ $params = array(
 if (! empty($this->id)) {
     $params['id'] = $this->id;
 }
+if (! empty($this->returnAction)) {
+    $params['returnAction'] = $this->returnAction;
+}
 
 $form->setAttribute('action', $this->url('templateAdmin', $params));
 $form->prepare();

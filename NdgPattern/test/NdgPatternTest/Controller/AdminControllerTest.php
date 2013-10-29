@@ -222,11 +222,11 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
         $postData = $this->getPatternDataArray();
-        $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/edit/420';
+        $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/edit/420/list-archive';
         $this->dispatch($_SERVER['REQUEST_URI'], 'POST', $postData);
 
         $this->assertResponseStatusCode(302);
-        $this->assertRedirectTo('/mock/admin/pattern/');
+        $this->assertRedirectTo('/mock/admin/pattern/list-archive');
         $this->assertEquals('Ndg\NdgPattern\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Pattern\Controller\Admin');
         $this->assertControllerClass('AdminController');
@@ -283,7 +283,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $serviceManager->setService('Pattern\Model\PatternTable', $patternTableMock);
 
         $postData = $this->getPatternDataArray();
-        $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/edit/421';
+        $_SERVER['REQUEST_URI'] = '/mock/admin/pattern/edit/421/list-archive';
         $this->dispatch($_SERVER['REQUEST_URI']);
 
         $this->assertResponseStatusCode(302);

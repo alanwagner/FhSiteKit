@@ -66,12 +66,12 @@ class PatternTable extends EntityTable implements PatternTableInterface
      * @throws \Exception
      */
     public function savePattern(Pattern $pattern)
-    {
+    {  //  die(var_dump($pattern->description, $pattern->is_archived));
         $data = array(
             'name'        => $pattern->name,
             'content'     => $pattern->content,
             'description' => $pattern->description,
-            'is_archived' => empty($pattern->is_archived) ? 0 : 1,
+            'is_archived' => $pattern->is_archived,
         );
 
         $id = (int) $pattern->id;

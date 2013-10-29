@@ -24,7 +24,7 @@
     <td class="actionLinks">
         <a href="javascript:void(0)" onclick="$('#pattern-content-<?php echo $pattern->id ?>').animate({height: 'toggle'}, 500)">Show</a>
         <a href="<?php echo $this->url('patternAdmin',
-            array('siteKey' => $this->site('path'), 'action'=>'edit', 'id' => $pattern->id));?>">Edit</a>
+            array('siteKey' => $this->site('path'), 'action'=>'edit', 'id' => $pattern->id, 'returnAction' => $this->routeAction));?>">Edit</a>
         <a href="<?php echo $this->url('patternAdmin',
             array('siteKey' => $this->site('path'), 'action'=>'create', 'id' => $pattern->id));?>">Clone</a>
         <a href="<?php echo $this->url('patternAdmin',

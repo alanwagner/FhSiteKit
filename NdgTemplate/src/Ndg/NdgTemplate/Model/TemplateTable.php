@@ -118,8 +118,8 @@ class TemplateTable extends EntityTable implements TemplateTableInterface
             'pattern_id'    => $template->pattern_id,
             'description'   => $template->description,
             'instance_name' => $template->instance_name,
-            'serial'        => empty($template->serial) ? 0 : $template->serial,
-            'is_archived'   => empty($template->is_archived) ? 0 : 1,
+            'serial'        => $template->serial,
+            'is_archived'   => $template->is_archived,
         );
 
         $id = (int) $template->id;

@@ -18,13 +18,47 @@ use Zend\InputFilter\InputFilter;
  */
 class Pattern extends Entity
 {
-    public $id;
-    public $name;
-    public $content;
-    public $description;
-    public $is_archived;
-    public $created_at;
-    public $updated_at;
+    /**
+     * Pattern id
+     * @var int
+     */
+    public $id = null;
+
+    /**
+     * Pattern name
+     * @var string
+     */
+    public $name = '';
+
+    /**
+     * Pattern content
+     * @var string
+     */
+    public $content = '';
+
+    /**
+     * Pattern description
+     * @var string
+     */
+    public $description = '';
+
+    /**
+     * Pattern is archived?
+     * @var int
+     */
+    public $is_archived = 0;
+
+    /**
+     * Pattern created at
+     * @var string
+     */
+    public $created_at = null;
+
+    /**
+     * Pattern updated at
+     * @var string
+     */
+    public $updated_at = null;
 
     /**
      * Get array of names of entity's public properties

@@ -27,7 +27,7 @@
     <td><?php echo nl2br($this->escapeHtml($templateData->description));?></td>
     <td class="actionLinks">
         <a href="<?php echo $this->url('templateAdmin',
-            array('siteKey' => $this->site('path'), 'action'=>'edit', 'id' => $templateData->id));?>">Edit</a>
+            array('siteKey' => $this->site('path'), 'action'=>'edit', 'id' => $templateData->id, 'returnAction' => $this->routeAction));?>">Edit</a>
         <a href="<?php echo $this->url('templateAdmin',
             array('siteKey' => $this->site('path'), 'action'=>'create', 'id' => $templateData->id));?>">Clone</a>
         <a href="<?php echo $this->url('templateAdmin',

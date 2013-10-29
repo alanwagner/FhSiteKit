@@ -23,18 +23,19 @@ class PatternTest extends PHPUnit_Framework_TestCase
         $pattern = new Pattern();
 
         $this->assertNull($pattern->id);
-        $this->assertNull($pattern->name);
-        $this->assertNull($pattern->content);
-        $this->assertNull($pattern->description);
-        $this->assertNull($pattern->is_archived);
-        $this->assertNull($pattern->created_at);
-        $this->assertNull($pattern->updated_at);
+        $this->assertEquals('', $pattern->name);
+        $this->assertEquals('', $pattern->content);
+        $this->assertEquals('', $pattern->description);
+        $this->assertEquals(0, $pattern->is_archived);
+        $this->assertEquals('', $pattern->created_at);
+        $this->assertEquals('', $pattern->updated_at);
     }
 
     public function testExchangeArraySetsPropertiesCorrectly()
     {
-        $pattern = $this->getPatternWithData();
+        $pattern = new Pattern();
         $data  = $this->getDataArray();
+        $pattern->exchangeArray($data);
 
         $this->assertSame($data['id'], $pattern->id);
         $this->assertSame($data['name'], $pattern->name);
@@ -45,18 +46,78 @@ class PatternTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data['updated_at'], $pattern->updated_at);
     }
 
-    public function testExchangeArraySetsPropertiesToNullIfKeysAreNotPresent()
+    public function testPopulateSetsPropertiesCorrectly()
+    {
+        $pattern = new Pattern();
+        $data  = $this->getDataArray();
+        $pattern->populate($data);
+
+        $this->assertSame($data['id'], $pattern->id);
+        $this->assertSame($data['name'], $pattern->name);
+        $this->assertSame($data['content'], $pattern->content);
+        $this->assertSame($data['description'], $pattern->description);
+        $this->assertSame($data['is_archived'], $pattern->is_archived);
+        $this->assertSame($data['created_at'], $pattern->created_at);
+        $this->assertSame($data['updated_at'], $pattern->updated_at);
+    }
+
+    public function testExchangeArrayLeavesPropertiesAloneIfKeysAreNotPresent()
     {
         $pattern = $this->getPatternWithData();
+        $copy = $pattern->getArrayCopy();
         $pattern->exchangeArray(array());
 
+        $this->assertSame($copy['id'], $pattern->id);
+        $this->assertSame($copy['name'], $pattern->name);
+        $this->assertSame($copy['content'], $pattern->content);
+        $this->assertSame($copy['description'], $pattern->description);
+        $this->assertSame($copy['is_archived'], $pattern->is_archived);
+        $this->assertSame($copy['created_at'], $pattern->created_at);
+        $this->assertSame($copy['updated_at'], $pattern->updated_at);
+    }
+
+    public function testPopulateSetsPropertiesToDefaultIfKeysAreNotPresent()
+    {
+        $pattern = $this->getPatternWithData();
+        $pattern->populate(array());
+
         $this->assertNull($pattern->id);
-        $this->assertNull($pattern->name);
-        $this->assertNull($pattern->content);
-        $this->assertNull($pattern->description);
-        $this->assertNull($pattern->is_archived);
-        $this->assertNull($pattern->created_at);
-        $this->assertNull($pattern->updated_at);
+        $this->assertEquals('', $pattern->name);
+        $this->assertEquals('', $pattern->content);
+        $this->assertEquals('', $pattern->description);
+        $this->assertEquals(0, $pattern->is_archived);
+        $this->assertEquals('', $pattern->created_at);
+        $this->assertEquals('', $pattern->updated_at);
+    }
+
+    public function testExchangeArrayReturnsExistingValues()
+    {
+        $pattern = $this->getPatternWithData();
+        $copyArray = $pattern->getArrayCopy();
+        $old = $pattern->exchangeArray(array());
+
+        $this->assertSame($copyArray['id'], $old['id']);
+        $this->assertSame($copyArray['name'], $old['name']);
+        $this->assertSame($copyArray['content'], $old['content']);
+        $this->assertSame($copyArray['description'], $old['description']);
+        $this->assertSame($copyArray['is_archived'], $old['is_archived']);
+        $this->assertSame($copyArray['created_at'], $old['created_at']);
+        $this->assertSame($copyArray['updated_at'], $old['updated_at']);
+    }
+
+    public function testPopulateReturnsExistingValues()
+    {
+        $pattern = $this->getPatternWithData();
+        $copyArray = $pattern->getArrayCopy();
+        $old = $pattern->populate(array());
+
+        $this->assertSame($copyArray['id'], $old['id']);
+        $this->assertSame($copyArray['name'], $old['name']);
+        $this->assertSame($copyArray['content'], $old['content']);
+        $this->assertSame($copyArray['description'], $old['description']);
+        $this->assertSame($copyArray['is_archived'], $old['is_archived']);
+        $this->assertSame($copyArray['created_at'], $old['created_at']);
+        $this->assertSame($copyArray['updated_at'], $old['updated_at']);
     }
 
     public function testGetArrayCopyReturnsAnArrayWithPropertyValues()

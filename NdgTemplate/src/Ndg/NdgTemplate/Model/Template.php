@@ -18,15 +18,59 @@ use Zend\InputFilter\InputFilter;
  */
 class Template extends Entity
 {
-    public $id;
-    public $pattern_id;
-    public $name;
-    public $description;
-    public $instance_name;
-    public $serial;
-    public $is_archived;
-    public $created_at;
-    public $updated_at;
+    /**
+     * Template id
+     * @var int
+     */
+    public $id            = null;
+
+    /**
+     * Template's pattern id
+     * @var int
+     */
+    public $pattern_id    = null;
+
+    /**
+     * Template name
+     * @var string
+     */
+    public $name          = '';
+
+    /**
+     * Template description
+     * @var string
+     */
+    public $description   = '';
+
+    /**
+     * Template's instance name generator
+     * @var string
+     */
+    public $instance_name = '';
+
+    /**
+     * Template serial number
+     * @var int
+     */
+    public $serial        = 0;
+
+    /**
+     * Template is archived?
+     * @var int
+     */
+    public $is_archived   = 0;
+
+    /**
+     * Template created at
+     * @var string
+     */
+    public $created_at    = null;
+
+    /**
+     * Template updated at
+     * @var string
+     */
+    public $updated_at    = null;
 
     /**
      * Get array of names of entity's public properties

@@ -178,6 +178,7 @@ class AdminController extends FhskAdminController
 
                 return $this->redirect()->toRoute('templateAdmin', array(
                     'siteKey' => FhskSite::getKey(),
+                    'action'  => $this->params()->fromRoute('returnAction', ''),
                 ));
             }
         }
@@ -187,6 +188,7 @@ class AdminController extends FhskAdminController
             'form'       => $form,
             'formAction' => 'edit',
             'template'    => $template,
+            'returnAction' => $this->params()->fromRoute('returnAction', ''),
         );
         $view = $this->generateViewModel('edit');
 

@@ -27,18 +27,55 @@ class EntityTest extends PHPUnit_Framework_TestCase
 
     public function testExchangeArraySetsPropertiesCorrectly()
     {
-        $entity = $this->getEntityWithData();
+        $entity = new Entity();
         $data  = $this->getDataArray();
+        $entity->exchangeArray($data);
 
         $this->assertSame($data['id'], $entity->id);
     }
 
-    public function testExchangeArraySetsPropertiesToNullIfKeysAreNotPresent()
+    public function testPopulateSetsPropertiesCorrectly()
+    {
+        $entity = new Entity();
+        $data  = $this->getDataArray();
+        $entity->populate($data);
+
+        $this->assertSame($data['id'], $entity->id);
+    }
+
+    public function testExchangeArrayLeavesPropertiesAloneIfKeysAreNotPresent()
     {
         $entity = $this->getEntityWithData();
+        $copy = $entity->getArrayCopy();
         $entity->exchangeArray(array());
 
+        $this->assertSame($copy['id'], $entity->id);
+    }
+
+    public function testPopulateSetsPropertiesToDefaultIfKeysAreNotPresent()
+    {
+        $entity = $this->getEntityWithData();
+        $entity->populate(array());
+
         $this->assertNull($entity->id);
+    }
+
+    public function testExchangeArrayReturnsExistingValues()
+    {
+        $entity = $this->getEntityWithData();
+        $data  = $this->getDataArray();
+        $old = $entity->exchangeArray(array());
+
+        $this->assertSame($data['id'], $old['id']);
+    }
+
+    public function testPopulateReturnsExistingValues()
+    {
+        $entity = $this->getEntityWithData();
+        $data  = $this->getDataArray();
+        $old = $entity->populate(array());
+
+        $this->assertSame($data['id'], $old['id']);
     }
 
     public function testGetArrayCopyReturnsAnArrayWithPropertyValues()

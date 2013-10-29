@@ -47,6 +47,11 @@ class Entity implements InputFilterAwareInterface
     /**
      * Exchange the current array with another array or object.
      *
+     * If keys are not present in $input, Entity property retains its value
+     * Intended for use with forms, so they don't need form elements for every entity property
+     *
+     * Use populate() to clear out properties not present in $input
+     *
      * @param  array|object $input
      * @return array        Returns the old array
      * @see ArrayObject::exchangeArray()
@@ -67,7 +72,40 @@ class Entity implements InputFilterAwareInterface
 
         foreach ($propList as $prop) {
             $old[$prop] = $this->$prop;
-            $this->$prop = (! isset($input[$prop])) ? null : $input[$prop];
+            $this->$prop = (isset($input[$prop])) ?  $input[$prop] : $this->$prop;
+        }
+
+        return $old;
+    }
+
+    /**
+     * Exchange the current array with another array or object.
+     *
+     * If keys are not present in $input, Entity property is set entity default
+     * Use exchangeArray() to preserve properties not present in $input
+     *
+     * @param  array|object $input
+     * @return array        Returns the old array
+     */
+    public function populate($input)
+    {
+        // handle arrayobject, iterators and the like:
+        if (is_object($input) && ($input instanceof ArrayObject || $input instanceof \ArrayObject)) {
+            $input = $input->getArrayCopy();
+        }
+        if (!is_array($input)) {
+            $input = (array) $input;
+        }
+
+        $propList = static::getPropList();
+
+        $old = array();
+
+        $classVars = get_class_vars(get_class($this));
+
+        foreach ($propList as $prop) {
+            $old[$prop] = $this->$prop;
+            $this->$prop = (isset($input[$prop])) ? $input[$prop] : $classVars[$prop];
         }
 
         return $old;

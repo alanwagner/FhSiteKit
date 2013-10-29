@@ -121,7 +121,7 @@ class AdminController extends FhskAdminController
 
         $this->viewData = array(
             'form'       => $form,
-            'formAction' => 'create',
+            'formAction' => 'create'
         );
         $view = $this->generateViewModel('create');
 
@@ -178,15 +178,17 @@ class AdminController extends FhskAdminController
 
                 return $this->redirect()->toRoute('patternAdmin', array(
                     'siteKey' => FhskSite::getKey(),
+                    'action'  => $this->params()->fromRoute('returnAction', ''),
                 ));
             }
         }
 
         $this->viewData = array(
-            'id'         => $id,
-            'form'       => $form,
-            'formAction' => 'edit',
-            'pattern'    => $pattern,
+            'id'           => $id,
+            'form'         => $form,
+            'formAction'   => 'edit',
+            'pattern'      => $pattern,
+            'returnAction' => $this->params()->fromRoute('returnAction', ''),
         );
         $view = $this->generateViewModel('edit');
 
