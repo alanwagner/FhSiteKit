@@ -28,8 +28,7 @@ class AdminController extends FhskAdminController
      * @return \Zend\View\Model\ViewModel
      */
     public function listAction() {
-        $data = array();
-        $view = $this->generateViewModel($data, 'list');
+        $view = $this->generateViewModel('list');
 
         return $view;
     }
@@ -39,8 +38,7 @@ class AdminController extends FhskAdminController
      * @return \Zend\View\Model\ViewModel
      */
     public function createAction() {
-        $data = array();
-        $view = $this->generateViewModel($data, 'create');
+        $view = $this->generateViewModel('create');
 
         return $view;
     }

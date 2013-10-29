@@ -43,10 +43,10 @@ class AdminController extends FhskAdminController
      */
     public function listAction()
     {
-        $data = array(
-            'patterns' => $this->getPatternTable()->fetchByIsArchived(0)
+        $this->viewData = array(
+            'patterns'      => $this->getPatternTable()->fetchByIsArchived(0),
         );
-        $view = $this->generateViewModel($data, 'list');
+        $view = $this->generateViewModel('list');
 
         return $view;
     }
@@ -57,11 +57,11 @@ class AdminController extends FhskAdminController
      */
     public function listArchivedAction()
     {
-        $data = array(
+        $this->viewData = array(
             'patterns'      => $this->getPatternTable()->fetchByIsArchived(1),
             'isArchiveList' => true,
         );
-        $view = $this->generateViewModel($data, 'list');
+        $view = $this->generateViewModel('list');
 
         return $view;
     }
@@ -119,11 +119,11 @@ class AdminController extends FhskAdminController
             }
         }
 
-        $data = array(
+        $this->viewData = array(
             'form'       => $form,
             'formAction' => 'create',
         );
-        $view = $this->generateViewModel($data, 'create');
+        $view = $this->generateViewModel('create');
 
         return $view;
     }
@@ -182,13 +182,13 @@ class AdminController extends FhskAdminController
             }
         }
 
-        $data = array(
+        $this->viewData = array(
             'id'         => $id,
             'form'       => $form,
             'formAction' => 'edit',
             'pattern'    => $pattern,
         );
-        $view = $this->generateViewModel($data, 'edit');
+        $view = $this->generateViewModel('edit');
 
         return $view;
     }

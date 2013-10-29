@@ -41,6 +41,12 @@ class AdminController extends AbstractActionController
     protected static $layoutTemplate     = 'layout/admin';
 
     /**
+     * View data
+     * @var array
+     */
+    protected $viewData = array();
+
+    /**
      * Execute the request
      *
      * @param  MvcEvent $e
@@ -61,8 +67,7 @@ class AdminController extends AbstractActionController
      */
     public function indexAction()
     {
-        $data = array();
-        $view = $this->generateViewModel($data, 'index');
+        $view = $this->generateViewModel('index');
 
         return $view;
     }
@@ -72,44 +77,43 @@ class AdminController extends AbstractActionController
      *
      * Take care of menu in layout as well
      *
-     * @param array $data
      * @param string $action
      * @return \Zend\View\Model\ViewModel
      */
-    protected function generateViewModel($data, $action = null)
+    protected function generateViewModel($action = null)
     {
-        $data = $this->addRouteInfoToViewData($data);
-        $data = $this->addFlashMessagesToViewData($data);
+        $this->addRouteInfoToViewData();
+        $this->addFlashMessagesToViewData();
 
-        $view = new ViewModel($data);
+        $view = new ViewModel($this->viewData);
         $view->setTemplate($this->getTemplate('page', $action));
 
-        $headlineView = new ViewModel($data);
+        $headlineView = new ViewModel($this->viewData);
         $headlineView->setTemplate($this->getTemplate('headline', $action));
         $view->addChild($headlineView, 'headline');
 
-        $linksView = new ViewModel($data);
+        $linksView = new ViewModel($this->viewData);
         $linksView->setTemplate($this->getTemplate('links', $action));
         $view->addChild($linksView, 'links');
 
-        $dataView = new ViewModel($data);
+        $dataView = new ViewModel($this->viewData);
         $dataView->setTemplate($this->getTemplate('data', $action));
         $view->addChild($dataView, 'data');
 
-        if (! empty($data['form'])) {
-            $formView = new ViewModel($data);
+        if (! empty($this->viewData['form'])) {
+            $formView = new ViewModel($this->viewData);
             $formView->setTemplate($this->getTemplate('form', $action));
             $view->addChild($formView, 'form');
         }
 
-        if (! empty($data['messages'])) {
-            $messagesView = new ViewModel($data);
+        if (! empty($this->viewData['messages'])) {
+            $messagesView = new ViewModel($this->viewData);
             $messagesView->setTemplate($this->getTemplate('messages', $action, 'admin', 'site'));
             $view->addChild($messagesView, 'messages');
         }
 
         //  Take care of menu in layout as well
-        $menuView = new ViewModel($data);
+        $menuView = new ViewModel($this->viewData);
         $menuView->setTemplate($this->getTemplate('menu', $action, 'admin', 'site'));
         $this->layout()->addChild($menuView, 'menu');
 
@@ -194,10 +198,9 @@ class AdminController extends AbstractActionController
     }
 
     /**
-     * Add flash messages to view data
-     * @param array $data
+     * Add flash messages to storage
+     * @param string $message
      * @param string $namespace
-     * @return array
      */
     protected function storeFlashMessage($message, $namespace = FlashMessenger::NAMESPACE_INFO)
     {
@@ -218,35 +221,27 @@ class AdminController extends AbstractActionController
 
     /**
      * Add flash messages to view data
-     * @param array $data
-     * @return array
      */
-    protected function addFlashMessagesToViewData($data)
+    protected function addFlashMessagesToViewData()
     {
         if ($this->flashMessenger()->hasInfoMessages()) {
-            $data['messages']['info'] = $this->flashMessenger()->getInfoMessages();
+            $this->viewData['messages']['info'] = $this->flashMessenger()->getInfoMessages();
         }
         if ($this->flashMessenger()->hasSuccessMessages()) {
-            $data['messages']['success'] = $this->flashMessenger()->getSuccessMessages();
+            $this->viewData['messages']['success'] = $this->flashMessenger()->getSuccessMessages();
         }
         if ($this->flashMessenger()->hasErrorMessages()) {
-            $data['messages']['warning'] = $this->flashMessenger()->getErrorMessages();
+            $this->viewData['messages']['warning'] = $this->flashMessenger()->getErrorMessages();
         }
-
-        return $data;
     }
 
     /**
-     * Add namespace, controller and action info to template $data array
-     * @param array $data
-     * @return array
+     * Add namespace, controller and action info to view data
      */
-    protected function addRouteInfoToViewData($data)
+    protected function addRouteInfoToViewData()
     {
-        $data['templateNamespace']  = static::$templateNamespace;
-        $data['templateController'] = static::$templateController;
-        $data['routeAction']        = $this->params()->fromRoute('action');
-
-        return $data;
+        $this->viewData['templateNamespace']  = static::$templateNamespace;
+        $this->viewData['templateController'] = static::$templateController;
+        $this->viewData['routeAction']        = $this->params()->fromRoute('action');
     }
 }
