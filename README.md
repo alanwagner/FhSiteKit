@@ -25,13 +25,13 @@ mysql -uroot ndg_igame <     IgameSite/data/igame_schema.sql
 
 ### 4.  Modify `index.php`
 
-This will make methods of `FhskSite\Core\Site` available via the autoloader even before the modules have been processed.
+This will make methods of `FhSiteKit\FhskCore\FhskSite\Core\Site` available via the autoloader even before the modules have been processed.
 
 ```diff
 // Setup autoloading
 require 'init_autoloader.php';
 
-+ $loader->add('FhskSite', 'module/FhSiteKit/src');
++ $loader->add('FhSiteKit', 'module/FhskCore/src');
 
 // Run the application!
 Zend\Mvc\Application::init(require 'config/application.config.php')->run();
@@ -46,25 +46,25 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 ```diff
 <?php
 
-+ $siteKey = FhskSite\Core\Site::getKey();
++ $siteKey = FhSiteKit\FhskCore\FhskSite\Core\Site::getKey();
 + 
 + $modules = array(
 +     'Application',
-+     'FhSiteKit',
-+     'NdgSite',
++     'FhSiteKit\FhskCore',
++     'Ndg\NdgSite',
 +     'Ndg\NdgPattern',
 +     'NdgTemplate',
 + );
 + 
 + switch ($siteKey) {
 +     case 'pennshape' :
-+         $modules[] = 'PennShapeSite';
++         $modules[] = 'Ndg\PennShape\PennShapeSit';
 +         break;
 +     case 'ngame' :
-+         $modules[] = 'NgameSite';
++         $modules[] = 'Ndg\Ngame\NgameSite';
 +         break;
 +     case 'igame' :
-+         $modules[] = 'IgameSite';
++         $modules[] = 'Ndg\Igame\IgameSite';
 +         break;
 + }
 + 
@@ -75,12 +75,17 @@ return array(
 
     // These are various options for the listeners attached to the ModuleManager
     'module_listener_options' => array(
-+            'Ndg\NdgPattern' => './module/NdgPattern',
+        'module_paths' => array(
++             'FhSiteKit\FhskCore'  => './module/FhskCore',
++             'Ndg\NdgSite'         => './module/NdgSite',
++             'Ndg\NdgPattern'      => './module/NdgPattern',
++             'Ndg\NdgTemplate'     => './module/NdgTemplate',
++             'Ndg\Igame\IgameSite' => './module/IgameSite',
++             'Ndg\Ngame\NgameSite' => './module/NgameSite',
++             'Ndg\PennShape\PennShapeSite' => './module/PennShapeSite',
             './module',
             './vendor',
         ),
-```
-```diff
         'config_glob_paths' => array(
 -            'config/autoload/{,*.}{global,local}.php',
 +            sprintf('config/autoload/{,*.}{global,%s,local}.php', $siteKey),
@@ -96,7 +101,7 @@ cd module
 cp  PennShapeSite/config/pennshape.php.dist  ../config/autoload/pennshape.php
 cp  NgameSite/config/ngame.php.dist          ../config/autoload/ngame.php
 cp  IgameSite/config/igame.php.dist          ../config/autoload/igame.php
-cp  FhSiteKit/config/local.php.dist          ../config/autoload/local.php
+cp  FhskCore/config/local.php.dist           ../config/autoload/local.php
 ```
 
 You can also clean up `config/autoload/global.php` and `local.php`
