@@ -10,7 +10,7 @@
 
 namespace Ndg\Ngame\NgameSite\Core;
 
-use FhskSite\Core\Site as FhskSite;
+use FhSiteKit\FhskCore\FhskSite\Core\Site as FhskSite;
 
 /**
  * Ngame site core Site properties and methods
@@ -20,7 +20,7 @@ class Site extends FhskSite
     /**
      * Site name
      * @staticvar string
-     * @see FhskSite\Core\Site::$siteName
+     * @see FhSiteKit\FhskCore\FhskSite\Core\Site::$siteName
      */
     public static $siteName = 'Ngame';
 }

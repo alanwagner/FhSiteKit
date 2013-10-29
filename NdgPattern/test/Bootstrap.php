@@ -40,13 +40,13 @@ class Bootstrap
 
         static::initAutoloader();
 
-        // use ModuleManager to load this module and it's dependencies
+        // use ModuleManager to load this module and its dependencies
         $config = array(
             'module_listener_options' => array(
                 'module_paths' => $zf2ModulePaths,
             ),
             'modules' => array(
-                'FhSiteKit',
+                'FhSiteKit\FhskCore',
                 'Ndg\NdgPattern',
             ),
         );
@@ -108,7 +108,7 @@ class Bootstrap
                 'autoregister_zf' => true,
                 'namespaces' => array(
                     'Ndg\NdgPattern' => __DIR__ . '/../../NdgPattern/src/Ndg/NdgPattern',
-                    'FhskSite'       => __DIR__ . '/../../Fhsk/src/FhskSite',
+                    'FhSiteKit\FhskCore' => __DIR__ . '/../../FhskCore/src/FhSiteKit/FhskCore'
                 ),
             ),
         ));

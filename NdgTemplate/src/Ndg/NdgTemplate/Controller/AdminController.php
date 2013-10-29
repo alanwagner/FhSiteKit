@@ -10,8 +10,8 @@
 
 namespace Ndg\NdgTemplate\Controller;
 
-use FhskEntity\Controller\AdminController as FhskAdminController;
-use FhskSite\Core\Site as FhskSite;
+use FhSiteKit\FhskCore\FhskEntity\Controller\AdminController as FhskAdminController;
+use FhSiteKit\FhskCore\FhskSite\Core\Site as FhskSite;
 use Ndg\NdgTemplate\Form\TemplateForm;
 use Ndg\NdgTemplate\Model\Template;
 use Ndg\NdgTemplate\Model\TemplateTableInterface;

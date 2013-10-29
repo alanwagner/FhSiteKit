@@ -10,7 +10,7 @@
 
 namespace Ndg\NdgTemplate;
 
-use FhskEntity\Model\RowData;
+use FhSiteKit\FhskCore\FhskEntity\Model\RowData;
 use Ndg\NdgTemplate\Form\TemplateForm;
 use Ndg\NdgTemplate\Model\Template;
 use Ndg\NdgTemplate\Model\TemplateTable;

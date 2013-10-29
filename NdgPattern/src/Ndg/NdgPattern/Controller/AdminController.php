@@ -10,8 +10,8 @@
 
 namespace Ndg\NdgPattern\Controller;
 
-use FhskEntity\Controller\AdminController as FhskAdminController;
-use FhskSite\Core\Site as FhskSite;
+use FhSiteKit\FhskCore\FhskEntity\Controller\AdminController as FhskAdminController;
+use FhSiteKit\FhskCore\FhskSite\Core\Site as FhskSite;
 use Ndg\NdgPattern\Form\PatternForm;
 use Ndg\NdgPattern\Model\Pattern;
 use Ndg\NdgPattern\Model\PatternTableInterface;

@@ -10,7 +10,7 @@
 
 namespace Ndg\NdgPattern\Model;
 
-use FhskEntity\Model\EntityTable;
+use FhSiteKit\FhskCore\FhskEntity\Model\EntityTable;
 use Zend\Db\TableGateway\TableGateway;
 
 /**

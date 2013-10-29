@@ -10,7 +10,7 @@
 
 namespace NdgTemplateTest\Model;
 
-use FhskEntity\Model\RowData;
+use FhSiteKit\FhskCore\FhskEntity\Model\RowData;
 use Ndg\NdgPattern\Model\PatternTable;
 use Ndg\NdgTemplate\Model\TemplateTable;
 use Ndg\NdgTemplate\Model\Template;

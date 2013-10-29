@@ -10,7 +10,7 @@
 
 $modules = array(
     'Application',
-    'FhSiteKit',
+    'FhSiteKit\FhskCore',
     'Ndg\NdgPattern',
     'Ndg\NdgTemplate',
     'MockSite',
@@ -29,6 +29,7 @@ return array(
         'module_paths' => array(
             'Ndg\NdgTemplate' => './module/NdgTemplate',
             'Ndg\NdgPattern' => './module/NdgPattern',
+            'FhSiteKit\FhskCore' => './module/FhskCore',
             './module',
             './vendor',
         ),

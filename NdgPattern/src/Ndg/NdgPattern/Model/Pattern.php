@@ -10,7 +10,7 @@
 
 namespace Ndg\NdgPattern\Model;
 
-use FhskEntity\Model\Entity;
+use FhSiteKit\FhskCore\FhskEntity\Model\Entity;
 use Zend\InputFilter\InputFilter;
 
 /**

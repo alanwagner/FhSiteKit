@@ -9,5 +9,6 @@
  */
 
 return array(
-    'Ndg\NdgPattern\Module'    => __DIR__ . '/../../NdgPattern/Module.php',
+    'Ndg\NdgPattern\Module'     => __DIR__ . '/../../NdgPattern/Module.php',
+    'FhSiteKit\FhskCore\Module' => __DIR__ . '/../../FhskCore/Module.php',
  );
