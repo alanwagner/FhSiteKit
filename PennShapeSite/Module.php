@@ -45,6 +45,22 @@ class Module extends AbstractModule
     }
 
     /**
+     * Expected to return an array of modules on which the current one depends on
+     *
+     * @return array
+     */
+    public function getModuleDependencies()
+    {
+        return array(
+            'Application',
+            'FhSiteKit\FhskCore',
+            'Ndg\NdgSite',
+            'Ndg\NdgPattern',
+            'Ndg\NdgTemplate',
+        );
+    }
+
+    /**
      * Get module service config
      * @return array
      */

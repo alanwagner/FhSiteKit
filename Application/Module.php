@@ -13,6 +13,9 @@ use FhSiteKit\AbstractModule;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
+/**
+ * The Skeleton Application module from ZF
+ */
 class Module extends AbstractModule
 {
     public function onBootstrap(MvcEvent $e)
@@ -22,11 +25,19 @@ class Module extends AbstractModule
         $moduleRouteListener->attach($eventManager);
     }
 
+    /**
+     * Get module config
+     * @return array
+     */
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
 
+    /**
+     * Get module autoloader config
+     * @return array
+     */
     public function getAutoloaderConfig()
     {
         return array(
@@ -36,5 +47,15 @@ class Module extends AbstractModule
                 ),
             ),
         );
+    }
+
+    /**
+     * Expected to return an array of modules on which the current one depends on
+     *
+     * @return array
+     */
+    public function getModuleDependencies()
+    {
+        return array();
     }
 }

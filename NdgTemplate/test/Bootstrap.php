@@ -46,7 +46,6 @@ class Bootstrap
                 'module_paths' => $zf2ModulePaths,
             ),
             'modules' => array(
-                'Application',
                 'FhSiteKit\FhskCore',
                 'Ndg\NdgPattern',
                 'Ndg\NdgTemplate',

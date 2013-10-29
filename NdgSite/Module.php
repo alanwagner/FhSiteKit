@@ -11,10 +11,6 @@
 namespace Ndg\NdgSite;
 
 use FhSiteKit\AbstractModule;
-use Ndg\NdgPattern\Model\Pattern;
-use Ndg\NdgPattern\Model\PatternTable;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\TableGateway;
 
 /**
  * NdgSite Module setup class
@@ -45,6 +41,18 @@ class Module extends AbstractModule
                     'Ndg\NdgSite' => __DIR__ . '/src/Ndg/NdgSite',
                 ),
             ),
+        );
+    }
+
+    /**
+     * Expected to return an array of modules on which the current one depends on
+     *
+     * @return array
+     */
+    public function getModuleDependencies()
+    {
+        return array(
+            'FhSiteKit\FhskCore',
         );
     }
 }
