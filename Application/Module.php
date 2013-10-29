@@ -9,10 +9,11 @@
 
 namespace Application;
 
+use FhSiteKit\AbstractModule;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
-class Module
+class Module extends AbstractModule
 {
     public function onBootstrap(MvcEvent $e)
     {

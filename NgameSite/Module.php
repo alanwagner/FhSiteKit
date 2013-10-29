@@ -10,10 +10,12 @@
 
 namespace Ndg\Ngame\NgameSite;
 
+use FhSiteKit\AbstractModule;
+
 /**
  * Ngame site Module setup class
  */
-class Module
+class Module extends AbstractModule
 {
     /**
      * Get module config

@@ -10,10 +10,12 @@
 
 namespace Ndg\PennShape\PennShapeSite;
 
+use FhSiteKit\AbstractModule;
+
 /**
  * PennShape site Module setup class
  */
-class Module
+class Module extends AbstractModule
 {
     /**
      * Get module config

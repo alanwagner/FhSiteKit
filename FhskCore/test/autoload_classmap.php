@@ -9,5 +9,6 @@
  */
 
 return array(
-    'FhSiteKit\FhskCore\Module' => __DIR__ . '/../Module.php',
+    'FhSiteKit\AbstractModule' => __DIR__ . '/../../FhskCore/src/FhSiteKit/AbstractModule.php',
+    'FhSiteKit\FhskCore\Module' => __DIR__ . '/../../FhskCore/Module.php',
  );

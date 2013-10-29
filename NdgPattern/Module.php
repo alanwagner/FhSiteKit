@@ -10,6 +10,7 @@
 
 namespace Ndg\NdgPattern;
 
+use FhSiteKit\AbstractModule;
 use Ndg\NdgPattern\Form\PatternForm;
 use Ndg\NdgPattern\Model\Pattern;
 use Ndg\NdgPattern\Model\PatternTable;
@@ -20,7 +21,7 @@ use Zend\ModuleManager\Feature\FormElementProviderInterface;
 /**
  * NdgPattern Module setup class
  */
-class Module implements FormElementProviderInterface
+class Module extends AbstractModule implements FormElementProviderInterface
 {
     /**
      * Get module config

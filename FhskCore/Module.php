@@ -10,10 +10,12 @@
 
 namespace FhSiteKit\FhskCore;
 
+use FhSiteKit\AbstractModule;
+
 /**
  * Fhsk Module setup class
  */
-class Module
+class Module extends AbstractModule
 {
     /**
      * Get module config

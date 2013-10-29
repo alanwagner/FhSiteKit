@@ -11,5 +11,6 @@
 return array(
     'Ndg\NdgPattern\Module'    => __DIR__ . '/../../NdgPattern/Module.php',
     'Ndg\NdgTemplate\Module'   => __DIR__ . '/../../NdgTemplate/Module.php',
+    'FhSiteKit\AbstractModule' => __DIR__ . '/../../FhskCore/src/FhSiteKit/AbstractModule.php',
     'FhSiteKit\FhskCore\Module' => __DIR__ . '/../../FhskCore/Module.php',
 );

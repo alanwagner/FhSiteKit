@@ -10,6 +10,7 @@
 
 namespace Ndg\NdgTemplate;
 
+use FhSiteKit\AbstractModule;
 use FhSiteKit\FhskCore\FhskEntity\Model\RowData;
 use Ndg\NdgTemplate\Form\TemplateForm;
 use Ndg\NdgTemplate\Model\Template;
@@ -20,7 +21,7 @@ use Zend\Db\TableGateway\TableGateway;
 /**
  * NdgTemplate Module setup class
  */
-class Module
+class Module extends AbstractModule
 {
     /**
      * Get module config
