@@ -10,7 +10,7 @@ http://framework.zend.com/manual/2.2/en/user-guide/skeleton-application.html
 ### 2.  Replace your `module/` directory with a clone of FhSiteKit
 ```bash
 rm -Rf module
-git https://github.com/alanwagner/FhSiteKit.git  module
+git clone https://github.com/alanwagner/FhSiteKit.git  module
 ```
 
 ### 3.  Install databases
