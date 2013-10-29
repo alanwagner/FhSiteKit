@@ -58,7 +58,7 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 + 
 + switch ($siteKey) {
 +     case 'pennshape' :
-+         $modules[] = 'Ndg\PennShape\PennShapeSit';
++         $modules[] = 'Ndg\PennShape\PennShapeSite';
 +         break;
 +     case 'ngame' :
 +         $modules[] = 'Ndg\Ngame\NgameSite';
