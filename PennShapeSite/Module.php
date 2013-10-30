@@ -10,7 +10,7 @@
 
 namespace Ndg\PennShape\PennShapeSite;
 
-use FhSiteKit\AbstractModule;
+use FhSiteKit\FhskCore\AbstractModule;
 
 /**
  * PennShape site Module setup class

@@ -10,8 +10,6 @@
 
 namespace FhSiteKit\FhskCore;
 
-use FhSiteKit\AbstractModule;
-
 /**
  * Fhsk Module setup class
  */

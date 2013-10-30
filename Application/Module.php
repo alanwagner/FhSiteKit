@@ -9,7 +9,7 @@
 
 namespace Application;
 
-use FhSiteKit\AbstractModule;
+use FhSiteKit\FhskCore\AbstractModule;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 

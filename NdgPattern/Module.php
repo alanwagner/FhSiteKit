@@ -10,7 +10,7 @@
 
 namespace Ndg\NdgPattern;
 
-use FhSiteKit\AbstractModule;
+use FhSiteKit\FhskCore\AbstractModule;
 use Ndg\NdgPattern\Form\PatternForm;
 use Ndg\NdgPattern\Model\Pattern;
 use Ndg\NdgPattern\Model\PatternTable;

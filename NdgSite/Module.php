@@ -10,7 +10,7 @@
 
 namespace Ndg\NdgSite;
 
-use FhSiteKit\AbstractModule;
+use FhSiteKit\FhskCore\AbstractModule;
 
 /**
  * NdgSite Module setup class

@@ -10,6 +10,6 @@
 
 return array(
     'Ndg\NdgPattern\Module'     => __DIR__ . '/../../NdgPattern/Module.php',
-    'FhSiteKit\AbstractModule' => __DIR__ . '/../../FhskCore/src/FhSiteKit/AbstractModule.php',
+    'FhSiteKit\FhskCore\AbstractModule' => __DIR__ . '/../../FhskCore/src/FhSiteKit/FhskCore/AbstractModule.php',
     'FhSiteKit\FhskCore\Module' => __DIR__ . '/../../FhskCore/Module.php',
  );

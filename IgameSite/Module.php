@@ -10,7 +10,7 @@
 
 namespace Ndg\Igame\IgameSite;
 
-use FhSiteKit\AbstractModule;
+use FhSiteKit\FhskCore\AbstractModule;
 
 /**
  * Igame site Module setup class
