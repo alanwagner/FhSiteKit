@@ -56,5 +56,16 @@ tr.fhsk-hover-highlight {
 }
 
 div.fhsk-messages  p {
-	padding-left:       0.4em;
+    padding-left:       0.4em;
+}
+
+div.fhsk-data  tr  td.fhsk-alert,
+.navbar-inverse  .navbar-nav  li  a.fhsk-alert {
+    font-weight:        bold;
+    color:              crimson;
+}
+
+.navbar-inverse  .navbar-nav  li  a.fhsk-alert:hover, 
+.navbar-inverse  .navbar-nav  li  a.fhsk-alert:focus {
+    color:              #fff;
 }

@@ -11,7 +11,6 @@
 namespace Ndg\NdgTemplate\Model;
 
 use FhSiteKit\FhskCore\FhskEntity\Model\EntityTableInterface;
-use Zend\Db\TableGateway\TableGateway;
 
 /**
  * Template table interface

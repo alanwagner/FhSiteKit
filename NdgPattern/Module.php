@@ -17,12 +17,23 @@ use Ndg\NdgPattern\Model\PatternTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
+use Zend\Mvc\MvcEvent;
 
 /**
  * NdgPattern Module setup class
  */
 class Module extends AbstractModule implements FormElementProviderInterface
 {
+    /**
+     * Register config keys on bootstrap event
+     * @param MvcEvent $e
+     */
+    public function onBootstrap(MvcEvent $e)
+    {
+        $config = $e->getApplication()->getServiceManager()->get('FhskConfigRegistry');
+        $config::registerKey('NdgPattern-IsEditAllowed');
+    }
+
     /**
      * Get module config
      * @return array
@@ -75,18 +86,18 @@ class Module extends AbstractModule implements FormElementProviderInterface
 
                     return $pattern;
                 },
-                'Pattern\Model\PatternTable' =>  function($sm) {
-                    $tableGateway = $sm->get('Pattern\Model\PatternTableGateway');
-                    $table = new PatternTable($tableGateway);
-
-                    return $table;
-                },
                 'Pattern\Model\PatternTableGateway' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype($sm->get('Pattern\Model\PatternEntity'));
 
                     return new TableGateway('pattern', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Pattern\Model\PatternTable' =>  function($sm) {
+                    $tableGateway = $sm->get('Pattern\Model\PatternTableGateway');
+                    $table = new PatternTable($tableGateway);
+
+                    return $table;
                 },
             ),
         );

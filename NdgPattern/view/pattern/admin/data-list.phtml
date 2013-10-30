@@ -16,15 +16,18 @@
 <th>Description</th>
 <th>&nbsp;</th>
 </tr>
-<?php foreach ($patterns as $pattern) : ?>
+<?php foreach ($this->patterns as $pattern) : ?>
 <tr class="fhsk-hover">
     <td rowspan="2"><?php echo $this->escapeHtml($pattern->id);?></td>
     <td><?php echo $this->escapeHtml($pattern->name);?></td>
     <td><?php echo nl2br($this->escapeHtml($pattern->description));?></td>
     <td class="actionLinks">
         <a href="javascript:void(0)" onclick="$('#pattern-content-<?php echo $pattern->id ?>').animate({height: 'toggle'}, 500)">Show</a>
+        <?php $canEdit = (isset($this->FhskConfig['data']['NdgPattern-IsEditAllowed']) && $this->FhskConfig['data']['NdgPattern-IsEditAllowed'] == '1') ? true : false; ?>
+        <?php if ($canEdit): ?>
         <a href="<?php echo $this->url('patternAdmin',
             array('siteKey' => $this->site('path'), 'action'=>'edit', 'id' => $pattern->id, 'returnAction' => $this->routeAction));?>">Edit</a>
+        <?php endif; ?>
         <a href="<?php echo $this->url('patternAdmin',
             array('siteKey' => $this->site('path'), 'action'=>'create', 'id' => $pattern->id));?>">Clone</a>
         <a href="<?php echo $this->url('patternAdmin',

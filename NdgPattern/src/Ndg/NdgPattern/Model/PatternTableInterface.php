@@ -10,12 +10,12 @@
 
 namespace Ndg\NdgPattern\Model;
 
-use Zend\Db\TableGateway\TableGateway;
+use FhSiteKit\FhskCore\FhskEntity\Model\EntityTableInterface;
 
 /**
  * Pattern table interface
  */
-interface PatternTableInterface
+interface PatternTableInterface extends EntityTableInterface
 {
     /**
      * Fetch all patterns

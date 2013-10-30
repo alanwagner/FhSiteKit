@@ -29,7 +29,7 @@ class Bootstrap
     {
         $zf2ModulePaths = array(
             dirname(dirname(__DIR__)),
-            __DIR__ . '/resources/module'
+            __DIR__ . '/resources/module',
         );
         if (($path = static::findParentPath('vendor'))) {
             $zf2ModulePaths[] = $path;
@@ -107,8 +107,9 @@ class Bootstrap
             'Zend\Loader\StandardAutoloader' => array(
                 'autoregister_zf' => true,
                 'namespaces' => array(
-                    'FhSiteKit\FhskCore' => __DIR__ . '/../src/FhSiteKit/FhskCore'
-                    ),
+                    'FhSiteKit\FhskCore' => __DIR__ . '/../src/FhSiteKit/FhskCore',
+                    'MockConfig' => __DIR__ . '/../../FhskConfig/test/resources/module/MockConfig/src/MockConfig'
+                ),
             ),
         ));
     }

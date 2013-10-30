@@ -72,7 +72,7 @@ class Entity implements InputFilterAwareInterface
 
         foreach ($propList as $prop) {
             $old[$prop] = $this->$prop;
-            $this->$prop = (isset($input[$prop])) ?  $input[$prop] : $this->$prop;
+            $this->$prop = (array_key_exists($prop, $input)) ?  $input[$prop] : $this->$prop;
         }
 
         return $old;
@@ -105,7 +105,7 @@ class Entity implements InputFilterAwareInterface
 
         foreach ($propList as $prop) {
             $old[$prop] = $this->$prop;
-            $this->$prop = (isset($input[$prop])) ? $input[$prop] : $classVars[$prop];
+            $this->$prop = (array_key_exists($prop, $input)) ? $input[$prop] : $classVars[$prop];
         }
 
         return $old;

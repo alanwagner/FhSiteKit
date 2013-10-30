@@ -11,12 +11,23 @@
 namespace Ndg\PennShape\PennShapeSite;
 
 use FhSiteKit\FhskCore\AbstractModule;
+use Zend\Mvc\MvcEvent;
 
 /**
  * PennShape site Module setup class
  */
 class Module extends AbstractModule
 {
+    /**
+     * Register config keys on bootstrap event
+     * @param MvcEvent $e
+     */
+    public function onBootstrap(MvcEvent $e)
+    {
+        $config = $e->getApplication()->getServiceManager()->get('FhskConfigRegistry');
+        $config::registerKey('PennShapeSignup StartDate');
+    }
+
     /**
      * Get module config
      * @return array

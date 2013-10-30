@@ -44,7 +44,7 @@ class AdminController extends FhskAdminController
     public function listAction()
     {
         $this->viewData = array(
-            'patterns'      => $this->getPatternTable()->fetchByIsArchived(0),
+            'patterns' => $this->getPatternTable()->fetchByIsArchived(0),
         );
         $view = $this->generateViewModel('list');
 

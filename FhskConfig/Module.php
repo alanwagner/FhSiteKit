@@ -8,20 +8,21 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace Ndg\NdgTemplate;
+namespace FhSiteKit\FhskConfig;
 
 use FhSiteKit\FhskCore\AbstractModule;
-use FhSiteKit\FhskCore\FhskEntity\Model\RowData;
-use Ndg\NdgTemplate\Form\TemplateForm;
-use Ndg\NdgTemplate\Model\Template;
-use Ndg\NdgTemplate\Model\TemplateTable;
+use FhSiteKit\FhskCore\FhskSite\Controller\BaseController;
+use FhSiteKit\FhskConfig\Form\ConfigForm;
+use FhSiteKit\FhskConfig\Model\Config;
+use FhSiteKit\FhskConfig\Model\ConfigTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
+use Zend\ModuleManager\Feature\FormElementProviderInterface;
 
 /**
- * NdgTemplate Module setup class
+ * Fhsk Module setup class
  */
-class Module extends AbstractModule
+class Module extends AbstractModule implements FormElementProviderInterface
 {
     /**
      * Get module config
@@ -44,7 +45,8 @@ class Module extends AbstractModule
             ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    'Ndg\NdgTemplate' => __DIR__ . '/src/Ndg/NdgTemplate',
+                    //  this is all handled by autoload_classmap,
+                    //    never did figure out why it wiuldn't work here...
                 ),
             ),
         );
@@ -59,7 +61,6 @@ class Module extends AbstractModule
     {
         return array(
             'FhSiteKit\FhskCore',
-            'Ndg\NdgPattern',
         );
     }
 
@@ -70,31 +71,32 @@ class Module extends AbstractModule
     public function getServiceConfig()
     {
         return array(
+            'invokables' => array(
+                'FhskConfigRegistry' => 'FhSiteKit\FhskConfig\Service\Config',
+            ),
             'factories' => array(
-                'Template\Model\TemplateEntity' =>  function($sm) {
-                    $template = new Template();
+                'FhskConfig' =>  function($sm) {
+                    $config = $sm->get('FhskConfigRegistry');
+                    $configTable = $sm->get('Config\Model\ConfigTable');
+                    $config->setConfigTable($configTable);
 
-                    return $template;
+                    return $config;
                 },
-                'Template\Model\TemplateTableGateway' => function ($sm) {
+                'Config\Model\ConfigEntity' =>  function($sm) {
+                    $config = new Config();
+
+                    return $config;
+                },
+                'Config\Model\ConfigTableGateway' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype($sm->get('Template\Model\TemplateEntity'));
+                    $resultSetPrototype->setArrayObjectPrototype($sm->get('Config\Model\ConfigEntity'));
 
-                    return new TableGateway('template', $dbAdapter, null, $resultSetPrototype);
+                    return new TableGateway('config', $dbAdapter, null, $resultSetPrototype);
                 },
-                'Template\Model\TemplateRowDataTableGateway' => function ($sm) {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new RowData());
-
-                    return new TableGateway('template', $dbAdapter, null, $resultSetPrototype);
-                },
-                'Template\Model\TemplateTable' =>  function($sm) {
-                    $tableGateway = $sm->get('Template\Model\TemplateTableGateway');
-                    $rowDataTableGateway = $sm->get('Template\Model\TemplateRowDataTableGateway');
-                    $patternTable = $sm->get('Pattern\Model\PatternTable');
-                    $table = new TemplateTable($tableGateway, $patternTable, $rowDataTableGateway);
+                'Config\Model\ConfigTable' =>  function($sm) {
+                    $tableGateway = $sm->get('Config\Model\ConfigTableGateway');
+                    $table = new ConfigTable($tableGateway);
 
                     return $table;
                 },
@@ -110,12 +112,9 @@ class Module extends AbstractModule
     {
         return array(
             'factories' => array(
-                'Template\Form\TemplateForm' => function($sm) {
-                    $serviceLocator = $sm->getServiceLocator();
-                    $patternTable = $serviceLocator->get('Pattern\Model\PatternTable');
-                    $form = new TemplateForm($patternTable);
+                'Config\Form\ConfigForm' => function($sm) {
 
-                    return $form;
+                    return new ConfigForm();
                 }
             )
         );
