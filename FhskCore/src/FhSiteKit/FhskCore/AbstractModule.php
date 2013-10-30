@@ -15,6 +15,9 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 
+/**
+ * Abstract FhSiteKit module class
+ */
 class AbstractModule implements     AutoloaderProviderInterface,
                                     ConfigProviderInterface,
                                     DependencyIndicatorInterface,
