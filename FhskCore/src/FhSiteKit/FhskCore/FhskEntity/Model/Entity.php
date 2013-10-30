@@ -26,7 +26,7 @@ class Entity implements InputFilterAwareInterface
      * The entity id property
      * @var int
      */
-    public $id;
+    public $id = null;
 
     /**
      * Input filter

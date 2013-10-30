@@ -13,8 +13,12 @@ namespace FhSiteKit;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
 
-class AbstractModule implements AutoloaderProviderInterface, ConfigProviderInterface, DependencyIndicatorInterface
+class AbstractModule implements     AutoloaderProviderInterface,
+                                    ConfigProviderInterface,
+                                    DependencyIndicatorInterface,
+                                    ServiceProviderInterface
 {
     /**
      * Get module config
@@ -40,6 +44,15 @@ class AbstractModule implements AutoloaderProviderInterface, ConfigProviderInter
      * @return array
      */
     public function getModuleDependencies()
+    {
+        return array();
+    }
+
+    /**
+     * Get module service config
+     * @return array
+     */
+    public function getServiceConfig()
     {
         return array();
     }
