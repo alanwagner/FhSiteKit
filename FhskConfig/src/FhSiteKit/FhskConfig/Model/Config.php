@@ -43,7 +43,7 @@ class Config extends Entity
     public $created_at = null;
 
     /**
-     * Config row utpated at
+     * Config row updated at
      * @var string
      */
     public $updated_at = null;

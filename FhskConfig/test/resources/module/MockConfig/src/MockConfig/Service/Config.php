@@ -39,7 +39,7 @@ class Config extends StaticAggregate
      * Read from database, fill non-existent values with null
      * @return array
      */
-    public function getConfig()
+    public function getConfigArray()
     {
         if (! empty(static::$config)) {
 
@@ -48,6 +48,22 @@ class Config extends StaticAggregate
 
         $keys = static::getAll();
         $data = array_fill_keys($keys, null);
+
+        return $data;
+    }
+
+    /**
+     * Get array of config_key => formatted config_val pairs
+     *
+     * Read from database, fill non-existent values with empty string (formatted null)
+     * @return array
+     */
+    public function getConfigArrayFormatted()
+    {
+        $data = $this->getConfigArray();
+        foreach ($data as $key => $val) {
+            $data[$key] = static::formatValue($val);
+        }
 
         return $data;
     }
@@ -72,11 +88,83 @@ class Config extends StaticAggregate
     }
 
     /**
+     * Removes html formatting from string, array['config_value'], or object->config_value
+     * @param mixed $data
+     * @return mixed
+     */
+    public function unformat($data)
+    {
+        if (is_string($data)) {
+            $data = static::unformatValue($data);
+        }
+        if (is_array($data) && array_key_exists('config_value', $data)) {
+            $data['config_value'] = static::unformatValue($data['config_value']);
+        }
+        if (is_object($data) && array_key_exists('config_value', get_object_vars($data))) {
+            $data->config_value = static::unformatValue($data->config_value);
+        }
+
+        return $data;
+    }
+
+    /**
+     * Is a given key registered?
+     * @param string $key
+     * @return boolean
+     */
+    public static function hasKey($key)
+    {
+        $keys = static::getAll();
+
+        return in_array($key, $keys);
+    }
+
+    /**
      * Add a key or an array of keys to the list
      * @param string|array $key
      */
     public static function registerKey($key)
     {
         static::append($key);
+    }
+
+    /**
+     * Format a value for display in html
+     *
+     * Turns empty string into a literal double quote ""
+     * Turns NULL into empty string
+     *
+     * @param mixed $value
+     */
+    public static function formatValue($value)
+    {
+        if ($value === '') {
+            $value = '""';
+        }
+        if ($value === null) {
+            $value = '';
+        }
+
+        return $value;
+    }
+
+    /**
+     * Prepare html-formatted value for recording in database
+     *
+     * Turns empty string into NULL
+     * Turns a literal double quote "" into empty string
+     *
+     * @param mixed $string
+     */
+    public static function unformatValue($value)
+    {
+        if ($value === '') {
+            $value = null;
+        }
+        if ($value === '""') {
+            $value = '';
+        }
+
+        return $value;
     }
 }
