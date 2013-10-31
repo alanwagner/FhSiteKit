@@ -46,6 +46,8 @@ class Config extends StaticAggregate
 
         if ($config === null && static::hasKey($key)) {
             //  key is registered but not in db
+            //  Get the Config entity
+            //    don't assume it's from this module, or hard-code the class
             $config = $this->configTable
                            ->getTableGateway()
                            ->getResultSetPrototype()

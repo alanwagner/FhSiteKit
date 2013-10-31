@@ -12,7 +12,7 @@ $modules = array(
     'Application',
     'FhSiteKit\FhskCore',
     'FhSiteKit\FhskConfig',
-    'MockSite',
+//    'MockSite',
 );
 
 return array(

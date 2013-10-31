@@ -10,5 +10,5 @@
 
 return array(
     'FhSiteKit\FhskCore\AbstractModule' => __DIR__ . '/../../FhskCore/src/FhSiteKit/FhskCore/AbstractModule.php',
-    'FhSiteKit\FhskCore\Module' => __DIR__ . '/../../FhskCore/Module.php',
+    'FhSiteKit\FhskCore\Module'         => __DIR__ . '/../../FhskCore/Module.php',
  );

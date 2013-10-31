@@ -9,7 +9,8 @@
  */
 
 return array(
-    'Ndg\NdgPattern\Module'     => __DIR__ . '/../../NdgPattern/Module.php',
-    'FhSiteKit\FhskCore\AbstractModule' => __DIR__ . '/../../FhskCore/src/FhSiteKit/FhskCore/AbstractModule.php',
-    'FhSiteKit\FhskCore\Module' => __DIR__ . '/../../FhskCore/Module.php',
- );
+    'Ndg\NdgPattern\Module'               => __DIR__ . '/../../NdgPattern/Module.php',
+    'FhSiteKit\FhskCore\AbstractModule'   => __DIR__ . '/../../FhskCore/src/FhSiteKit/FhskCore/AbstractModule.php',
+    'FhSiteKit\FhskCore\Module'           => __DIR__ . '/../../FhskCore/Module.php',
+    'FhSiteKit\FhskConfig\Service\Config' => __DIR__ . '/../../FhskConfig/src/FhSiteKit/FhskConfig/Service/Config.php',
+);

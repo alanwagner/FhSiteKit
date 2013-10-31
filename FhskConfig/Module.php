@@ -34,13 +34,15 @@ class Module extends AbstractModule implements FormElementProviderInterface
      */
     public function onBootstrap(MvcEvent $e)
     {
-        $config = $e->getApplication()->getServiceManager()->get('FhskConfig');
+        $sm = $e->getApplication()->getServiceManager();
         $eventManager = $e->getApplication()->getEventManager()->getSharedManager();
         $eventManager->attach(
             '*',
             BaseController::EVENT_COLLECT_VIEW_DATA,
-            function($e) use($config) {
-                $data = $config->getConfigArray();
+            function($e) use($sm) {
+                //  we need to pass in the $sm, and call it now, rather than passing in the service
+                //    because the service might have changed (UT mocking...) since bootstrap time
+                $data = $sm->get('FhskConfig')->getConfigArray();
                 $configViewData = array(
                     'FhskConfig' => array(
                         'data'      => $data,
@@ -76,7 +78,7 @@ class Module extends AbstractModule implements FormElementProviderInterface
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     //  this is all handled by autoload_classmap,
-                    //    never did figure out why it wiuldn't work here...
+                    //    never did figure out why it wouldn't work here...
                 ),
             ),
         );

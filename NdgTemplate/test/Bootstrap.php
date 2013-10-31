@@ -101,6 +101,7 @@ class Bootstrap
         }
 
         include $zf2Path . '/Zend/Loader/AutoloaderFactory.php';
+        include $zf2Path . '/Zend/Loader/ClassMapAutoloader.php';
         AutoloaderFactory::factory(array(
             'Zend\Loader\ClassMapAutoloader' => array(
                 __DIR__ . '/autoload_classmap.php',

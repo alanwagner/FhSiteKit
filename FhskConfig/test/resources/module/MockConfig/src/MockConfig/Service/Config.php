@@ -11,18 +11,30 @@
 namespace MockConfig\Service;
 
 use FhSiteKit\FhskCore\Service\StaticAggregate;
+use FhSiteKit\FhskConfig\Model\Config as ConfigEntity;
 use FhSiteKit\FhskConfig\Model\ConfigTableInterface;
+use FhSiteKit\FhskConfig\Service\Config as ConfigService;
 
 /**
- * Static config aggregator
+ * Mock config service
  */
-class Config extends StaticAggregate
+class Config extends ConfigService
 {
     /**
      * Settable config array
      * @var array
      */
     protected static $config = array();
+
+    /**
+     * Set full array of mock config data
+     * @return array
+     */
+    public function setConfig($data)
+    {
+        static::$config = $data;
+        static::$queue = array_keys($data);
+    }
 
     /**
      * Get array of currently registered keys
@@ -53,6 +65,51 @@ class Config extends StaticAggregate
     }
 
     /**
+     * Get a config entity, by key
+     *
+     * Returns null if key not registered
+     * @param string $key
+     * @return \FhSiteKit\FhskConfig\Model\Config|null
+     */
+    public function getConfigByKey($key)
+    {
+        $configArray = $this->getConfigArray();
+        if (! array_key_exists($key, $configArray)) {
+
+            return null;
+        }
+
+        $config = new ConfigEntity();
+        $data = array(
+            'config_key'   => $key,
+            'config_value' => $configArray[$key],
+        );
+
+        if ($configArray[$key] !== null) {
+            //  simulate db data
+            $data['id'] = 420;
+            $data['created_at'] = date('Y-m-d H:i:s');
+            $data['updated_at'] = date('Y-m-d H:i:s');
+        }
+
+        $config->exchangeArray($data);
+
+        return $config;
+    }
+
+    /**
+     * Get a config entity with formatted config_value, by key
+     *
+     * Returns null if key not registered
+     * @param string $key
+     * @return \FhSiteKit\FhskConfig\Model\Config|null
+     */
+    public function getConfigFormattedByKey($key)
+    {
+        return parent::getConfigFormattedByKey($key);
+    }
+
+    /**
      * Get array of config_key => formatted config_val pairs
      *
      * Read from database, fill non-existent values with empty string (formatted null)
@@ -69,42 +126,13 @@ class Config extends StaticAggregate
     }
 
     /**
-     * Set full array of mock config data
-     * @return array
-     */
-    public function setConfig($data)
-    {
-        static::$config = $data;
-    }
-
-    /**
-     * Set config table
-     * @param mixed $configTable
-     * @return \MockConfig\Service\Config
-     */
-    public function setConfigTable($configTable)
-    {
-        return $this;
-    }
-
-    /**
      * Removes html formatting from string, array['config_value'], or object->config_value
      * @param mixed $data
      * @return mixed
      */
     public function unformat($data)
     {
-        if (is_string($data)) {
-            $data = static::unformatValue($data);
-        }
-        if (is_array($data) && array_key_exists('config_value', $data)) {
-            $data['config_value'] = static::unformatValue($data['config_value']);
-        }
-        if (is_object($data) && array_key_exists('config_value', get_object_vars($data))) {
-            $data->config_value = static::unformatValue($data->config_value);
-        }
-
-        return $data;
+        return parent::unformat($data);
     }
 
     /**
@@ -114,9 +142,7 @@ class Config extends StaticAggregate
      */
     public static function hasKey($key)
     {
-        $keys = static::getAll();
-
-        return in_array($key, $keys);
+        return parent::hasKey($key);
     }
 
     /**
@@ -125,7 +151,7 @@ class Config extends StaticAggregate
      */
     public static function registerKey($key)
     {
-        static::append($key);
+        parent::registerKey($key);
     }
 
     /**
@@ -138,14 +164,7 @@ class Config extends StaticAggregate
      */
     public static function formatValue($value)
     {
-        if ($value === '') {
-            $value = '""';
-        }
-        if ($value === null) {
-            $value = '';
-        }
-
-        return $value;
+        parent::formatValue($value);
     }
 
     /**
@@ -158,13 +177,16 @@ class Config extends StaticAggregate
      */
     public static function unformatValue($value)
     {
-        if ($value === '') {
-            $value = null;
-        }
-        if ($value === '""') {
-            $value = '';
-        }
+        parent::unformatValue($value);
+    }
 
-        return $value;
+    /**
+     * Set config table
+     * @param ConfigTableInterface $configTable
+     * @return \MockConfig\Service\Config
+     */
+    public function setConfigTable(ConfigTableInterface $configTable)
+    {
+        return $this;
     }
 }
