@@ -51,6 +51,7 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 + $modules = array(
 +     'Application',
 +     'FhSiteKit\FhskCore',
++     'FhSiteKit\FhskConfig',
 +     'Ndg\NdgSite',
 +     'Ndg\NdgPattern',
 +     'NdgTemplate',
@@ -76,12 +77,13 @@ return array(
     // These are various options for the listeners attached to the ModuleManager
     'module_listener_options' => array(
         'module_paths' => array(
-+             'FhSiteKit\FhskCore'  => './module/FhskCore',
-+             'Ndg\NdgSite'         => './module/NdgSite',
-+             'Ndg\NdgPattern'      => './module/NdgPattern',
-+             'Ndg\NdgTemplate'     => './module/NdgTemplate',
-+             'Ndg\Igame\IgameSite' => './module/IgameSite',
-+             'Ndg\Ngame\NgameSite' => './module/NgameSite',
++             'FhSiteKit\FhskCore'   => './module/FhskCore',
++             'FhSiteKit\FhskConfig' => './module/FhskConfig',
++             'Ndg\NdgSite'          => './module/NdgSite',
++             'Ndg\NdgPattern'       => './module/NdgPattern',
++             'Ndg\NdgTemplate'      => './module/NdgTemplate',
++             'Ndg\Igame\IgameSite'  => './module/IgameSite',
++             'Ndg\Ngame\NgameSite'  => './module/NgameSite',
 +             'Ndg\PennShape\PennShapeSite' => './module/PennShapeSite',
             './module',
             './vendor',
@@ -134,6 +136,8 @@ Testing
 -------------------------
 
 http://fhsitekit.local/pennshape/admin/site
+
+### Unit Tests
 
 ```bash
 cd module
