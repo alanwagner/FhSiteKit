@@ -29,8 +29,8 @@ class TemplateTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('', $template->instance_name);
         $this->assertEquals(0, $template->serial);
         $this->assertEquals(0, $template->is_archived);
-        $this->assertEquals('', $template->created_at);
-        $this->assertEquals('', $template->updated_at);
+        $this->assertNull($template->created_at);
+        $this->assertNull($template->updated_at);
     }
 
     public function testExchangeArraySetsPropertiesCorrectly()
@@ -96,8 +96,8 @@ class TemplateTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('', $template->instance_name);
         $this->assertEquals(0, $template->serial);
         $this->assertEquals(0, $template->is_archived);
-        $this->assertEquals('', $template->created_at);
-        $this->assertEquals('', $template->updated_at);
+        $this->assertNull($template->created_at);
+        $this->assertNull($template->updated_at);
     }
 
     public function testExchangeArrayReturnsExistingValues()

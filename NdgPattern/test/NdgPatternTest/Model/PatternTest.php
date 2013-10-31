@@ -27,8 +27,8 @@ class PatternTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('', $pattern->content);
         $this->assertEquals('', $pattern->description);
         $this->assertEquals(0, $pattern->is_archived);
-        $this->assertEquals('', $pattern->created_at);
-        $this->assertEquals('', $pattern->updated_at);
+        $this->assertNull($pattern->created_at);
+        $this->assertNull($pattern->updated_at);
     }
 
     public function testExchangeArraySetsPropertiesCorrectly()
@@ -86,8 +86,8 @@ class PatternTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('', $pattern->content);
         $this->assertEquals('', $pattern->description);
         $this->assertEquals(0, $pattern->is_archived);
-        $this->assertEquals('', $pattern->created_at);
-        $this->assertEquals('', $pattern->updated_at);
+        $this->assertNull($pattern->created_at);
+        $this->assertNull($pattern->updated_at);
     }
 
     public function testExchangeArrayReturnsExistingValues()
