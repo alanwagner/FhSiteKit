@@ -18,12 +18,42 @@ use FhSiteKit\FhskConfig\Model\ConfigTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
+use Zend\Mvc\MvcEvent;
 
 /**
  * Fhsk Module setup class
  */
 class Module extends AbstractModule implements FormElementProviderInterface
 {
+    /**
+     * Attach listeners on bootstrap event
+     *
+     * Listens for "BaseController.collectViewData" event
+     *
+     * @param MvcEvent $e
+     */
+    public function onBootstrap(MvcEvent $e)
+    {
+        $config = $e->getApplication()->getServiceManager()->get('FhskConfig');
+        $eventManager = $e->getApplication()->getEventManager()->getSharedManager();
+        $eventManager->attach(
+            '*',
+            BaseController::EVENT_COLLECT_VIEW_DATA,
+            function($e) use($config) {
+                $data = $config->getConfigArray();
+                $configViewData = array(
+                    'FhskConfig' => array(
+                        'data'      => $data,
+                        'dataCount' => count($data) - count(array_keys($data, null, true)),
+                        'keyCount'  => count($data),
+                    ),
+                );
+                $target = $e->getTarget();
+                $target->addViewData($configViewData);
+            }
+        );
+    }
+
     /**
      * Get module config
      * @return array

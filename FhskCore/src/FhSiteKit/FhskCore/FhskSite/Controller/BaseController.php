@@ -23,7 +23,7 @@ use Zend\View\Model\ViewModel;
 class BaseController extends AbstractActionController
 {
     /**
-     * Module events triggered by EventManager
+     * Even broadcast when collecting final viewData
      * @var string
      */
     const EVENT_COLLECT_VIEW_DATA = "BaseController.collectViewData";
@@ -78,6 +78,13 @@ class BaseController extends AbstractActionController
         return $view;
     }
 
+    public function addViewData($viewData)
+    {
+        foreach ($viewData as $key => $data) {
+            $this->viewData[$key] = $data;
+        }
+    }
+
     /**
      * Generate ViewModel, fill it with child views
      *
@@ -91,7 +98,7 @@ class BaseController extends AbstractActionController
         $this->addRouteInfoToViewData();
         $this->addFlashMessagesToViewData();
 
-        $this->addConfigToViewData();
+        $this->triggerCollectViewDataEvent();
 
         $view = new ViewModel($this->viewData);
         $view->setTemplate($this->getTemplate('page', $action));
@@ -99,29 +106,12 @@ class BaseController extends AbstractActionController
         return $view;
     }
 
-
     /**
-     * Add config to view data
+     * Trigger "BaseController.collectViewData" event
      */
-    protected function addConfigToViewData()
+    protected function triggerCollectViewDataEvent()
     {
-        $configService = $this->getServiceLocator()->get('FhskConfig');
-        $config = $configService->getConfigArray();
-        $dataCount = 0;
-        $keyCount  = 0;
-        $data = array();
-        foreach ($config as $key => $val) {
-            $keyCount ++;
-            if ($val !== null) {
-                $dataCount ++;
-            }
-            $data[$key] = $val;
-        }
-        $this->viewData['FhskConfig'] = array(
-            'data'      => $data,
-            'dataCount' => $dataCount,
-            'keyCount'  => $keyCount,
-        );
+        $this->getEventManager()->trigger(self::EVENT_COLLECT_VIEW_DATA, $this);
     }
 
     /**
