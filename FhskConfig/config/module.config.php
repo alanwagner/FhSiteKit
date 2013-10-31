@@ -26,7 +26,7 @@ return array(
             'configAdmin' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/:siteKey/admin/config[/][:action][/][:configKey]',
+                    'route'    => '/:siteKey/admin/config[/][:action][/:configKey]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ),
