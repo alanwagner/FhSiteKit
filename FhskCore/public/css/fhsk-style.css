@@ -33,6 +33,11 @@ label  span {
     display:            block;
 }
 
+form#config  label  span {
+    display:            inline-block;
+    padding-right:      2em;
+}
+
 label {
     padding-bottom:     1em;
 }
@@ -63,6 +68,11 @@ div.fhsk-data  tr  td.fhsk-alert,
 .navbar-inverse  .navbar-nav  li  a.fhsk-alert {
     font-weight:        bold;
     color:              crimson;
+}
+
+.navbar-inverse  .navbar-nav  li.active  a.fhsk-alert {
+    font-weight:        bold;
+    color:              red;
 }
 
 .navbar-inverse  .navbar-nav  li  a.fhsk-alert:hover, 
