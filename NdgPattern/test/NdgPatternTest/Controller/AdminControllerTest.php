@@ -13,7 +13,6 @@ namespace NdgPatternTest\Controller;
 use Ndg\NdgPattern\Controller\AdminController;
 use Ndg\NdgPattern\Model\Pattern;
 use NdgPatternTest\Bootstrap;
-use Zend\Db\ResultSet\ResultSet;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 /**

@@ -30,18 +30,6 @@ class ConfigTable extends EntityTable implements ConfigTableInterface
     }
 
     /**
-     * Fetch all config rows with non-null config_value
-     */
-    public function fetchAllNotNull()
-    {
-        $where = new Where();
-        $where->isNotNull('config_value');
-        $resultSet = $this->tableGateway->select($where);
-
-        return $resultSet;
-    }
-
-    /**
      * Get a single config row by id
      * @param int $id
      * @throws \Exception

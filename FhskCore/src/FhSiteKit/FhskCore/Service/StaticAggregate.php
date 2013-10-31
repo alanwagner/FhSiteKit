@@ -44,4 +44,12 @@ class StaticAggregate
     {
         return static::$queue;
     }
+
+    /**
+     * Reset internal queue
+     */
+    public static function reset()
+    {
+        static::$queue = array();
+    }
 }
