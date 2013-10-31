@@ -161,6 +161,7 @@ class Config extends ConfigService
      * Turns NULL into empty string
      *
      * @param mixed $value
+     * @return string
      */
     public static function formatValue($value)
     {
@@ -173,7 +174,8 @@ class Config extends ConfigService
      * Turns empty string into NULL
      * Turns a literal double quote "" into empty string
      *
-     * @param mixed $string
+     * @param mixed $value
+     * @return string
      */
     public static function unformatValue($value)
     {
