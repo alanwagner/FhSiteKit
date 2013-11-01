@@ -26,6 +26,9 @@
                 <li class="<?php echo ($this->templateNamespace == 'template') ? 'active' : '' ?>">
                     <a href="<?php echo $this->url('templateAdmin', array('siteKey' => $this->site('path'))) ?>"><?php echo $this->translate('Templates') ?></a>
                 </li>
+                <li class="<?php echo ($this->templateNamespace == 'instance') ? 'active' : '' ?>">
+                    <a href="<?php echo $this->url('instanceAdmin', array('siteKey' => $this->site('path'))) ?>"><?php echo $this->translate('Instances') ?></a>
+                </li>
                 <?php if (isset($this->FhskConfig)): ?>
                 <li class="<?php echo ($this->templateNamespace == 'config') ? 'active' : '' ?>">
                     <a class="<?php echo ($this->FhskConfig['keyCount'] > $this->FhskConfig['dataCount']) ? 'fhsk-alert' : '' ?>" href="<?php echo $this->url('configAdmin', array('siteKey' => $this->site('path'))) ?>"><?php echo $this->translate('Config') ?></a>

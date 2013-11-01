@@ -1,0 +1,33 @@
+<?php
+/**
+ * Farther Horizon Site Kit
+ *
+ * @link       http://github.com/alanwagner/FhSiteKit for the canonical source repository
+ * @copyright Copyright (c) 2013 Farther Horizon SARL (http://www.fartherhorizon.com)
+ * @license   http://www.gnu.org/licenses/gpl-3.0.html GPLv3 License
+ * @author    Alan Wagner (mail@alanwagner.org)
+ */
+?>
+
+<table class="table">
+<tr class="fhsk-hover">
+    <th>Id</th>
+    <td><?php echo $this->escapeHtml($this->instance->id);?></td>
+</tr>
+<tr class="fhsk-hover">
+    <th>Name</th>
+    <td><?php echo $this->escapeHtml($this->instance->name);?></td>
+</tr>
+<tr class="fhsk-hover">
+    <th>Description</th>
+    <td><?php echo nl2br($this->escapeHtml($this->instance->description));?></td>
+</tr>
+<tr class="fhsk-hover">
+    <th>Status</th>
+    <td><?php echo $this->escapeHtml($this->instance->status);?></td>
+</tr>
+<tr class="fhsk-hover">
+    <th>Pattern Name</th>
+    <td><?php echo $this->escapeHtml($this->instance->pattern_name);?></td>
+</tr>
+</table>
