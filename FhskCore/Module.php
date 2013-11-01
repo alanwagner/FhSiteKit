@@ -36,7 +36,7 @@ class Module extends AbstractModule
             ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    'FhSiteKit' => __DIR__ . '/src/FhSiteKit',
+                    'FhSiteKit/FhskCore' => __DIR__ . '/src/FhSiteKit/FhskCore',
                 ),
             ),
         );

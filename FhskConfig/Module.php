@@ -77,8 +77,7 @@ class Module extends AbstractModule implements FormElementProviderInterface
             ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    //  this is all handled by autoload_classmap,
-                    //    never did figure out why it wouldn't work here...
+                    'FhSiteKit\FhskConfig'             => __DIR__ . '/src/FhSiteKit/FhskConfig',
                 ),
             ),
         );

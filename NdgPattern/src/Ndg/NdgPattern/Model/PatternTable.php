@@ -11,7 +11,6 @@
 namespace Ndg\NdgPattern\Model;
 
 use FhSiteKit\FhskCore\FhskEntity\Model\EntityTable;
-use Zend\Db\TableGateway\TableGateway;
 
 /**
  * Pattern table gateway
@@ -66,7 +65,7 @@ class PatternTable extends EntityTable implements PatternTableInterface
      * @throws \Exception
      */
     public function savePattern(Pattern $pattern)
-    {  //  die(var_dump($pattern->description, $pattern->is_archived));
+    {
         $data = array(
             'name'        => $pattern->name,
             'content'     => $pattern->content,
