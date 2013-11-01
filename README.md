@@ -17,10 +17,10 @@ git clone https://github.com/alanwagner/FhSiteKit.git  module
 ```bash
 cd module
 mysql -uroot -e"create database ndg_pennshape; create database ndg_ngame; create database ndg_igame"
-mysql -uroot ndg_pennshape < PennShapeSite/data/pennshape_schema.sql
-mysql -uroot ndg_pennshape < PennShapeSite/data/pennshape_fixture.sql
-mysql -uroot ndg_ngame <     NgameSite/data/ngame_schema.sql
-mysql -uroot ndg_igame <     IgameSite/data/igame_schema.sql
+mysql -uroot ndg_pennshape < PennShapeSite/resources/sql/pennshape_schema.sql
+mysql -uroot ndg_pennshape < PennShapeSite/resources/sql/pennshape_fixture.sql
+mysql -uroot ndg_ngame <     NgameSite/resources/sql/ngame_schema.sql
+mysql -uroot ndg_igame <     IgameSite/resources/sql/igame_schema.sql
 ```
 
 ### 4.  Modify `index.php`
@@ -54,7 +54,8 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 +     'FhSiteKit\FhskConfig',
 +     'Ndg\NdgSite',
 +     'Ndg\NdgPattern',
-+     'NdgTemplate',
++     'Ndg\NdgTemplate',
++     'Ndg\NdgNetwork',
 + );
 + 
 + switch ($siteKey) {
@@ -82,6 +83,7 @@ return array(
 +             'Ndg\NdgSite'          => './module/NdgSite',
 +             'Ndg\NdgPattern'       => './module/NdgPattern',
 +             'Ndg\NdgTemplate'      => './module/NdgTemplate',
++             'Ndg\NdgNetwork'       => './module/NdgNetwork',
 +             'Ndg\Igame\IgameSite'  => './module/IgameSite',
 +             'Ndg\Ngame\NgameSite'  => './module/NgameSite',
 +             'Ndg\PennShape\PennShapeSite' => './module/PennShapeSite',
@@ -126,10 +128,10 @@ return array(
 ### 7.  Create links to web assets
 ```bash
 cd public/css
-ln -s ../../module/*/public/css/*
+ln -s ../../module/*/resources/public/css/*
 
 cd public/js
-ln -s ../../module/*/public/js/*
+ln -s ../../module/*/resources/public/js/*
 ```
 
 Testing
