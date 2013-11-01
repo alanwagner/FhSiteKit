@@ -12,6 +12,7 @@ namespace Ndg\NdgTemplate\Controller;
 
 use FhSiteKit\FhskCore\FhskEntity\Controller\AdminController as FhskAdminController;
 use FhSiteKit\FhskCore\FhskSite\Core\Site as FhskSite;
+use Ndg\NdgNetwork\Service\NetworkManager;
 use Ndg\NdgTemplate\Form\TemplateForm;
 use Ndg\NdgTemplate\Model\Template;
 use Ndg\NdgTemplate\Model\TemplateTableInterface;
@@ -33,6 +34,12 @@ class AdminController extends FhskAdminController
      * @var TemplateTableInterface
      */
     protected $templateTable;
+
+    /**
+     * The network manager service
+     * @var NetworkManager
+     */
+    protected $networkManager;
 
     /**
      * Handle a list page request
@@ -91,6 +98,7 @@ class AdminController extends FhskAdminController
                     sprintf('No template found with id %d', $id),
                     FlashMessenger::NAMESPACE_ERROR
                 );
+
                 return $this->redirect()->toRoute('templateAdmin', array('siteKey' => FhskSite::getKey()));
             }
 
@@ -153,6 +161,7 @@ class AdminController extends FhskAdminController
                 sprintf('No template found with id %d', $id),
                 FlashMessenger::NAMESPACE_ERROR
             );
+
             return $this->redirect()->toRoute('templateAdmin', array(
                 'siteKey' => FhskSite::getKey(),
             ));
@@ -213,6 +222,7 @@ class AdminController extends FhskAdminController
                     sprintf('No template found with id %d', $id),
                     FlashMessenger::NAMESPACE_ERROR
                 );
+
                 return $this->redirect()->toRoute('templateAdmin', array('siteKey' => FhskSite::getKey()));
             }
 
@@ -220,6 +230,49 @@ class AdminController extends FhskAdminController
             $this->getTemplateTable()->saveTemplate($template);
             $this->storeFlashMessage(
                 sprintf('Template %d (%s) %s', $template->id, $template->name, (empty($template->is_archived) ? 'unarchived' : 'archived')),
+                FlashMessenger::NAMESPACE_SUCCESS
+            );
+        }
+
+        return $this->redirect()->toRoute('templateAdmin', array('siteKey' => FhskSite::getKey(), 'action' => $this->params()->fromRoute('returnAction', '')));
+    }
+
+    /**
+     * Handle a spawn page request
+     * @return \Zend\Http\Response
+     */
+    public function spawnAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (! empty($id)) {
+            // Get the Template with the specified id.  An exception is thrown
+            // if it cannot be found, in which case go to the default page.
+            try {
+                $template = $this->getTemplateTable()->getTemplate($id);
+            }
+            catch (\Exception $ex) {
+                $this->storeFlashMessage(
+                    sprintf('No template found with id %d', $id),
+                    FlashMessenger::NAMESPACE_ERROR
+                );
+
+                return $this->redirect()->toRoute('templateAdmin', array('siteKey' => FhskSite::getKey()));
+            }
+
+            $instance = $this->getNetworkManager()->spawnInstanceFromTemplateId($id);
+
+            if (empty($instance)) {
+                $this->storeFlashMessage(
+                    sprintf('Failed to spawn instance from template %d (%s)', $id, $template->name),
+                    FlashMessenger::NAMESPACE_ERROR
+                );
+
+                return $this->redirect()->toRoute('templateAdmin', array('siteKey' => FhskSite::getKey(), 'action' => $this->params()->fromRoute('returnAction', '')));
+            }
+
+            $instanceViewUrl = $this->url()->fromRoute('instanceAdmin', array('siteKey' => FhskSite::getKey(), 'action' => 'view', 'id' => $instance->id));
+            $this->storeFlashMessage(
+                sprintf('<a href="%s">Instance %d (%s)</a> created', $instanceViewUrl, $instance->id, $instance->name),
                 FlashMessenger::NAMESPACE_SUCCESS
             );
         }
@@ -276,5 +329,23 @@ class AdminController extends FhskAdminController
         }
 
         return $template;
+    }
+
+    /**
+     * Get network manager service
+     * @return NetworkManager
+     * @throws \Exception
+     */
+    protected function getNetworkManager()
+    {
+        if (! $this->networkManager) {
+            $networkManager = $this->getServiceLocator()
+                ->get('NdgNetworkManager');
+            if (! $networkManager instanceof NetworkManager) {
+                throw new \Exception(sprintf('Network manager must be an instance of Ndg\NdgNetwork\Service\NetworkManager, "%s" given.', get_class($networkManager)));
+            }
+            $this->networkManager = $networkManager;
+        }
+        return $this->networkManager;
     }
 }

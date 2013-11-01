@@ -32,7 +32,8 @@
             array('siteKey' => $this->site('path'), 'action'=>'create', 'id' => $templateData->id));?>">Clone</a>
         <a href="<?php echo $this->url('templateAdmin',
             array('siteKey' => $this->site('path'), 'id' => $templateData->id, 'action' => 'toggle-archived', 'returnAction' => $this->routeAction));?>"><?php if (empty($templateData->is_archived)): ?>Archive<?php else: ?>Unarchive<?php endif; ?></a>
-        <a href="javascript:void(0)">Spawn</a>
+        <a href="<?php echo $this->url('templateAdmin',
+            array('siteKey' => $this->site('path'), 'action'=>'spawn', 'id' => $templateData->id, 'returnAction' => $this->routeAction));?>">Spawn</a>
     </td>
 </tr>
 <tr class="fhsk-hover fhsk-hover-too">
