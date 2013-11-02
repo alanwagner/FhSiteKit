@@ -42,8 +42,8 @@ class Module extends AbstractModule
 
 ### 2.  Configuration of the corresponding key is done in the site admin online
 
-The `$key` passed to `$config::registerKey()`, 'Registration: delay before locking', 
-is what will appear as the variable's label in the online interface
+The <strong>`$key`</strong> passed to **`$config::registerKey()`**, "*Registration: delay before locking*", 
+is what will appear as the variable's label in the online interface.
 
 
 ### 3.  The FhSiteKit `BaseController` dispatches a `EVENT_COLLECT_VIEW_DATA` event before it generates the ViewModel
@@ -74,7 +74,7 @@ class BaseController extends AbstractActionController
 
 ### 4.  The FhskConfig module listens for the `BaseController::EVENT_COLLECT_VIEW_DATA` event 
 
-It fetches data via the **FhskConfig** service which it provides to `$target->addViewData()`
+It fetches data via the <strong>FhskConfig</strong> service, which data it then provides to **`$target->addViewData()`**.
 
 ```php
 namespace FhSiteKit\FhskConfig;
@@ -107,10 +107,10 @@ class Module extends AbstractModule
 
 ### 5.  The FhskConfig data is made available to the ViewModel as `$this->FhskConfig['data']`
 
-Obviously, any object that can access the application service locator can call `$sm->get('FhskConfig')->getConfigArray()` directly, 
-and do what it wants to with the data, which will be returned as an array of `CONST => $value` pairs.
+Obviously, any object that can access the application service locator can call <strong>`$sm->get('FhskConfig')->getConfigArray()`</strong> directly, 
+and do what it wants to with the data, which will be returned as an array of **`CONST => $value`** pairs.
 
-It is done with an event trigger in `BaseController` so that this core class and its children 
+It is done with an event trigger in **`BaseController`** so that this core class and its children 
 can be agnostic as to whether they are being used in conjunction with the FhskConfig module or not.
 
 
@@ -119,12 +119,12 @@ Incorporation in unit testing
 
 ###  The MockConfig module test double
 
-In the example `MyRegistrationModule` in §1 above, unit tests on the module will fail unless it has access to the 
-`FhskConfigRegistry` and `FhskConfig` services defined by the FhskConfig module.
+In the example <strong>`MyRegistrationModule`</strong> in §1 above, unit tests on the module will fail unless it has access to the 
+<strong>`FhskConfigRegistry`</strong> and **`FhskConfig`** services defined by the FhskConfig module.
 
-To avoid having to mock up these services, possibly including also calls to `ConfigTable`, 
+To avoid having to mock up these services, possibly including also calls to <strong>`ConfigTable`</strong>, 
 a MockConfig module test double is provided that can be used simply by including it in your
-test suite's `application.config.php`.
+test suite's **`application.config.php`**.
 
 ```php
 //  MyRegistrationModule/test/resources/config/application.config.php
