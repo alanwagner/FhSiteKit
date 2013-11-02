@@ -71,6 +71,11 @@ class NetworkManager
         $this->serviceLocator = $serviceLocator;
     }
 
+    /**
+     * Spawn an instance from a template id
+     * @param int $templateId
+     * @return Ndg\NdgNetwork\NdgInstance\Model\Instance
+     */
     public function spawnInstanceFromTemplateId($templateId)
     {
         $this->template = $this->getTemplateTable()->getTemplate($templateId);
