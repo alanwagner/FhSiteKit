@@ -19,16 +19,6 @@ use Zend\Mvc\MvcEvent;
 class Module extends AbstractModule
 {
     /**
-     * Register config keys on bootstrap event
-     * @param MvcEvent $e
-     */
-    public function onBootstrap(MvcEvent $e)
-    {
-        $config = $e->getApplication()->getServiceManager()->get('FhskConfigRegistry');
-        $config::registerKey('PennShapeSignup StartDate');
-    }
-
-    /**
      * Get module config
      * @return array
      */

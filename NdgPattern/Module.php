@@ -25,16 +25,6 @@ use Zend\Mvc\MvcEvent;
 class Module extends AbstractModule implements FormElementProviderInterface
 {
     /**
-     * Register config keys on bootstrap event
-     * @param MvcEvent $e
-     */
-    public function onBootstrap(MvcEvent $e)
-    {
-        $config = $e->getApplication()->getServiceManager()->get('FhskConfigRegistry');
-        $config::registerKey('NdgPattern-IsEditAllowed');
-    }
-
-    /**
      * Get module config
      * @return array
      */

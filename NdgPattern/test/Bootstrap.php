@@ -46,8 +46,9 @@ class Bootstrap
                 'module_paths' => $zf2ModulePaths,
             ),
             'modules' => array(
-                'FhSiteKit\FhskCore',
-                'Ndg\NdgPattern',
+                //  Apparently, there's no need to load any modules at this stage
+                //  It's what's in resources/config/application.config.php
+                //    and the autoloaders that's important
             ),
         );
 

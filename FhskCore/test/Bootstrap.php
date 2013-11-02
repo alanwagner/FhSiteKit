@@ -46,6 +46,8 @@ class Bootstrap
                 'module_paths' => $zf2ModulePaths,
             ),
             'modules' => array(
+                //  We need to load modules here, so that the
+                //    FhskSite\View\Helper\Site service can initialize correctly
                 'FhSiteKit\FhskCore',
                 'MockSite',
             ),
@@ -108,8 +110,7 @@ class Bootstrap
             'Zend\Loader\StandardAutoloader' => array(
                 'autoregister_zf' => true,
                 'namespaces' => array(
-                    'FhSiteKit\FhskCore' => __DIR__ . '/../src/FhSiteKit/FhskCore',
-                    'MockConfig' => __DIR__ . '/../../FhskConfig/test/resources/module/MockConfig/src/MockConfig'
+                    'FhSiteKit\FhskCore' => __DIR__ . '/../../FhskCore/src/FhSiteKit/FhskCore',
                 ),
             ),
         ));

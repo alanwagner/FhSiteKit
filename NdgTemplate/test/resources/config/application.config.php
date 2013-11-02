@@ -9,12 +9,9 @@
  */
 
 $modules = array(
-    'Application',
     'FhSiteKit\FhskCore',
-    'MockConfig',
     'Ndg\NdgPattern',
     'Ndg\NdgTemplate',
-    'MockSite',
 );
 
 return array(
@@ -31,7 +28,6 @@ return array(
             'Ndg\NdgTemplate' => './module/NdgTemplate',
             'Ndg\NdgPattern' => './module/NdgPattern',
             'FhSiteKit\FhskCore' => './module/FhskCore',
-            'MockConfig' => './module/FhskConfig/test/resources/module/MockConfig',
             './module',
             './vendor',
         ),

@@ -40,7 +40,7 @@ class Module extends AbstractModule implements FormElementProviderInterface
             '*',
             BaseController::EVENT_COLLECT_VIEW_DATA,
             function($e) use($sm) {
-                //  we need to pass in the $sm, and call it now, rather than passing in the service
+                //  we need to pass in the $sm, and call it now, rather than passing in the FhskConfig service
                 //    because the service might have changed (UT mocking...) since bootstrap time
                 $data = $sm->get('FhskConfig')->getConfigArray();
                 $configViewData = array(
