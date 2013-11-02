@@ -9,6 +9,7 @@
  */
 
 $modules = array(
+    'Application',
     'FhSiteKit\FhskCore',
     'Ndg\NdgPattern',
 );

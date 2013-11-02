@@ -12,7 +12,6 @@ $modules = array(
     'Application',
     'FhSiteKit\FhskCore',
     'FhSiteKit\FhskConfig',
-//    'MockSite',
 );
 
 return array(
@@ -26,8 +25,6 @@ return array(
         // namespace, the value of that key the specific path to that module's
         // Module class.
         'module_paths' => array(
-            'FhSiteKit\FhskCore' => './module/FhskCore',
-            'FhSiteKit\FhskConfig' => './module/FhskConfig',
             './module',
             './vendor',
         ),

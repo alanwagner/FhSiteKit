@@ -10,7 +10,6 @@
 
 return array(
     'FhSiteKit\FhskConfig\Module'       => __DIR__ . '/../../FhskConfig/Module.php',
-    'FhSiteKit\FhskCore\AbstractModule' => __DIR__ . '/../../FhskCore/src/FhSiteKit/FhskCore/AbstractModule.php',
     'FhSiteKit\FhskCore\Module'         => __DIR__ . '/../../FhskCore/Module.php',
     'MockConfig\Service\Config'         => __DIR__ . '/resources/module/MockConfig/src/MockConfig/Service/Config.php',
  );
