@@ -11,7 +11,7 @@
 namespace MockConfig;
 
 /**
- * Mock Site module for unit tests
+ * Mock Config module for unit tests
  */
 class Module
 {
@@ -33,9 +33,22 @@ class Module
         return array(
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    __NAMESPACE__          => __DIR__ . '/src/' . __NAMESPACE__,
+                    'FhSiteKit\FhskConfig' => __DIR__ . '/../../../../src/FhSiteKit/FhskConfig',
                 ),
             ),
+        );
+    }
+
+    /**
+     * Expected to return an array of modules on which the current one depends on
+     *
+     * @return array
+     */
+    public function getModuleDependencies()
+    {
+        return array(
+            'FhSiteKit\FhskCore',
         );
     }
 
