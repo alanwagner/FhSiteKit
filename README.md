@@ -4,7 +4,7 @@ Farther Horizon Site Kit
 Installation
 ------------------------------
 
-### 1.  Install ##FhSiteKit## as a submodule
+### 1.  Install *FhSiteKit* as a submodule
 ```bash
 git submodule add https://github.com/alanwagner/FhSiteKit.git  vendor/FhSiteKit
 ```
@@ -25,7 +25,7 @@ Zend\Mvc\Application::init(require 'config/application.config.php')->run();
 
 ### 3.  Modify `application.config.php`
 
-For in-depth understanding of this step and the next, see ZF2 Advanced Configuration Tricks:
+For in-depth understanding of this step, see ZF2 Advanced Configuration Tricks:
 
 http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 
@@ -82,7 +82,6 @@ Testing
 ### Unit Tests
 
 ```bash
-cd module
 ./bin/phpunit.sh
 ```
 
