@@ -38,15 +38,17 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 +     'Application',
 +     'FhSiteKit\FhskCore',
 +     'FhSiteKit\FhskConfig',
-+     'Ndg\NdgSite',
-+     'Ndg\NdgPattern',
-+     'Ndg\NdgTemplate',
-+     'Ndg\NdgNetwork',
++     'MySpace\MyModule',
++     'MySpace\MyOtherModule',
++     //  ...
 + );
 + 
 + switch ($siteKey) {
-+     case 'pennshape' :
-+         $modules[] = 'PennShape\PennShapeSite';
++     case 'mysite' :
++         $modules[] = 'MySpace\MySite';
++         break;
++     case 'myothersite' :
++         $modules[] = 'MySpace\MyOtherSite';
 +         break;
 + }
 + 
