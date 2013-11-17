@@ -8,10 +8,10 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhskSiteTest\View\Helper;
+namespace FhskCoreTest\FhskSite\View\Helper;
 
 use FhSiteKit\FhskCore\FhskSite\View\Helper\Site;
-use FhskSiteTest\Bootstrap;
+use FhskCoreTest\Bootstrap;
 use PHPUnit_Framework_TestCase;
 
 /**

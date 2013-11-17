@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhskSiteTest\Core;
+namespace FhskCoreTest\FhskSite\Core;
 
 use FhSiteKit\FhskCore\FhskSite\Core\Site;
 use FhskSiteTest\Bootstrap;

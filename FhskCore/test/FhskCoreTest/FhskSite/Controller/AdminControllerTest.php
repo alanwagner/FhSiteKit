@@ -8,10 +8,10 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhskSiteTest\Controller;
+namespace FhskCoreTest\FhskSite\Controller;
 
 use FhSiteKit\FhskCore\FhskEntity\Model\Entity;
-use FhskSiteTest\Bootstrap;
+use FhskCoreTest\Bootstrap;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 /**

@@ -8,9 +8,9 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhskEntityTest\Controller;
+namespace FhskCoreTest\FhskEntity\Controller;
 
-use FhskSiteTest\Bootstrap;
+use FhskCoreTest\Bootstrap;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 /**

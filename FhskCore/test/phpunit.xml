@@ -3,8 +3,7 @@
 <phpunit bootstrap="Bootstrap.php" colors="true">
     <testsuites>
         <testsuite name="fhskCore">
-            <directory>./FhskSiteTest</directory>
-            <directory>./FhskEntityTest</directory>
+            <directory>./FhskCoreTest</directory>
         </testsuite>
     </testsuites>
 </phpunit>

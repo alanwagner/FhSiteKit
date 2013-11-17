@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhskEntityTest\Model;
+namespace FhskCoreTest\FhskEntity\Model;
 
 use FhSiteKit\FhskCore\FhskEntity\Model\Entity;
 use PHPUnit_Framework_TestCase;
