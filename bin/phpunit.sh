@@ -1,4 +1,8 @@
-../vendor/phpunit/phpunit/phpunit.php  -c FhskCore/test;
-../vendor/phpunit/phpunit/phpunit.php  -c FhskConfig/test;
-../vendor/phpunit/phpunit/phpunit.php  -c NdgPattern/test;
-../vendor/phpunit/phpunit/phpunit.php  -c NdgTemplate/test;
+if [ ! -d ../ZF2/library/Zend ]; then
+  echo "This must be run parallel to a ZF2 vendor directory"
+  exit
+fi
+
+phpunit  -c FhskCore/test;
+phpunit -c FhskConfig/test;
+
