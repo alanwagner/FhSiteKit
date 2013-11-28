@@ -219,13 +219,19 @@ class BaseController extends AbstractActionController
     protected function addFlashMessagesToViewData()
     {
         if ($this->flashMessenger()->hasInfoMessages()) {
-            $this->viewData['messages']['info'] = $this->flashMessenger()->getInfoMessages();
+            foreach ($this->flashMessenger()->getInfoMessages() as $infoMessage) {
+                $this->viewData['messages']['info'][] = $infoMessage;
+            }
         }
         if ($this->flashMessenger()->hasSuccessMessages()) {
-            $this->viewData['messages']['success'] = $this->flashMessenger()->getSuccessMessages();
+            foreach ($this->flashMessenger()->getSuccessMessages() as $successMessage) {
+                $this->viewData['messages']['success'][] = $successMessage;
+            }
         }
         if ($this->flashMessenger()->hasErrorMessages()) {
-            $this->viewData['messages']['warning'] = $this->flashMessenger()->getErrorMessages();
+            foreach ($this->flashMessenger()->getErrorMessages() as $errorMessage) {
+                $this->viewData['messages']['warning'][] = $errorMessage;
+            }
         }
     }
 
