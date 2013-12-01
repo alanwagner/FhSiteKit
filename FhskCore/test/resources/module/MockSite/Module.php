@@ -47,7 +47,7 @@ class Module
     {
         return array(
             'invokables' => array(
-                'FhskSite' => 'MockSite\Core\Site',
+                'FhskSite' => 'MockSite\Site',
             ),
         );
     }

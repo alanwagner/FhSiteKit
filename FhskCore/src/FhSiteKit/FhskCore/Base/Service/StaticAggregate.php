@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\Service;
+namespace FhSiteKit\FhskCore\Base\Service;
 
 /**
  * Generic static aggregate class

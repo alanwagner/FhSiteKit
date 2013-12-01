@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\FhskSite\Core;
+namespace FhSiteKit\FhskCore\FhskSite;
 
 /**
  * Base class for core Site properties and methods

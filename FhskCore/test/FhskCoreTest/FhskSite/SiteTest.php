@@ -8,9 +8,9 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhskCoreTest\FhskSite\Core;
+namespace FhskCoreTest\FhskSite;
 
-use FhSiteKit\FhskCore\FhskSite\Core\Site;
+use FhSiteKit\FhskCore\FhskSite\Site;
 use FhskSiteTest\Bootstrap;
 use PHPUnit_Framework_TestCase;
 

@@ -10,8 +10,10 @@
 
 namespace FhSiteKit\FhskCore;
 
+use FhSiteKit\FhskCore\Base\Module\AbstractModule;
+
 /**
- * Fhsk Module setup class
+ * Fhsk Core module setup class
  */
 class Module extends AbstractModule
 {
@@ -60,7 +62,7 @@ class Module extends AbstractModule
     {
         return array(
             'invokables' => array(
-                'FhskSite' => 'FhSiteKit\FhskCore\FhskSite\Core\Site',
+                'FhskSite' => 'FhSiteKit\FhskCore\FhskSite\Site',
             ),
         );
     }

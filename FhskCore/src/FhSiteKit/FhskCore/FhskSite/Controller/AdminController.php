@@ -10,6 +10,7 @@
 
 namespace FhSiteKit\FhskCore\FhskSite\Controller;
 
+use FhSiteKit\FhskCore\Base\Controller\BaseController;
 use Zend\View\Model\ViewModel;
 
 /**

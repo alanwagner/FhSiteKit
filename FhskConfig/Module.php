@@ -10,8 +10,8 @@
 
 namespace FhSiteKit\FhskConfig;
 
-use FhSiteKit\FhskCore\AbstractModule;
-use FhSiteKit\FhskCore\FhskSite\Controller\BaseController;
+use FhSiteKit\FhskCore\Base\Module\AbstractModule;
+use FhSiteKit\FhskCore\Base\Controller\BaseController;
 use FhSiteKit\FhskConfig\Form\ConfigForm;
 use FhSiteKit\FhskConfig\Model\Config;
 use FhSiteKit\FhskConfig\Model\ConfigTable;
@@ -21,7 +21,7 @@ use Zend\ModuleManager\Feature\FormElementProviderInterface;
 use Zend\Mvc\MvcEvent;
 
 /**
- * Fhsk Module setup class
+ * Fhsk Config module setup class
  */
 class Module extends AbstractModule implements FormElementProviderInterface
 {

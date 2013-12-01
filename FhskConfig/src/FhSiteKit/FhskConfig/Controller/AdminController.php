@@ -11,7 +11,7 @@
 namespace FhSiteKit\FhskConfig\Controller;
 
 use FhSiteKit\FhskCore\FhskEntity\Controller\AdminController as FhskAdminController;
-use FhSiteKit\FhskCore\FhskSite\Core\Site as FhskSite;
+use FhSiteKit\FhskCore\FhskSite\Site as FhskSite;
 use FhSiteKit\FhskConfig\Form\ConfigForm;
 use FhSiteKit\FhskConfig\Model\Config;
 use FhSiteKit\FhskConfig\Model\ConfigTableInterface;

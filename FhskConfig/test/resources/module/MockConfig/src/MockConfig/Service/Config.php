@@ -10,7 +10,7 @@
 
 namespace MockConfig\Service;
 
-use FhSiteKit\FhskCore\Service\StaticAggregate;
+use FhSiteKit\FhskCore\Base\Service\StaticAggregate;
 use FhSiteKit\FhskConfig\Model\Config as ConfigEntity;
 use FhSiteKit\FhskConfig\Model\ConfigTableInterface;
 use FhSiteKit\FhskConfig\Service\Config as ConfigService;
