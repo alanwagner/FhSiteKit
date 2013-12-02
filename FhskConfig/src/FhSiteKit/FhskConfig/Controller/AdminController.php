@@ -210,7 +210,7 @@ class AdminController extends FhskAdminController
         }
 
         $form = $this->getConfigForm();
-        $form->bind($config);
+        $form->setData($config->getArrayCopy());
         $form->get('submit')->setAttribute('value', 'Edit');
 
         $request = $this->getRequest();
@@ -219,6 +219,8 @@ class AdminController extends FhskAdminController
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
+                $config = $this->getNewConfigEntity();
+                $config->exchangeArray($form->getData());
                 $this->getConfigTable()->saveConfig($config);
                 $this->storeFlashMessage(
                     sprintf('Config %d (%s) updated', $config->id, $config->name),

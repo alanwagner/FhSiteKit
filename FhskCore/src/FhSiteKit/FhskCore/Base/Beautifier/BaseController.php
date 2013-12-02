@@ -10,16 +10,16 @@
 
 namespace FhSiteKit\FhskCore\Base\Beautifier;
 
-use Zend\Form\Form;
+use FhSiteKit\FhskCore\Base\Controller\BaseController as FhskBaseController;
 
 /**
- * Generic form beautifier subject class
+ * Generic controller beautifier subject class
  */
-class BaseForm extends Form
+class BaseController extends FhskBaseController
 {
     /**
      * Internal component pointer
-     * @var BaseFormComponent
+     * @var BaseControllerComponent
      */
     protected $component = null;
 
@@ -29,21 +29,19 @@ class BaseForm extends Form
      */
     protected static $componentRegistry = array();
 
-    public function __construct($name)
+    public function __construct()
     {
         $class = get_class($this);
         if (! empty(static::$componentRegistry[$class])) {
             $this->component = clone static::$componentRegistry[$class];
         }
-
-        parent::__construct($name);
     }
 
     /**
      * Add a component to internal beautifier chain
-     * @param BaseFormComponent $componentToAdd
+     * @param BaseControllerComponent $componentToAdd
      */
-    public function addComponent(BaseFormComponent $componentToAdd)
+    public function addComponent(BaseControllerComponent $componentToAdd)
     {
         if (! empty($this->component)) {
             $this->component->addComponent($componentToAdd);
@@ -54,10 +52,10 @@ class BaseForm extends Form
 
     /**
      * Add a component pointer to internal beautifier chain
-     * @param BaseFormComponent $componentToAdd
-     * @return BaseForm
+     * @param BaseControllerComponent $componentToAdd
+     * @return BaseController
      */
-    public function registerComponent(BaseFormComponent $componentToAdd)
+    public function registerComponent(BaseControllerComponent $componentToAdd)
     {
         $class = get_class($this);
         if (! empty(static::$componentRegistry[$class])) {
@@ -100,14 +98,17 @@ class BaseForm extends Form
     }
 
     /**
-     * Add form elements from beautifier components
+     * Add list of partial templates to build in view, from beautifier components
      */
-    protected function beautifyForm()
+    protected function addAdditionalViewData()
     {
+        parent::addAdditionalViewData();
+
         if (! empty($this->component)) {
-            $elements = $this->component->getElementsArray();
-            foreach ($elements as $element) {
-                $this->add($element['spec'], $element['flags']);
+            $partials = $this->component->getPartialTemplates();
+            $action = $this->params()->fromRoute('action');
+            if (isset($partials[$action])) {
+                $this->viewData['partials'] = $partials[$action];
             }
         }
     }

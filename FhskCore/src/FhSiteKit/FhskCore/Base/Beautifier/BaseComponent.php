@@ -53,7 +53,7 @@ class BaseComponent
 
     /**
      * Add a component pointer to internal beautifier chain
-     * @param string $componentToAdd
+     * @param BaseComponent $componentToAdd
      * @return BaseComponent
      */
     public function registerComponent(BaseComponent $componentToAdd)

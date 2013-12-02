@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskCore\FhskSite\Controller;
 
-use FhSiteKit\FhskCore\Base\Controller\BaseController;
+use FhSiteKit\FhskCore\Base\Beautifier\BaseController;
 use Zend\View\Model\ViewModel;
 
 /**

@@ -95,15 +95,20 @@ class BaseController extends AbstractActionController
      */
     protected function generateViewModel($action = null)
     {
-        $this->addRouteInfoToViewData();
-        $this->addFlashMessagesToViewData();
-
-        $this->triggerCollectViewDataEvent();
+        $this->addAdditionalViewData();
 
         $view = new ViewModel($this->viewData);
         $view->setTemplate($this->getTemplate('page', $action));
 
         return $view;
+    }
+
+    protected function addAdditionalViewData()
+    {
+        $this->addRouteInfoToViewData();
+        $this->addFlashMessagesToViewData();
+
+        $this->triggerCollectViewDataEvent();
     }
 
     /**

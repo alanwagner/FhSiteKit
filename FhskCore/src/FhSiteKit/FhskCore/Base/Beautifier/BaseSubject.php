@@ -10,16 +10,14 @@
 
 namespace FhSiteKit\FhskCore\Base\Beautifier;
 
-use Zend\Form\Form;
-
 /**
  * Generic form beautifier subject class
  */
-class BaseForm extends Form
+class BaseSubject
 {
     /**
      * Internal component pointer
-     * @var BaseFormComponent
+     * @var mixed
      */
     protected $component = null;
 
@@ -41,9 +39,9 @@ class BaseForm extends Form
 
     /**
      * Add a component to internal beautifier chain
-     * @param BaseFormComponent $componentToAdd
+     * @param mixed $componentToAdd
      */
-    public function addComponent(BaseFormComponent $componentToAdd)
+    public function addComponent($componentToAdd)
     {
         if (! empty($this->component)) {
             $this->component->addComponent($componentToAdd);
@@ -54,10 +52,10 @@ class BaseForm extends Form
 
     /**
      * Add a component pointer to internal beautifier chain
-     * @param BaseFormComponent $componentToAdd
+     * @param mixed $componentToAdd
      * @return BaseForm
      */
-    public function registerComponent(BaseFormComponent $componentToAdd)
+    public function registerComponent($componentToAdd)
     {
         $class = get_class($this);
         if (! empty(static::$componentRegistry[$class])) {
@@ -96,19 +94,6 @@ class BaseForm extends Form
     {
         if (! empty($this->component)) {
             $this->component = clone $this->component;
-        }
-    }
-
-    /**
-     * Add form elements from beautifier components
-     */
-    protected function beautifyForm()
-    {
-        if (! empty($this->component)) {
-            $elements = $this->component->getElementsArray();
-            foreach ($elements as $element) {
-                $this->add($element['spec'], $element['flags']);
-            }
         }
     }
 }
