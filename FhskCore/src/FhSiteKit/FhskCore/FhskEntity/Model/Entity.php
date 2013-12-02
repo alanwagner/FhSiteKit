@@ -10,17 +10,13 @@
 
 namespace FhSiteKit\FhskCore\FhskEntity\Model;
 
-use Zend\Filter\Int;
-
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\InputFilterAwareInterface;
-use Zend\InputFilter\InputFilterInterface;
+use FhSiteKit\FhskCore\FhskEntity\Model\Beautifier\EntityComponent;
 use Zend\Stdlib\ArrayObject;
 
 /**
  * Common model entity functions
  */
-class Entity implements InputFilterAwareInterface
+class Entity extends EntityComponent
 {
     /**
      * The entity id property
@@ -29,17 +25,11 @@ class Entity implements InputFilterAwareInterface
     public $id = null;
 
     /**
-     * Input filter
-     * @var InputFilter
-     */
-    protected $inputFilter;
-
-    /**
-     * Get array of names of entity's public properties
+     * Declare array of names of entity's public properties
      *
      * @return array
      */
-    public static function getPropList()
+    public static function declarePropList()
     {
         return array('id');
     }
@@ -66,7 +56,7 @@ class Entity implements InputFilterAwareInterface
             $input = (array) $input;
         }
 
-        $propList = static::getPropList();
+        $propList = $this->getPropList();
 
         $old = array();
 
@@ -97,11 +87,11 @@ class Entity implements InputFilterAwareInterface
             $input = (array) $input;
         }
 
-        $propList = static::getPropList();
+        $propList = $this->getPropList();
 
         $old = array();
 
-        $classVars = get_class_vars(get_class($this));
+        $classVars = $this->getClassVars();
 
         foreach ($propList as $prop) {
             $old[$prop] = $this->$prop;
@@ -118,36 +108,12 @@ class Entity implements InputFilterAwareInterface
      */
     public function getArrayCopy()
     {
-        $propList = static::getPropList();
+        $propList = $this->getPropList();
         $copy = array();
         foreach ($propList as $prop) {
             $copy[$prop] = $this->$prop;
         }
 
         return $copy;
-    }
-
-    /**
-     * SetInputFilter required by InputFilterAwareInterface
-     * @param InputFilterInterface $inputFilter
-     * @throws \Exception
-     */
-    public function setInputFilter(InputFilterInterface $inputFilter)
-    {
-        throw new \Exception("Not used");
-    }
-
-    /**
-     * Get the input filter
-     * @return \Zend\InputFilter\InputFilter
-     */
-    public function getInputFilter()
-    {
-        if (!$this->inputFilter) {
-            $inputFilter = new InputFilter();
-            $this->inputFilter = $inputFilter;
-        }
-
-        return $this->inputFilter;
     }
 }

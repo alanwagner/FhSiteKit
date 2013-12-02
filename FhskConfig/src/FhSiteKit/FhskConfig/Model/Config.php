@@ -52,7 +52,7 @@ class Config extends Entity
      * Get array of names of entity's public properties
      * @return array
      */
-    public static function getPropList()
+    public static function declarePropList()
     {
         return array(
             'id',
@@ -64,48 +64,63 @@ class Config extends Entity
     }
 
     /**
-     * Get the input filter
+     * Provide array of data for save function to insert or update
+     * @return array
+     */
+    public function provideDataToSave()
+    {
+        $data = array(
+            'config_key'      => $this->config_key,
+            'config_value'    => $this->config_value,
+        );
+
+        return $data;
+    }
+
+    /**
+     * Set the input filter, or modify the existing one
      * @return \Zend\InputFilter\InputFilter
      */
-    public function getInputFilter()
+    public function declareInputFilter()
     {
-        if (!$this->inputFilter) {
-            $inputFilter = new InputFilter();
+        if (empty($this->inputFilter)) {
+            $this->inputFilter = new InputFilter();
+        }
+        $inputFilter = $this->inputFilter;
 
-            $inputFilter->add(array(
-                'name'     => 'id',
-                'required' => true,
-                'filters'  => array(
-                    array('name' => 'Int'),
-                ),
-            ));
+        $inputFilter->add(array(
+            'name'     => 'id',
+            'required' => true,
+            'filters'  => array(
+                array('name' => 'Int'),
+            ),
+        ));
 
-            $inputFilter->add(array(
-                'name'     => 'config_key',
-                'required' => true,
-                'filters'  => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name'    => 'StringLength',
-                        'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 255,
-                        ),
+        $inputFilter->add(array(
+            'name'     => 'config_key',
+            'required' => true,
+            'filters'  => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
+            ),
+            'validators' => array(
+                array(
+                    'name'    => 'StringLength',
+                    'options' => array(
+                        'encoding' => 'UTF-8',
+                        'min'      => 1,
+                        'max'      => 255,
                     ),
                 ),
-            ));
+            ),
+        ));
 
-            $inputFilter->add(array(
-                'name'     => 'config_value',
-                'required' => false,
-            ));
+        $inputFilter->add(array(
+            'name'     => 'config_value',
+            'required' => false,
+        ));
 
-            $this->inputFilter = $inputFilter;
-        }
+        $this->inputFilter = $inputFilter;
 
         return $this->inputFilter;
     }

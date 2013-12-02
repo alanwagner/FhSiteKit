@@ -75,10 +75,7 @@ class ConfigTable extends EntityTable implements ConfigTableInterface
      */
     public function saveConfig(Config $config)
     {
-        $data = array(
-            'config_key'      => $config->config_key,
-            'config_value'    => $config->config_value,
-        );
+        $data = $config->getDataToSave();
 
         $id = (int) $config->id;
         if ($id == 0) {
