@@ -73,4 +73,14 @@ class BaseComponent
             throw new \Exception(sprintf('Property "%s" not found among beautifier components', $name));
         }
     }
+
+    /**
+     * Clone component when cloning holder
+     */
+    public function __clone()
+    {
+        if (static::$component !== null) {
+            static::$component = clone static::$component;
+        }
+    }
 }
