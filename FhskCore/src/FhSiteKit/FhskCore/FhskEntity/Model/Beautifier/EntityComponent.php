@@ -23,12 +23,6 @@ use Zend\Stdlib\ArrayObject;
 class EntityComponent extends BaseComponent implements InputFilterAwareInterface
 {
     /**
-     * The entity id property
-     * @var int
-     */
-    public $id = null;
-
-    /**
      * Input filter
      * @var InputFilter
      */
@@ -42,8 +36,8 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
     public function getPropList()
     {
         $props = static::declarePropList();
-        if (static::$component !== null) {
-            $props = static::$component->beautifyPropList($props);
+        if (! empty($this->component)) {
+            $props = $this->component->beautifyPropList($props);
         }
 
         return $props;
@@ -56,7 +50,7 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
      */
     public static function declarePropList()
     {
-        return array('id');
+        return array();
     }
 
     /**
@@ -79,8 +73,8 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
     public function getDataToSave()
     {
         $data = $this->provideDataToSave();
-        if (static::$component !== null) {
-            $data = static::$component->beautifyDataToSave($data);
+        if (! empty($this->component)) {
+            $data = $this->component->beautifyDataToSave($data);
         }
 
         return $data;
@@ -93,7 +87,7 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
      */
     public function provideDataToSave()
     {
-        $data = array('id' => $this->id);
+        $data = array();
 
         return $data;
     }
@@ -118,8 +112,8 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
     public function getClassVars()
     {
         $vars = get_class_vars(get_class($this));
-        if (static::$component !== null) {
-            $vars = static::$component->beautifyClassVars($vars);
+        if (! empty($this->component)) {
+            $vars = $this->component->beautifyClassVars($vars);
         }
 
         return $vars;
@@ -147,8 +141,8 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
         //    if that has been set by wrapper call to beautifyInputFilter()
         $inputFilter = $this->declareInputFilter();
 
-        if (static::$component !== null) {
-            $inputFilter = static::$component->beautifyInputFilter($inputFilter);
+        if (! empty($this->component)) {
+            $inputFilter = $this->component->beautifyInputFilter($inputFilter);
             $this->inputFilter = $inputFilter;
         }
 

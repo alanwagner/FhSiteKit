@@ -19,28 +19,70 @@ class BaseComponent
      * Internal component pointer
      * @var BaseComponent
      */
-    protected static $component = null;
+    protected $component = null;
 
     /**
-     * Add a component to internal beautifier chain
-     * @param BaseComponent $component
+     * Static shared component registry
+     * @var array
      */
-    public static function addComponent(BaseComponent $component)
+    protected static $componentRegistry = array();
+
+    public function __construct()
     {
-        if (static::$component === null) {
-            static::$component = $component;
-        } else {
-            $beautifier = static::$component;
-            $beautifier->addComponent($component);
+        $class = get_class($this);
+        if (! empty(static::$componentRegistry[$class])) {
+            $this->component = clone static::$componentRegistry[$class];
         }
     }
 
     /**
-     * Reset internal component pointer
+     * Add a component to internal beautifier chain
+     * @param BaseComponent $componentToAdd
+     */
+    public function addComponent(BaseComponent $componentToAdd)
+    {
+        if (! empty($this->component)) {
+            $this->component->addComponent($componentToAdd);
+        } else {
+            $this->component = $componentToAdd;
+        }
+    }
+
+    /**
+     * Add a component pointer to internal beautifier chain
+     * @param string $componentToAdd
+     * @return BaseSubject
+     */
+    public function registerComponent(BaseComponent $componentToAdd)
+    {
+        $class = get_class($this);
+        if (! empty(static::$componentRegistry[$class])) {
+            $component = static::$componentRegistry[$class];
+            $component->addComponent($componentToAdd);
+        } else {
+            static::$componentRegistry[$class] = $componentToAdd;
+        }
+
+        //  once the component's been put on the registry chain,
+        //    put it on the live chain too
+
+        $this->addComponent($componentToAdd);
+
+        //  fluid interface
+
+        return $this;
+    }
+
+    /**
+     * Reset internal component registry and chain
      */
     public static function clearComponents()
     {
-        static::$component = null;
+        $class = get_class($this);
+        if (! empty(static::$componentRegistry[$class])) {
+            static::$componentRegistry[$class] = null;
+        }
+        $this->component = null;
     }
 
     /**
@@ -51,9 +93,9 @@ class BaseComponent
      */
     public function __get($name)
     {
-        if (static::$component !== null) {
+        if (! empty($this->component)) {
 
-            return static::$component->$name;
+            return $this->component->$name;
         }
 
         throw new \Exception(sprintf('Property "%s" not found among beautifier components', $name));
@@ -67,8 +109,8 @@ class BaseComponent
      */
     public function __set($name, $value)
     {
-        if (static::$component !== null) {
-            static::$component->$name = $value;
+        if (! empty($this->component)) {
+            $this->component->$name = $value;
         } else {
             throw new \Exception(sprintf('Property "%s" not found among beautifier components', $name));
         }
@@ -79,8 +121,8 @@ class BaseComponent
      */
     public function __clone()
     {
-        if (static::$component !== null) {
-            static::$component = clone static::$component;
+        if (! empty($this->component)) {
+            $this->component = clone $this->component;
         }
     }
 }
