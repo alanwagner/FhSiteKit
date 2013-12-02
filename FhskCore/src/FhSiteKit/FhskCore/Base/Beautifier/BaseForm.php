@@ -10,14 +10,16 @@
 
 namespace FhSiteKit\FhskCore\Base\Beautifier;
 
+use Zend\Form\Form;
+
 /**
- * Generic beautifier component class
+ * Generic form beautifier subject class
  */
-class BaseComponent
+class BaseForm extends Form
 {
     /**
      * Internal component pointer
-     * @var BaseComponent
+     * @var BaseFormComponent
      */
     protected $component = null;
 
@@ -27,22 +29,21 @@ class BaseComponent
      */
     protected static $componentRegistry = array();
 
-    /**
-     * Constructor, set fresh component chain from registry
-     */
-    public function __construct()
+    public function __construct($name)
     {
         $class = get_class($this);
         if (! empty(static::$componentRegistry[$class])) {
             $this->component = clone static::$componentRegistry[$class];
         }
+
+        parent::__construct($name);
     }
 
     /**
      * Add a component to internal beautifier chain
-     * @param BaseComponent $componentToAdd
+     * @param BaseFormComponent $componentToAdd
      */
-    public function addComponent(BaseComponent $componentToAdd)
+    public function addComponent(BaseFormComponent $componentToAdd)
     {
         if (! empty($this->component)) {
             $this->component->addComponent($componentToAdd);
@@ -54,9 +55,9 @@ class BaseComponent
     /**
      * Add a component pointer to internal beautifier chain
      * @param string $componentToAdd
-     * @return BaseComponent
+     * @return BaseSubject
      */
-    public function registerComponent(BaseComponent $componentToAdd)
+    public function registerComponent(BaseFormComponent $componentToAdd)
     {
         $class = get_class($this);
         if (! empty(static::$componentRegistry[$class])) {
@@ -89,43 +90,25 @@ class BaseComponent
     }
 
     /**
-     * Try component in order to get inaccessible properties
-     * @param string $name
-     * @throws \Exception
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        if (! empty($this->component)) {
-
-            return $this->component->$name;
-        }
-
-        throw new \Exception(sprintf('Property "%s" not found among beautifier components', $name));
-    }
-
-    /**
-     * Try component in order to set inaccessible properties
-     * @param string $name
-     * @param mixed  $value
-     * @throws \Exception
-     */
-    public function __set($name, $value)
-    {
-        if (! empty($this->component)) {
-            $this->component->$name = $value;
-        } else {
-            throw new \Exception(sprintf('Property "%s" not found among beautifier components', $name));
-        }
-    }
-
-    /**
      * Clone component when cloning holder
      */
     public function __clone()
     {
         if (! empty($this->component)) {
             $this->component = clone $this->component;
+        }
+    }
+
+    /**
+     *
+     */
+    protected function beautifyForm()
+    {
+        if (! empty($this->component)) {
+            $elements = $this->component->getElementsArray();
+            foreach ($elements as $element) {
+                $this->add($element['spec'], $element['flags']);
+            }
         }
     }
 }
