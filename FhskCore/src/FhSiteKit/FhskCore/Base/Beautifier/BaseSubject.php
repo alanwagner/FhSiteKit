@@ -11,7 +11,7 @@
 namespace FhSiteKit\FhskCore\Base\Beautifier;
 
 /**
- * Generic form beautifier subject class
+ * Generic beautifier subject class
  */
 class BaseSubject
 {
@@ -27,14 +27,12 @@ class BaseSubject
      */
     protected static $componentRegistry = array();
 
-    public function __construct($name)
+    public function __construct()
     {
         $class = get_class($this);
         if (! empty(static::$componentRegistry[$class])) {
             $this->component = clone static::$componentRegistry[$class];
         }
-
-        parent::__construct($name);
     }
 
     /**
