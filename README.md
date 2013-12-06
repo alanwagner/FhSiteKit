@@ -32,7 +32,7 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 ```diff
 <?php
 
-+ $siteKey = FhSiteKit\FhskCore\FhskSite\Core\Site::getKey();
++ $siteKey = FhSiteKit\FhskCore\FhskSite\Site::getKey();
 + 
 + $modules = array(
 +     'Application',
