@@ -27,7 +27,9 @@ class Site
      */
     public static function getKey()
     {
-        return substr($_SERVER['REQUEST_URI'], 1, strpos($_SERVER['REQUEST_URI'], '/', 1) - 1);
+        $pathParts = explode('/', substr($_SERVER['REQUEST_URI'], 1));
+
+        return $pathParts[0];
     }
 
     /**
