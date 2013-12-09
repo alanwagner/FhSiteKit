@@ -8,12 +8,12 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\Base\Beautifier;
+namespace FhSiteKit\FhskVitamin\Form;
 
 use Zend\Form\Form;
 
 /**
- * Generic form beautifier subject class
+ * Generic form vitamin swallower consumer class
  */
 class BaseForm extends Form
 {
@@ -100,9 +100,9 @@ class BaseForm extends Form
     }
 
     /**
-     * Add form elements from beautifier components
+     * Add form elements from vitamin components
      */
-    protected function beautifyForm()
+    protected function enhanceForm()
     {
         if (! empty($this->component)) {
             $elements = $this->component->getElementsArray();

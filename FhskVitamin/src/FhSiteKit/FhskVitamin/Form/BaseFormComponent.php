@@ -8,10 +8,10 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\Base\Beautifier;
+namespace FhSiteKit\FhskVitamin\Form;
 
 /**
- * Generic form beautifier component class
+ * Generic form vitamin component class
  */
 class BaseFormComponent
 {
@@ -46,7 +46,7 @@ class BaseFormComponent
     }
 
     /**
-     * Add a component to internal beautifier chain
+     * Add a component to internal vitamin chain
      * @param BaseFormComponent $componentToAdd
      */
     public function addComponent(BaseFormComponent $componentToAdd)
