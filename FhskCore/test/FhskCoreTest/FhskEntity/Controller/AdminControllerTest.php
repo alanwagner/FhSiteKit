@@ -34,7 +34,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch($_SERVER['REQUEST_URI']);
         $this->assertResponseStatusCode(200);
 
-        $this->assertEquals('FhSiteKit\FhskCore\FhskEntity\Controller\AdminController', $this->getControllerFullClassName());
+        $this->assertEquals('FhSiteKit\FhskCore\Controller\EntityAdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Entity\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('entityAdmin');
@@ -46,7 +46,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch($_SERVER['REQUEST_URI']);
         $this->assertResponseStatusCode(200);
 
-        $this->assertEquals('FhSiteKit\FhskCore\FhskEntity\Controller\AdminController', $this->getControllerFullClassName());
+        $this->assertEquals('FhSiteKit\FhskCore\Controller\EntityAdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Entity\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('entityAdmin');

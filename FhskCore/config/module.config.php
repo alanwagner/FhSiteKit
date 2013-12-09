@@ -21,7 +21,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Entity\Controller\Admin' => 'FhSiteKit\FhskCore\FhskEntity\Controller\AdminController',
+            'Entity\Controller\Admin' => 'FhSiteKit\FhskCore\Controller\EntityAdminController',
             'Site\Controller\Admin' => 'FhSiteKit\FhskCore\Controller\AdminController',
         ),
     ),

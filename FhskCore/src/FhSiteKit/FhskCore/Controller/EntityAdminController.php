@@ -8,14 +8,14 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\FhskEntity\Controller;
+namespace FhSiteKit\FhskCore\Controller;
 
 use FhSiteKit\FhskCore\Controller\AdminController as FhskAdminController;
 
 /**
  * Base entity admin controller
  */
-class AdminController extends FhskAdminController
+class EntityAdminController extends FhskAdminController
 {
     /**
      * Template namespace

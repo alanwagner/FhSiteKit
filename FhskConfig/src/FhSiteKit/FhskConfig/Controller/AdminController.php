@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskConfig\Controller;
 
-use FhSiteKit\FhskCore\FhskEntity\Controller\AdminController as FhskAdminController;
+use FhSiteKit\FhskCore\Controller\EntityAdminController as FhskAdminController;
 use FhSiteKit\FhskCore\Site as FhskSite;
 use FhSiteKit\FhskConfig\Form\ConfigForm;
 use FhSiteKit\FhskConfig\Model\Config;
