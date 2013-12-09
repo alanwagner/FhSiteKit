@@ -10,7 +10,7 @@
 
 namespace FhskCoreTest\FhskEntity\Model;
 
-use FhSiteKit\FhskCore\FhskEntity\Model\EntityTable;
+use FhSiteKit\FhskCore\Model\EntityTable;
 use PHPUnit_Framework_TestCase;
 
 /**

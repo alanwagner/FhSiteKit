@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskConfig\Model;
 
-use FhSiteKit\FhskCore\FhskEntity\Model\EntityTableInterface;
+use FhSiteKit\FhskCore\Model\EntityTableInterface;
 
 /**
  * Config table interface

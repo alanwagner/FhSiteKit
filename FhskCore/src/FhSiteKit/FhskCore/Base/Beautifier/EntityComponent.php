@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\FhskEntity\Model\Beautifier;
+namespace FhSiteKit\FhskCore\Base\Beautifier;
 
 use FhSiteKit\FhskCore\Base\Beautifier\BaseComponent;
 use Zend\Filter\Int;

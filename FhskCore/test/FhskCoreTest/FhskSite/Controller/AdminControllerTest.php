@@ -10,7 +10,7 @@
 
 namespace FhskCoreTest\FhskSite\Controller;
 
-use FhSiteKit\FhskCore\FhskEntity\Model\Entity;
+use FhSiteKit\FhskCore\Model\Entity;
 use FhskCoreTest\Bootstrap;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 

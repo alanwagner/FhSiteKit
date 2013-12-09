@@ -8,9 +8,9 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\FhskEntity\Model;
+namespace FhSiteKit\FhskCore\Model;
 
-use FhSiteKit\FhskCore\FhskEntity\Model\Beautifier\EntityComponent;
+use FhSiteKit\FhskCore\Base\Beautifier\EntityComponent;
 use Zend\Stdlib\ArrayObject;
 
 /**

@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\FhskEntity\Model;
+namespace FhSiteKit\FhskCore\Model;
 
 /**
  * Generic row data class for db results across multiple tables

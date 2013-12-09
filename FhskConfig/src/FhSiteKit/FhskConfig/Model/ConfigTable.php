@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskConfig\Model;
 
-use FhSiteKit\FhskCore\FhskEntity\Model\EntityTable;
+use FhSiteKit\FhskCore\Model\EntityTable;
 use Zend\Db\Sql\Where;
 
 /**

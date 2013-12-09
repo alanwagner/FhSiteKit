@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskConfig\Model;
 
-use FhSiteKit\FhskCore\FhskEntity\Model\Entity;
+use FhSiteKit\FhskCore\Model\Entity;
 use Zend\InputFilter\InputFilter;
 
 /**

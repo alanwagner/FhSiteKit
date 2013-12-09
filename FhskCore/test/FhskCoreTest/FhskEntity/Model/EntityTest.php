@@ -10,11 +10,11 @@
 
 namespace FhskCoreTest\FhskEntity\Model;
 
-use FhSiteKit\FhskCore\FhskEntity\Model\Entity;
+use FhSiteKit\FhskCore\Model\Entity;
 use PHPUnit_Framework_TestCase;
 
 /**
- * Tests on the FhSiteKit\FhskCore\FhskEntity\Model\Entity class
+ * Tests on the FhSiteKit\FhskCore\Model\Entity class
  */
 class EntityTest extends PHPUnit_Framework_TestCase
 {
