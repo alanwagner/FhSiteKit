@@ -8,12 +8,12 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\Base\Beautifier;
+namespace FhSiteKit\FhskVitamin\Core;
 
 /**
- * Generic beautifier subject class
+ * Generic vitamin consumer class
  */
-class BaseSubject
+class BaseConsumer
 {
     /**
      * Internal component pointer
@@ -36,7 +36,7 @@ class BaseSubject
     }
 
     /**
-     * Add a component to internal beautifier chain
+     * Add a component to internal vitamin chain
      * @param mixed $componentToAdd
      */
     public function addComponent($componentToAdd)
@@ -49,7 +49,7 @@ class BaseSubject
     }
 
     /**
-     * Add a component pointer to internal beautifier chain
+     * Add a component pointer to internal vitamin chain
      * @param mixed $componentToAdd
      * @return BaseForm
      */
