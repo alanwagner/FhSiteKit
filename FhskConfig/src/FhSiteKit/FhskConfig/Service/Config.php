@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskConfig\Service;
 
-use FhSiteKit\FhskCore\Base\Service\StaticAggregate;
+use FhSiteKit\FhskCore\Service\StaticAggregate;
 use FhSiteKit\FhskConfig\Model\ConfigTableInterface;
 
 /**
