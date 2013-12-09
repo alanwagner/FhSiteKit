@@ -8,10 +8,10 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\Base\Beautifier;
+namespace FhSiteKit\FhskVitamin\Core;
 
 /**
- * Generic beautifier component class
+ * Generic vitamin component class
  */
 class BaseComponent
 {
@@ -39,7 +39,7 @@ class BaseComponent
     }
 
     /**
-     * Add a component to internal beautifier chain
+     * Add a component to internal vitamin chain
      * @param BaseComponent $componentToAdd
      */
     public function addComponent(BaseComponent $componentToAdd)
@@ -52,7 +52,7 @@ class BaseComponent
     }
 
     /**
-     * Add a component pointer to internal beautifier chain
+     * Add a component pointer to internal vitamin chain
      * @param BaseComponent $componentToAdd
      * @return BaseComponent
      */
@@ -101,7 +101,7 @@ class BaseComponent
             return $this->component->$name;
         }
 
-        throw new \Exception(sprintf('Property "%s" not found among beautifier components', $name));
+        throw new \Exception(sprintf('Property "%s" not found among vitamin components', $name));
     }
 
     /**
@@ -115,7 +115,7 @@ class BaseComponent
         if (! empty($this->component)) {
             $this->component->$name = $value;
         } else {
-            throw new \Exception(sprintf('Property "%s" not found among beautifier components', $name));
+            throw new \Exception(sprintf('Property "%s" not found among vitamin components', $name));
         }
     }
 

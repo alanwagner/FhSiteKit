@@ -8,9 +8,9 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\Base\Beautifier;
+namespace FhSiteKit\FhskVitamin\Model;
 
-use FhSiteKit\FhskCore\Base\Beautifier\BaseComponent;
+use FhSiteKit\FhskVitamin\Core\BaseComponent;
 use Zend\Filter\Int;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
@@ -18,7 +18,7 @@ use Zend\InputFilter\InputFilterInterface;
 use Zend\Stdlib\ArrayObject;
 
 /**
- * Beautifier component for Entity
+ * Vitamin component for Entity
  */
 class EntityComponent extends BaseComponent implements InputFilterAwareInterface
 {
@@ -29,7 +29,7 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
     protected $inputFilter;
 
     /**
-     * Get array of names of entity's and beautifier components' public properties
+     * Get array of names of entity's and vitamin components' public properties
      *
      * @return array
      */
@@ -37,7 +37,7 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
     {
         $props = static::declarePropList();
         if (! empty($this->component)) {
-            $props = $this->component->beautifyPropList($props);
+            $props = $this->component->enhancePropList($props);
         }
 
         return $props;
@@ -54,11 +54,11 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
     }
 
     /**
-     * Beautify array of names of holder's public properties
+     * Enhance array of names of holder's public properties
      * @param array $props
      * @return array
      */
-    public function beautifyPropList($props)
+    public function enhancePropList($props)
     {
         $props = array_merge($props, $this->getPropList());
 
@@ -66,7 +66,7 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
     }
 
     /**
-     * Get array of data from entity and beautifier components for save function to insert or update
+     * Get array of data from entity and vitamin components for save function to insert or update
      *
      * @return array
      */
@@ -74,7 +74,7 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
     {
         $data = $this->provideDataToSave();
         if (! empty($this->component)) {
-            $data = $this->component->beautifyDataToSave($data);
+            $data = $this->component->enhanceDataToSave($data);
         }
 
         return $data;
@@ -93,11 +93,11 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
     }
 
     /**
-     * Beautify the holder's data to save
+     * Enhance the holder's data to save
      * @param array $data
      * @return array
      */
-    public function beautifyDataToSave($data)
+    public function enhanceDataToSave($data)
     {
         $data = array_merge($data, $this->getDataToSave());
 
@@ -105,7 +105,7 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
     }
 
     /**
-     * Get array of entity's and beautifier components' class vars
+     * Get array of entity's and vitamin components' class vars
      *
      * @return array
      */
@@ -113,18 +113,18 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
     {
         $vars = get_class_vars(get_class($this));
         if (! empty($this->component)) {
-            $vars = $this->component->beautifyClassVars($vars);
+            $vars = $this->component->enhanceClassVars($vars);
         }
 
         return $vars;
     }
 
     /**
-     * Beautify the holder's class vars
+     * Enhance the holder's class vars
      * @param array $vars
      * @return array
      */
-    public function beautifyClassVars($vars)
+    public function enhanceClassVars($vars)
     {
         $data = array_merge($vars, $this->getClassVars());
 
@@ -142,7 +142,7 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
         $inputFilter = $this->declareInputFilter();
 
         if (! empty($this->component)) {
-            $inputFilter = $this->component->beautifyInputFilter($inputFilter);
+            $inputFilter = $this->component->enhanceInputFilter($inputFilter);
             $this->inputFilter = $inputFilter;
         }
 
@@ -162,11 +162,11 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
     }
 
     /**
-     * Beautify the holder's input filter
+     * Enhance the holder's input filter
      * @param \Zend\InputFilter\InputFilter $inputFilter
      * @return \Zend\InputFilter\InputFilter
      */
-    public function beautifyInputFilter($inputFilter)
+    public function enhanceInputFilter($inputFilter)
     {
         $this->inputFilter = $inputFilter;
 

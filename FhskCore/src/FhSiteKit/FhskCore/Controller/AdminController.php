@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskCore\Controller;
 
-use FhSiteKit\FhskCore\Base\Beautifier\BaseController as VitaminBaseController;
+use FhSiteKit\FhskVitamin\Controller\BaseController as VitaminBaseController;
 use Zend\View\Model\ViewModel;
 
 /**

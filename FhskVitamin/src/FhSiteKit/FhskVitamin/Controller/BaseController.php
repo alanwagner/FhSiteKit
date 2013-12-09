@@ -8,12 +8,12 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\Base\Beautifier;
+namespace FhSiteKit\FhskVitamin\Controller;
 
 use FhSiteKit\FhskCore\Controller\BaseController as FhskBaseController;
 
 /**
- * Generic controller beautifier subject class
+ * Generic controller vitamin consumer class
  */
 class BaseController extends FhskBaseController
 {
@@ -38,7 +38,7 @@ class BaseController extends FhskBaseController
     }
 
     /**
-     * Add a component to internal beautifier chain
+     * Add a component to internal vitamin chain
      * @param BaseControllerComponent $componentToAdd
      */
     public function addComponent(BaseControllerComponent $componentToAdd)
@@ -51,7 +51,7 @@ class BaseController extends FhskBaseController
     }
 
     /**
-     * Add a component pointer to internal beautifier chain
+     * Add a component pointer to internal vitamin chain
      * @param BaseControllerComponent $componentToAdd
      * @return BaseController
      */
@@ -98,7 +98,7 @@ class BaseController extends FhskBaseController
     }
 
     /**
-     * Add list of partial templates to build in view, from beautifier components
+     * Add list of partial templates to build in view, from vitamin components
      */
     protected function addAdditionalViewData()
     {

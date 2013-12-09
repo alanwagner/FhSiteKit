@@ -8,10 +8,10 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\Base\Beautifier;
+namespace FhSiteKit\FhskVitamin\Controller;
 
 /**
- * Generic controller beautifier component class
+ * Generic controller vitamin component class
  */
 class BaseControllerComponent
 {
@@ -46,7 +46,7 @@ class BaseControllerComponent
     }
 
     /**
-     * Add a component to internal beautifier chain
+     * Add a component to internal vitamin chain
      * @param BaseControllerComponent $componentToAdd
      */
     public function addComponent(BaseControllerComponent $componentToAdd)

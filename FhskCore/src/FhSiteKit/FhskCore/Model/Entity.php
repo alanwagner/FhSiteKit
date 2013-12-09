@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskCore\Model;
 
-use FhSiteKit\FhskCore\Base\Beautifier\EntityComponent;
+use FhSiteKit\FhskVitamin\Model\EntityComponent;
 use Zend\Stdlib\ArrayObject;
 
 /**
