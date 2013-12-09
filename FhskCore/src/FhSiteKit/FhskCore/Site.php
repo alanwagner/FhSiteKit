@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\FhskSite;
+namespace FhSiteKit\FhskCore;
 
 /**
  * Base class for core Site properties and methods
@@ -19,7 +19,7 @@ class Site
      * Site name
      * @staticvar string
      */
-    public static $siteName = 'Fhsk';
+    public static $siteName = 'FhSiteKit';
 
     /**
      * Get site key from REQUEST_URI

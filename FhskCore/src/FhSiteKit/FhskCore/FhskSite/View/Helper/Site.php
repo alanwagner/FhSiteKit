@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskCore\FhskSite\View\Helper;
 
-use FhSiteKit\FhskCore\FhskSite\Site as FhskSite;
+use FhSiteKit\FhskCore\Site as FhskSite;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Helper\AbstractHelper;

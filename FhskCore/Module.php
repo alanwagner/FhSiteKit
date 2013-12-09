@@ -62,7 +62,7 @@ class Module extends AbstractModule
     {
         return array(
             'invokables' => array(
-                'FhskSite' => 'FhSiteKit\FhskCore\FhskSite\Site',
+                'FhskSite' => 'FhSiteKit\FhskCore\Site',
             ),
         );
     }

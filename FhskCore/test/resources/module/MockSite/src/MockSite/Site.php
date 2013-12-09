@@ -10,7 +10,7 @@
 
 namespace MockSite;
 
-use FhSiteKit\FhskCore\FhskSite\Site as FhskSite;
+use FhSiteKit\FhskCore\Site as FhskSite;
 
 /**
  * Mock site core Site properties and methods
@@ -20,7 +20,7 @@ class Site extends FhskSite
     /**
      * Site name
      * @staticvar string
-     * @see FhSiteKit\FhskCore\FhskSite\Site::$siteName
+     * @see FhSiteKit\FhskCore\Site::$siteName
      */
     public static $siteName = 'MockName';
 }

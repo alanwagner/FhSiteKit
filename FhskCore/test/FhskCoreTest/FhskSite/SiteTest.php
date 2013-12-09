@@ -10,7 +10,7 @@
 
 namespace FhskCoreTest\FhskSite;
 
-use FhSiteKit\FhskCore\FhskSite\Site;
+use FhSiteKit\FhskCore\Site;
 use FhskSiteTest\Bootstrap;
 use PHPUnit_Framework_TestCase;
 

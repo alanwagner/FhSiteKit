@@ -11,7 +11,7 @@ git submodule add https://github.com/alanwagner/FhSiteKit.git  vendor/FhSiteKit
 
 ### 2.  Modify `index.php`
 
-This will make methods of `FhSiteKit\FhskCore\FhskSite\Core\Site` available via the autoloader even before the modules have been processed.
+This will make methods of `FhSiteKit\FhskCore\Site` available via the autoloader even before the modules have been processed.
 
 ```diff
 // Setup autoloading
@@ -32,7 +32,7 @@ http://framework.zend.com/manual/2.2/en/tutorials/config.advanced.html
 ```diff
 <?php
 
-+ $siteKey = FhSiteKit\FhskCore\FhskSite\Site::getKey();
++ $siteKey = FhSiteKit\FhskCore\Site::getKey();
 + 
 + $modules = array(
 +     'Application',
