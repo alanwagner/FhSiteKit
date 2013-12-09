@@ -11,7 +11,7 @@
 return array(
     'view_helpers' => array(
         'invokables' => array(
-            'site' => 'FhSiteKit\FhskCore\FhskSite\View\Helper\Site'
+            'site' => 'FhSiteKit\FhskCore\View\Helper\Site'
         ),
     ),
     'view_manager' => array(

@@ -8,7 +8,7 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\FhskSite\View\Helper;
+namespace FhSiteKit\FhskCore\View\Helper;
 
 use FhSiteKit\FhskCore\Site as FhskSite;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
