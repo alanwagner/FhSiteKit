@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskCore\FhskEntity\Controller;
 
-use FhSiteKit\FhskCore\FhskSite\Controller\AdminController as FhskAdminController;
+use FhSiteKit\FhskCore\Controller\AdminController as FhskAdminController;
 
 /**
  * Base entity admin controller

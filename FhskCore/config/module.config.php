@@ -22,7 +22,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Entity\Controller\Admin' => 'FhSiteKit\FhskCore\FhskEntity\Controller\AdminController',
-            'Site\Controller\Admin' => 'FhSiteKit\FhskCore\FhskSite\Controller\AdminController',
+            'Site\Controller\Admin' => 'FhSiteKit\FhskCore\Controller\AdminController',
         ),
     ),
 

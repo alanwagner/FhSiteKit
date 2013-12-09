@@ -35,7 +35,7 @@ class AdminControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch($_SERVER['REQUEST_URI']);
         $this->assertResponseStatusCode(200);
 
-        $this->assertEquals('FhSiteKit\FhskCore\FhskSite\Controller\AdminController', $this->getControllerFullClassName());
+        $this->assertEquals('FhSiteKit\FhskCore\Controller\AdminController', $this->getControllerFullClassName());
         $this->assertControllerName('Site\Controller\Admin');
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('siteAdmin');

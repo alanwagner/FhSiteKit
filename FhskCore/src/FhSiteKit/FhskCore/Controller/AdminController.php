@@ -8,9 +8,9 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\FhskSite\Controller;
+namespace FhSiteKit\FhskCore\Controller;
 
-use FhSiteKit\FhskCore\Base\Beautifier\BaseController;
+use FhSiteKit\FhskCore\Base\Beautifier\BaseController as VitaminBaseController;
 use Zend\View\Model\ViewModel;
 
 /**
@@ -18,7 +18,7 @@ use Zend\View\Model\ViewModel;
  *
  * Serves for pages like admin home that do not handle any entity
  */
-class AdminController extends BaseController
+class AdminController extends VitaminBaseController
 {
     /**
      * Template namespace
