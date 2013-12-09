@@ -11,7 +11,7 @@
 namespace FhSiteKit\FhskConfig;
 
 use FhSiteKit\FhskCore\Base\Module\AbstractModule;
-use FhSiteKit\FhskCore\Base\Controller\BaseController;
+use FhSiteKit\FhskCore\Controller\BaseController;
 use FhSiteKit\FhskConfig\Form\ConfigForm;
 use FhSiteKit\FhskConfig\Model\Config;
 use FhSiteKit\FhskConfig\Model\ConfigTable;

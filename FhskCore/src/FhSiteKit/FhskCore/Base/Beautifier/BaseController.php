@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskCore\Base\Beautifier;
 
-use FhSiteKit\FhskCore\Base\Controller\BaseController as FhskBaseController;
+use FhSiteKit\FhskCore\Controller\BaseController as FhskBaseController;
 
 /**
  * Generic controller beautifier subject class
