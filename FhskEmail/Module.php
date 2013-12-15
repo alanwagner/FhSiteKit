@@ -12,11 +12,12 @@ namespace FhSiteKit\FhskEmail;
 
 use FhSiteKit\FhskCore\Module\AbstractModule;
 use FhSiteKit\FhskCore\Controller\BaseController;
-use FhSiteKit\FhskConfig\Form\ConfigForm;
+use FhSiteKit\FhskEmail\Form\EmailForm;
 use FhSiteKit\FhskEmail\Model\Email;
 use FhSiteKit\FhskEmail\Model\EmailTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Mail\Transport\Sendmail as SendmailTransport;
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
 use Zend\Mvc\MvcEvent;
 
@@ -110,8 +111,14 @@ class Module extends AbstractModule implements FormElementProviderInterface
                     $emailManager = $sm->get('FhskEmailRegistry');
                     $emailTable = $sm->get('Email\Model\EmailTable');
                     $emailManager->setEmailTable($emailTable);
+                    $emailTransport = $sm->get('FhSiteKit\EmailTransport');
+                    $emailManager->setEmailTransport($emailTransport);
 
                     return $emailManager;
+                },
+                'FhSiteKit\EmailTransport' => function($sm) {
+
+                    return new SendmailTransport();
                 },
                 'Email\Model\EmailEntity' =>  function($sm) {
                     $email = new Email();
@@ -142,11 +149,11 @@ class Module extends AbstractModule implements FormElementProviderInterface
     public function getFormElementConfig()
     {
         return array(
-            'factories' => array(  /*
-                'Config\Form\ConfigForm' => function($sm) {
+            'factories' => array(
+                'Email\Form\EmailForm' => function($sm) {
 
-                    return new ConfigForm();
-                }  */
+                    return new EmailForm();
+                }
             )
         );
     }

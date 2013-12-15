@@ -11,6 +11,8 @@
 namespace FhSiteKit\FhskEmail\Service;
 
 use FhSiteKit\FhskEmail\Model\EmailTableInterface;
+use Zend\Mail\Message;
+use Zend\Mail\Transport\TransportInterface;
 
 /**
  * Centralized email manager service
@@ -22,6 +24,12 @@ class EmailManager
      * @var EmailTableInterface
      */
     protected $emailTable;
+
+    /**
+     * The email transport
+     * @var TransportInterface
+     */
+    protected $emailTransport;
 
     /**
      * Internal queue
@@ -62,6 +70,26 @@ class EmailManager
         }
     }
 
+    public function sendEmail($key, $toAddress, $toName, $data)
+    {
+        $email = $this->getEmailByKey($key);
+        if (! empty($email) && ! empty($email->id)) {
+            $message = new Message();
+            $message->addTo($toAddress, $toName);
+            $message->setFrom($email->from_address, $email->from_name);
+            $subject = $this->incorporateVariables($email->subject_template, $data);
+            $message->setSubject($subject);
+            $body = $this->incorporateVariables($email->body_template, $data);
+            $message->setBody($body);
+
+            $this->emailTransport->send($message);
+
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Get a email entity, by key
      *
@@ -98,6 +126,15 @@ class EmailManager
         return isset(static::$queue[$key]);
     }
 
+    protected function incorporateVariables($str, $data)
+    {
+        foreach ($data as $key => $val) {
+            $str = str_replace('#' . $key, $val, $str);
+        }
+
+        return $str;
+    }
+
     /**
      * Set email table
      * @param EmailTableInterface $emailTable
@@ -106,6 +143,18 @@ class EmailManager
     public function setEmailTable(EmailTableInterface $emailTable)
     {
         $this->emailTable = $emailTable;
+
+        return $this;
+    }
+
+    /**
+     * Set email transport
+     * @param TransportInterface $emailTransport
+     * @return \FhSiteKit\FhskEmail\Service\EmailManager
+     */
+    public function setEmailTransport(TransportInterface $emailTransport)
+    {
+        $this->emailTransport = $emailTransport;
 
         return $this;
     }

@@ -55,6 +55,15 @@ class Email extends Entity
     public $from_address = null;
 
     /**
+     * Schedule
+     *
+     * Time of day to send email
+     *
+     * @var string
+     */
+    public $schedule = null;
+
+    /**
      * Email row created at
      * @var string
      */
@@ -79,6 +88,7 @@ class Email extends Entity
             'body_template',
             'from_name',
             'from_address',
+            'schedule',
             'created_at',
             'updated_at',
         );
@@ -96,6 +106,7 @@ class Email extends Entity
             'body_template'    => $this->body_template,
             'from_name'        => $this->from_name,
             'from_address'     => $this->from_address,
+            'schedule'         => $this->schedule,
         );
 
         return $data;
@@ -169,6 +180,15 @@ class Email extends Entity
         $inputFilter->add(array(
             'name'     => 'from_address',
             'required' => true,
+            'filters'  => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
+            ),
+        ));
+
+        $inputFilter->add(array(
+            'name'     => 'schedule',
+            'required' => false,
             'filters'  => array(
                 array('name' => 'StripTags'),
                 array('name' => 'StringTrim'),

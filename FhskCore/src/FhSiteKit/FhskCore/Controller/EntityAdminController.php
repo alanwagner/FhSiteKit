@@ -37,7 +37,7 @@ class EntityAdminController extends FhskAdminController
      * Handle an add form page request or post submission
      * @return \Zend\View\Model\ViewModel
      */
-    public function createAction() {
+    public function addAction() {
         $view = $this->generateViewModel('create');
 
         return $view;

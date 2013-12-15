@@ -15,6 +15,7 @@ use FhSiteKit\FhskCore\Site as FhskSite;
 use FhSiteKit\FhskEmail\Form\EmailForm;
 use FhSiteKit\FhskEmail\Model\Email;
 use FhSiteKit\FhskEmail\Model\EmailTableInterface;
+use FhSiteKit\FhskEmail\Service\EmailManager;
 use Zend\Form\FormInterface;
 use Zend\Mvc\Controller\Plugin\FlashMessenger;
 
@@ -36,6 +37,12 @@ class AdminController extends FhskAdminController
     protected $emailTable;
 
     /**
+     * The email manager
+     * @var EmailManager
+     */
+    protected $emailManager;
+
+    /**
      * Handle a list page request
      *
      * This shows only active patterns
@@ -46,7 +53,7 @@ class AdminController extends FhskAdminController
     {
         $emailService = $this->getServiceLocator()->get('Email\Service\EmailManager');
         $this->viewData = array(
-            'emailArray' => $emailService->getEmailRegistry(),
+            'emailArray' => $this->getEmailManager()->getEmailRegistry(),
         );
         $view = $this->generateViewModel('list');
 
@@ -54,102 +61,30 @@ class AdminController extends FhskAdminController
     }
 
     /**
-     * Handle a emailuration form page request or post submission
-     *
-     * @return \Zend\View\Model\ViewModel
-     */  /*
-    public function emailureAction()
-    {
-        $form = $this->getEmailForm();
-        $form->get('submit')->setValue('Emailure');
-        $emailService = $this->getServiceLocator()->get('FhskEmail');
-
-        $emailKey = (string) $this->params()->fromRoute('emailKey', '');
-
-        if (empty($emailKey)) {
-            return $this->redirect()->toRoute('emailAdmin', array('siteKey' => FhskSite::getKey()));
-        }
-
-        if (! $emailService::hasKey($emailKey)) {
-            $this->storeFlashMessage(
-                sprintf('No module has registered the email key "%s"', $emailKey),
-                FlashMessenger::NAMESPACE_ERROR
-            );
-            return $this->redirect()->toRoute('emailAdmin', array('siteKey' => FhskSite::getKey()));
-        }
-
-        $email = $emailService->getEmailFormattedByKey($emailKey);
-        $form->setData($email->getArrayCopy());
-        $form->get('email_value')->setLabel($email->email_key);
-
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            $form->setInputFilter($email->getInputFilter());
-            $form->setData($request->getPost());
-
-            if ($form->isValid()) {
-                $email->exchangeArray($emailService->unformat($form->getData()));
-                $email = $this->getEmailTable()->saveEmail($email);
-                if ($email->email_value === null) {
-                    $this->storeFlashMessage(
-                        sprintf('Email "%s" not set', $email->email_key),
-                        FlashMessenger::NAMESPACE_ERROR
-                    );
-                } else {
-                    $this->storeFlashMessage(
-                        sprintf('Email "%s" set', $email->email_key),
-                        FlashMessenger::NAMESPACE_SUCCESS
-                    );
-                }
-                // Redirect to list of emails
-
-                return $this->redirect()->toRoute('emailAdmin', array('siteKey' => FhskSite::getKey()));
-            }
-        }
-
-        $this->viewData = array(
-            'form'       => $form,
-            'formAction' => 'emailure',
-            'emailKey'  => $emailKey,
-        );
-        $view = $this->generateViewModel('emailure');
-
-        return $view;
-    }  */
-
-    /**
      * Handle an edit form page request or post submission
      * @return \Zend\View\Model\ViewModel|\Zend\Http\Response
      */
     public function editAction()
     {
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if (!$id) {
+        $emailKey = $this->params()->fromRoute('emailKey', '');
+        if (!$emailKey) {
 
             return $this->redirect()->toRoute('emailAdmin', array(
-                'action'  => 'create',
                 'siteKey' => FhskSite::getKey(),
             ));
         }
 
-        // Get the Email with the specified id.  An exception is thrown
+        // Get the Email with the specified id.  We get null
         // if it cannot be found, in which case go to the index page.
-        try {
-            $email = $this->getemailTable()->getEmail($id);
-        }
-        catch (\Exception $ex) {
-            $this->storeFlashMessage(
-                sprintf('No email found with id %d', $id),
-                FlashMessenger::NAMESPACE_ERROR
-            );
-            return $this->redirect()->toRoute('emailAdmin', array(
-                'siteKey' => FhskSite::getKey(),
-            ));
+        $email = $this->getEmailTable()->fetchEmailByKey($emailKey);
+
+        if ($email == null) {
+            $email = $this->getNewEmailEntity();
+            $email->exchangeArray(array('key' => $emailKey));
         }
 
         $form = $this->getEmailForm();
         $form->setData($email->getArrayCopy());
-        $form->get('submit')->setAttribute('value', 'Edit');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -161,7 +96,7 @@ class AdminController extends FhskAdminController
                 $email->exchangeArray($form->getData());
                 $this->getEmailTable()->saveEmail($email);
                 $this->storeFlashMessage(
-                    sprintf('Email %d (%s) updated', $email->id, $email->name),
+                    sprintf('Email %s updated', $email->key),
                     FlashMessenger::NAMESPACE_SUCCESS
                 );
 
@@ -169,17 +104,15 @@ class AdminController extends FhskAdminController
 
                 return $this->redirect()->toRoute('emailAdmin', array(
                     'siteKey' => FhskSite::getKey(),
-                    'action'  => $this->params()->fromRoute('returnAction', ''),
                 ));
             }
         }
 
         $this->viewData = array(
-            'id'           => $id,
-            'form'         => $form,
-            'formAction'   => 'edit',
-            'email'      => $email,
-            'returnAction' => $this->params()->fromRoute('returnAction', ''),
+            'emailKey'    => $emailKey,
+            'form'        => $form,
+            'formAction'  => 'edit',
+            'emailConfig' => $this->getEmailManager()->getEmailRegistryByKey($emailKey),
         );
         $view = $this->generateViewModel('edit');
 
@@ -203,6 +136,25 @@ class AdminController extends FhskAdminController
         }
 
         return $this->emailTable;
+    }
+
+    /**
+     * Get the Email Manager
+     * @return EmailManagerInterface
+     * @throws \Exception
+     */
+    protected function getEmailManager()
+    {
+        if (! $this->emailManager) {
+            $emailManager = $this->getServiceLocator()
+                ->get('Email\Service\EmailManager');
+            if (! $emailManager instanceof EmailManager) {
+                throw new \Exception(sprintf('Email manager must be an instance of FhSiteKit\FhskEmail\Service\EmailManager, "%s" given.', get_class($emailManager)));
+            }
+            $this->emailManager = $emailManager;
+        }
+
+        return $this->emailManager;
     }
 
     /**

@@ -24,6 +24,7 @@ CREATE TABLE `email` (
   `body_template` text DEFAULT NULL,
   `from_name` varchar(255) DEFAULT NULL,
   `from_address` varchar(255) DEFAULT NULL,
+  `schedule` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
