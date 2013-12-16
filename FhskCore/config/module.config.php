@@ -31,7 +31,7 @@ return array(
             'siteAdmin' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/:siteKey/admin/site[/][:action]',
+                    'route'    => '/:siteKey/admin[/][site][/][:action]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ),
