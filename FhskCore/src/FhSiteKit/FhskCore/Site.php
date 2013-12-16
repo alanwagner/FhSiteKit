@@ -22,14 +22,21 @@ class Site
     public static $siteName = 'FhSiteKit';
 
     /**
-     * Get site key from REQUEST_URI
+     * Get site key from FHSK_SITE_KEY or from REQUEST_URI
      * @return string
      */
     public static function getKey()
     {
-        $pathParts = explode('/', substr($_SERVER['REQUEST_URI'], 1));
+        $siteKey = '';
 
-        return $pathParts[0];
+        if (isset($_SERVER['FHSK_SITE_KEY'])) {
+            $siteKey = $_SERVER['FHSK_SITE_KEY'];
+        } else {
+            $pathParts = explode('/', substr($_SERVER['REQUEST_URI'], 1));
+            $siteKey = $pathParts[0];
+        }
+
+        return $siteKey;
     }
 
     /**
