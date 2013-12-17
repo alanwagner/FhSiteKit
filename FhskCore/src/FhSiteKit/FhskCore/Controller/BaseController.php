@@ -249,4 +249,15 @@ class BaseController extends AbstractActionController
         $this->viewData['templateController'] = static::$templateController;
         $this->viewData['routeAction']        = $this->params()->fromRoute('action');
     }
+
+    /**
+     * Get initial part of url
+     * @return string
+     */
+    protected function httpDomain()
+    {
+        $uri = $this->getRequest()->getUri();
+
+        return $uri->getScheme() . '://' . $uri->getHost();
+    }
 }
