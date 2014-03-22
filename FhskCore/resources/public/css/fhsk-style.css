@@ -51,7 +51,8 @@ td.actionLinks  a {
     padding-left:       1em;
 }
 
-div.pattern-content {
+div.pattern-content,
+div.template-config {
     display:            none;
     overflow:           hidden;
 }
