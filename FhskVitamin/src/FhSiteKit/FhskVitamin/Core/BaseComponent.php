@@ -40,36 +40,40 @@ class BaseComponent
 
     /**
      * Add a component to internal vitamin chain
-     * @param BaseComponent $componentToAdd
+     * @param mixed $componentToAdd
      */
-    public function addComponent(BaseComponent $componentToAdd)
+    public function addComponent($componentToAdd)
     {
         if (! empty($this->component)) {
             $this->component->addComponent($componentToAdd);
         } else {
-            $this->component = $componentToAdd;
+            //  safety check
+            //  because different modules could try to register the same vitamin
+            if (get_class($this) != get_class($componentToAdd)) {
+                $this->component = $componentToAdd;
+            }
         }
     }
 
     /**
      * Add a component pointer to internal vitamin chain
-     * @param BaseComponent $componentToAdd
-     * @return BaseComponent
+     * @param mixed $componentToAdd
+     * @return BaseForm
      */
-    public function registerComponent(BaseComponent $componentToAdd)
+    public function registerComponent($componentToAdd)
     {
         $class = get_class($this);
         if (! empty(static::$componentRegistry[$class])) {
             $component = static::$componentRegistry[$class];
+            //  this will also add it to the live chain
+            //  because $component is also $this->component
             $component->addComponent($componentToAdd);
         } else {
             static::$componentRegistry[$class] = $componentToAdd;
+            //  once the component's been put on the registry chain,
+            //    put it on the live chain too
+            $this->addComponent($componentToAdd);
         }
-
-        //  once the component's been put on the registry chain,
-        //    put it on the live chain too
-
-        $this->addComponent($componentToAdd);
 
         //  fluid interface
 
