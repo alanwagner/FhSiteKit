@@ -58,7 +58,7 @@ class BaseComponent
     /**
      * Add a component pointer to internal vitamin chain
      * @param mixed $componentToAdd
-     * @return BaseForm
+     * @return BaseComponent
      */
     public function registerComponent($componentToAdd)
     {

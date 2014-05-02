@@ -62,15 +62,15 @@ class BaseForm extends Form
         $class = get_class($this);
         if (! empty(static::$componentRegistry[$class])) {
             $component = static::$componentRegistry[$class];
+            //  this will also add it to the live chain
+            //  because $component is also $this->component
             $component->addComponent($componentToAdd);
         } else {
             static::$componentRegistry[$class] = $componentToAdd;
+            //  once the component's been put on the registry chain,
+            //    put it on the live chain too
+            $this->addComponent($componentToAdd);
         }
-
-        //  once the component's been put on the registry chain,
-        //    put it on the live chain too
-
-        $this->addComponent($componentToAdd);
 
         //  fluid interface
 
