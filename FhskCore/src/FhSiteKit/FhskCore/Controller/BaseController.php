@@ -126,6 +126,7 @@ class BaseController extends AbstractActionController
      *    namespace/controller/block-action
      * or namespace/controller/block-'form'  (if action is 'create' or 'edit')
      * or namespace/controller/block
+     * or 'site'/controller/block-action
      * or 'site'/controller/block
      *
      * @param string $block
@@ -176,6 +177,18 @@ class BaseController extends AbstractActionController
             $namespace,
             $controller,
             $block
+        );
+        if ($templatePathStack->resolve($template)) {
+
+            return $template;
+        }
+
+        $template = sprintf(
+            '%s/%s/%s-%s',
+            'site',
+            $controller,
+            $block,
+            $action
         );
         if ($templatePathStack->resolve($template)) {
 

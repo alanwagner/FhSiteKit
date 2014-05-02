@@ -23,6 +23,45 @@ class EntityAdminController extends FhskAdminController
      */
     protected static $templateNamespace  = 'entity';
 
+    public function csvAction()
+    {
+        $queryName = $this->params()->fromRoute('queryName', '');
+        $queryLibrary = $this->getServiceLocator()->get('FhskQueryLibrary');
+        $query = $queryLibrary->getQueryByName($queryName);
+
+        $adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+        $statement = $adapter->query($query);
+
+        $id = (int) $this->params()->fromRoute('id', 0);
+        $resultSet = $statement->execute(array('id' => $id));
+
+        $fz = fopen('/tmp/fhsk.csv', 'w');
+        $needsHeaders = true;
+        while ($row = $resultSet->current()) {
+            if ($needsHeaders) {
+                fputcsv($fz, array_keys($row));
+                $needsHeaders = false;
+            }
+            fputcsv($fz, $row);
+        }
+        fclose($fz);
+
+        $content = file_get_contents('/tmp/fhsk.csv');
+        unlink('/tmp/fhsk.csv');
+
+        $this->viewData = array(
+            'csvContent' => $content,
+        );
+        $view = $this->generateViewModel('csv');
+        $view->setTerminal(true);
+        $filename = sprintf('%s_%d.csv', $queryName, $id);
+        $this->getResponse()->getHeaders()
+            ->addHeaderLine('Content-Type', 'text/csv')
+            ->addHeaderLine('Content-Disposition', 'attachment;filename='.$filename);
+        return $view;
+
+    }
+
     /**
      * Handle a list page request
      * @return \Zend\View\Model\ViewModel

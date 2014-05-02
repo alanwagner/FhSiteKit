@@ -11,13 +11,14 @@
 namespace FhSiteKit\FhskCore\Model;
 
 /**
- * Entity table interface
+ * Query Library interface
  */
-interface EntityTableInterface
+interface QueryLibraryInterface
 {
     /**
-     * Get table gateway
-     * @return \Zend\Db\TableGateway\TableGateway
+     * Get query by name
+     * @param $queryName
+     * @return string
      */
-    public function getTableGateway();
+    public function getQueryByName($queryName);
 }
