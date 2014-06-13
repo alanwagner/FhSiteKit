@@ -20,7 +20,7 @@
     <td class="<?php echo ($configValue === '') ? 'fhsk-alert' : '' ?>">
         <?php echo $this->escapeHtml($configKey);?>
     </td>
-    <td><?php echo $this->escapeHtml($configValue); ?></td>
+    <td><?php echo nl2br($this->escapeHtml($configValue)); ?></td>
     <td class="actionLinks">
         <a href="<?php echo $this->url('configAdmin',
             array('siteKey' => $this->site('path'), 'action'=>'configure', 'configKey' => $configKey));?>">Configure</a>

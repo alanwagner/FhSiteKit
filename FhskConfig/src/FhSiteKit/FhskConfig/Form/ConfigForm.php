@@ -36,9 +36,13 @@ class ConfigForm extends Form
         ));
         $this->add(array(
                 'name' => 'config_value',
-                'type' => 'Text',
+                'type' => 'TextArea',
                 'options' => array(
                     'label'    => 'configValue label',
+                ),
+                'attributes' => array(
+                    'rows' => '15',
+                    'cols' => '80',
                 ),
             ),
             array(
