@@ -88,16 +88,6 @@ class EmailForm extends Form
                 'priority' => 3000,
         ));
         $this->add(array(
-                'name' => 'schedule',
-                'type' => 'Text',
-                'options' => array(
-                    'label' => 'Time to Send each day',
-                ),
-            ),
-            array(
-                'priority' => 2500,
-        ));
-        $this->add(array(
                 'name' => 'submit',
                 'type' => 'Submit',
                 'attributes' => array(
