@@ -109,10 +109,7 @@ class Module extends AbstractModule implements FormElementProviderInterface
             'factories' => array(
                 'Email\Service\EmailManager' =>  function($sm) {
                     $emailManager = $sm->get('FhskEmailRegistry');
-                    $emailTable = $sm->get('Email\Model\EmailTable');
-                    $emailManager->setEmailTable($emailTable);
-                    $emailTransport = $sm->get('FhSiteKit\EmailTransport');
-                    $emailManager->setEmailTransport($emailTransport);
+                    $emailManager->setServiceLocator($sm);
 
                     return $emailManager;
                 },

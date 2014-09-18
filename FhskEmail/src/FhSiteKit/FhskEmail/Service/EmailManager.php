@@ -13,6 +13,7 @@ namespace FhSiteKit\FhskEmail\Service;
 use FhSiteKit\FhskEmail\Model\EmailTableInterface;
 use Zend\Mail\Message;
 use Zend\Mail\Transport\TransportInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Centralized email manager service
@@ -30,6 +31,12 @@ class EmailManager
      * @var TransportInterface
      */
     protected $emailTransport;
+
+    /**
+     * The service locator
+     * @var ServiceLocatorInterface
+     */
+    protected $serviceLocator;
 
     /**
      * Internal queue
@@ -82,7 +89,7 @@ class EmailManager
             $body = $this->incorporateVariables($email->body_template, $data);
             $message->setBody($body);
 
-            $this->emailTransport->send($message);
+            $this->getEmailTransport()->send($message);
 
             return true;
         }
@@ -99,13 +106,13 @@ class EmailManager
      */
     public function getEmailByKey($key)
     {
-        $email = $this->emailTable->fetchEmailByKey($key);
+        $email = $this->getEmailTable()->fetchEmailByKey($key);
 
         if ($email === null && static::hasKey($key)) {
             //  key is registered but not in db
             //  Get the Email entity
             //    don't assume it's from this module, or hard-code the class
-            $email = $this->emailTable
+            $email = $this->getEmailTable()
                            ->getTableGateway()
                            ->getResultSetPrototype()
                            ->getArrayObjectPrototype();
@@ -136,26 +143,62 @@ class EmailManager
     }
 
     /**
-     * Set email table
-     * @param EmailTableInterface $emailTable
+     * Get the Email Table
+     * @return EmailTableInterface
+     * @throws \Exception
+     */
+    protected function getEmailTable()
+    {
+        if (! $this->emailTable) {
+            $emailTable = $this->getServiceLocator()
+                ->get('Email\Model\EmailTable');
+            if (! $emailTable instanceof EmailTableInterface) {
+                throw new \Exception(sprintf('Email table must be an instance of FhSiteKit\FhskEmail\Model\EmailTableInterface, "%s" given.', get_class($emailTable)));
+            }
+            $this->emailTable = $emailTable;
+        }
+
+        return $this->emailTable;
+    }
+
+    /**
+     * Get the Email Transport
+     * @return TransportInterface
+     * @throws \Exception
+     */
+    protected function getEmailTransport()
+    {
+        if (! $this->emailTransport) {
+            $emailTransport = $this->getServiceLocator()
+                ->get('FhSiteKit\EmailTransport');
+            if (! $emailTransport instanceof TransportInterface) {
+                throw new \Exception(sprintf('Email table must be an instance of Zend\Mail\Transport\TransportInterface, "%s" given.', get_class($emailTransport)));
+            }
+            $this->emailTransport = $emailTransport;
+        }
+
+        return $this->emailTransport;
+    }
+
+    /**
+     * Set serviceLocator
+     * @param ServiceLocatorInterface $serviceLocator
      * @return \FhSiteKit\FhskEmail\Service\EmailManager
      */
-    public function setEmailTable(EmailTableInterface $emailTable)
+    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
     {
-        $this->emailTable = $emailTable;
+        $this->serviceLocator = $serviceLocator;
 
         return $this;
     }
 
     /**
-     * Set email transport
-     * @param TransportInterface $emailTransport
-     * @return \FhSiteKit\FhskEmail\Service\EmailManager
+     * Get serviceLocator
+     * @return ServiceLocatorInterface $serviceLocator
      */
-    public function setEmailTransport(TransportInterface $emailTransport)
+    public function getServiceLocator()
     {
-        $this->emailTransport = $emailTransport;
 
-        return $this;
+        return $this->serviceLocator;
     }
 }
