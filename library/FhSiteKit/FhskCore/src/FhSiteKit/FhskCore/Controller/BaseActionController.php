@@ -128,16 +128,18 @@ class BaseActionController extends AbstractActionController
             return $template;
         }
 
-        $template = sprintf(
-            '%s/%s/%s-%s',
-            'site',
-            $controller,
-            $block,
-            $action
-        );
-        if ($templatePathStack->resolve($template)) {
+        if (!empty($action)) {
+            $template = sprintf(
+                '%s/%s/%s-%s',
+                'site',
+                $controller,
+                $block,
+                $action
+            );
+            if ($templatePathStack->resolve($template)) {
 
-            return $template;
+                return $template;
+            }
         }
 
         $template = sprintf(
