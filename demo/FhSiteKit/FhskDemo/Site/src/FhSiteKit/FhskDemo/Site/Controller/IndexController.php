@@ -15,8 +15,26 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends BaseActionController
 {
+    /**
+     * Component string identifier
+     * @var string
+     */
+    protected static $componentString  = 'site';
+
+    /**
+     * Controller string identifier
+     * @var string
+     */
+    protected static $controllerString = 'index';
+
+    /**
+     * Respond to Index page request
+     * @return \Zend\View\Model\ViewModel
+     */
     public function indexAction()
     {
-        return new ViewModel();
+        $view = $this->generateViewModel('index');
+
+        return $view;
     }
 }
