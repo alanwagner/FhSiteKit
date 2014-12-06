@@ -40,16 +40,43 @@ class BaseActionController extends AbstractActionController
 
     /**
      * Generate ViewModel, fill it with data and child views
+     * Send data to layout
      *
      * @param string $action
      * @return \Zend\View\Model\ViewModel
      */
     protected function generateViewModel($action = null)
     {
+        $this->prepareViewData();
         $view = new ViewModel($this->viewData);
         $view->setTemplate($this->getTemplate('content', $action));
+        $this->sendDataToLayout();
 
         return $view;
+    }
+
+    /**
+     * Prepare viewData before sending to ViewModel
+     */
+    protected function prepareViewData()
+    {
+        if (empty($this->viewData['componentString'])) {
+            $this->viewData['componentString'] = static::$componentString;
+        }
+        if (empty($this->viewData['controllerString'])) {
+            $this->viewData['controllerString'] = static::$controllerString;
+        }
+        $this->viewData['routeAction'] = $this->params()->fromRoute('action');
+    }
+
+    /**
+     * Send viewData as needed to layout
+     */
+    protected function sendDataToLayout()
+    {
+        $this->layout()->componentString  = $this->viewData['componentString'];
+        $this->layout()->controllerString = $this->viewData['controllerString'];
+        $this->layout()->routeAction      = $this->viewData['routeAction'];
     }
 
     /**
