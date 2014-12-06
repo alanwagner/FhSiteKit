@@ -8,12 +8,12 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore\Controller;
+namespace FhSiteKit\FhskDemo\Site\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use FhSiteKit\FhskCore\Controller\BaseActionController;
 use Zend\View\Model\ViewModel;
 
-class ApplicationController extends AbstractActionController
+class IndexController extends BaseActionController
 {
     public function indexAction()
     {

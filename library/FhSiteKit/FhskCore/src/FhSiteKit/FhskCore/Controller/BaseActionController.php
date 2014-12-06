@@ -8,6 +8,11 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-$this->headTitle('Farther Horizon Site Kit');
-?>
-<h2>Fhsk Home</h2>
+namespace FhSiteKit\FhskCore\Controller;
+
+use Zend\Mvc\Controller\AbstractActionController;
+
+class BaseActionController extends AbstractActionController
+{
+
+}

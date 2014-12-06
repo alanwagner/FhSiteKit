@@ -8,12 +8,12 @@
  * @author    Alan Wagner (mail@alanwagner.org)
  */
 
-namespace FhSiteKit\FhskCore;
+namespace FhSiteKit\FhskDemo\Site;
 
 use FhSiteKit\FhskCore\Module\AbstractModule;
 
 /**
- * Fhsk Core module setup class
+ * FhskDemo Site module setup class
  */
 class Module extends AbstractModule
 {
@@ -38,7 +38,7 @@ class Module extends AbstractModule
             ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    'FhSiteKit\FhskCore' => __DIR__ . '/src/FhSiteKit/FhskCore',
+                    'FhSiteKit\FhskDemo\Site' => __DIR__ . '/src/FhSiteKit/FhskDemo/Site',
                 ),
             ),
         );

@@ -17,7 +17,6 @@ return array(
         'exception_template'       => 'error/index',
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/application.phtml',
-            'fh-site-kit/application/index' => __DIR__ . '/../view/site/application/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
@@ -25,25 +24,4 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
-    'controllers' => array(
-        'invokables' => array(
-            'Site\Controller\Application' => 'FhSiteKit\FhskCore\Controller\ApplicationController',
-        ),
-    ),
-
-    'router' => array(
-        'routes' => array(
-            'home' => array(
-                'type'    => 'literal',
-                'options' => array(
-                    'route'    => '/',
-                    'defaults' => array(
-                        'controller' => 'Site\Controller\Application',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),
-        ),
-    ),
-
 );
