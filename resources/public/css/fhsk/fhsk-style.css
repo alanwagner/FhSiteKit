@@ -1,0 +1,79 @@
+/**
+ * Farther Horizon Site Kit
+ *
+ * @link       http://github.com/alanwagner/FhSiteKit for the canonical source repository
+ * @copyright Copyright (c) 2013 Farther Horizon SARL (http://www.fartherhorizon.com)
+ * @license   http://www.gnu.org/licenses/gpl-3.0.html GPLv3 License
+ * @author    Alan Wagner (mail@alanwagner.org)
+ */
+
+
+tr.fhsk-hover-highlight {
+    background-color:   papayawhip;
+}
+
+/*
+div.fhsk-logo {
+    background: url("../img/fh-logo.png") no-repeat scroll 0px 0px transparent;
+    position:           absolute;
+    top:                1px;
+    left:               1px;
+    height:             48px;
+    width:              48px;
+}
+
+div.fhsk-links {
+    padding-top:        0.5em;
+    padding-bottom:     1.5em;
+}
+
+div.fhsk-form {
+    padding-bottom:     2em;
+}
+div.fhsk-form  li {
+    color:              firebrick;
+}
+
+label,
+label  span {
+    display:            block;
+}
+
+form#config  label  span {
+    display:            inline-block;
+    padding-right:      2em;
+}
+
+label {
+    padding-bottom:     1em;
+}
+
+.table  tr  td.noTopBorder {
+    border-top-width:   0px;
+}
+
+td.actionLinks  a {
+    display:            inline-block;
+    padding-left:       1em;
+}
+
+div.fhsk-messages  p {
+    padding-left:       0.4em;
+}
+
+div.fhsk-data  tr  td.fhsk-alert,
+.navbar-inverse  .navbar-nav  li  a.fhsk-alert {
+    font-weight:        bold;
+    color:              crimson;
+}
+
+.navbar-inverse  .navbar-nav  li.active  a.fhsk-alert {
+    font-weight:        bold;
+    color:              red;
+}
+
+.navbar-inverse  .navbar-nav  li  a.fhsk-alert:hover, 
+.navbar-inverse  .navbar-nav  li  a.fhsk-alert:focus {
+    color:              #fff;
+}
+*/
