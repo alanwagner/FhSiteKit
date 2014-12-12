@@ -22,17 +22,19 @@ echo $this->doctype();
         ?>
 
         <!-- Le styles -->
-        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-                        ->prependStylesheet($this->basePath() . '/css/style.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/skeleton/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/skeleton/css/style.css')
+                        ->prependStylesheet($this->basePath() . '/skeleton/css/bootstrap-theme.min.css')
+                        ->prependStylesheet($this->basePath() . '/skeleton/css/bootstrap.min.css')
+                        ->appendStylesheet( $this->basePath() . '/css/fhsk/fhsk-style.css')
+        ; ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
-            ->prependFile($this->basePath() . '/js/bootstrap.min.js')
-            ->prependFile($this->basePath() . '/js/jquery.min.js')
-            ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-            ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath() . '/skeleton/js/bootstrap.min.js')
+            ->prependFile($this->basePath() . '/skeleton/js/jquery.min.js')
+            ->prependFile($this->basePath() . '/skeleton/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath() . '/skeleton/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
         ; ?>
 
     </head>
@@ -45,7 +47,7 @@ echo $this->doctype();
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('FH Site Kit') ?></a>
+                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img id="home-icon" src="<?php echo $this->basePath('/skeleton/img/fh_icon.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('FH Site Kit') ?></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">

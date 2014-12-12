@@ -12,6 +12,14 @@ tr.fhsk-hover-highlight {
     background-color:   papayawhip;
 }
 
+img#home-icon {
+	padding-right: 0.75em;
+}
+
+.navbar-brand {
+	padding: 2px 15px;
+}
+
 /*
 div.fhsk-logo {
     background: url("../img/fh-logo.png") no-repeat scroll 0px 0px transparent;
