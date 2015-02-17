@@ -142,6 +142,18 @@ class Entity implements InputFilterAwareInterface
     }
 
     /**
+     * Get array of entity's class vars
+     *
+     * @return array
+     */
+    public function getClassVars()
+    {
+        $vars = get_class_vars(get_class($this));
+
+        return $vars;
+    }
+
+    /**
      * Get the input filter
      * @return \Zend\InputFilter\InputFilter
      */
