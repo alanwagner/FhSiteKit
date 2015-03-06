@@ -73,7 +73,7 @@ class EmailManager
     public function sendEmail($key, $toAddress, $toName, $data)
     {
         $email = $this->getEmailByKey($key);
-        if (! empty($email) && ! empty($email['id'])) {
+        if (! empty($email) && ! empty($email['body_template'])) {
             $message = new Message();
             $message->addTo($toAddress, $toName);
             $message->setFrom($email['from_address'], $email['from_name']);
