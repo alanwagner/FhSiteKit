@@ -117,6 +117,7 @@ class EmailManager
     {
         foreach ($data as $key => $val) {
             $str = str_replace('#' . $key, $val, $str);
+            $str = str_replace('%'.$key.'%', $val, $str);
         }
 
         return $str;

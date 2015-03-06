@@ -11,6 +11,7 @@
 namespace FhSiteKit\FhskEmail;
 
 use FhSiteKit\FhskCore\Module\AbstractModule;
+use Zend\Mail\Transport\Sendmail as SendmailTransport;
 
 /**
  * Fhsk Email module setup class
