@@ -28,11 +28,11 @@ class ConfigService
      * Get config by key
      * @return mixed
      */
-    public function get($key)
+    public function get($key, $namespace = 'application')
     {
         $return = null;
         if (empty($this->config)) {
-            $contentYml = file_get_contents('./config/application.config.yml');
+            $contentYml = file_get_contents(sprintf('./config/%s.config.yml', $namespace));
             $content = Yaml::parse($contentYml);
             $this->config = $content;
         }
