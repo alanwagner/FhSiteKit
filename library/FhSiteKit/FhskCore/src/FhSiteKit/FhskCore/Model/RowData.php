@@ -101,6 +101,16 @@ class RowData
     }
 
     /**
+     * Get array copy
+     *
+     * @return array
+     */
+    public function getArrayCopy()
+    {
+        return $this->toArray();
+    }
+
+    /**
      * To array
      *
      * @return array
