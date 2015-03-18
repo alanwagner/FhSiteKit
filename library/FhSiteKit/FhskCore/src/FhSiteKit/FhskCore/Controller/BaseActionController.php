@@ -155,4 +155,34 @@ class BaseActionController extends AbstractActionController
 
         return null;
     }
+
+    /**
+     * Convert associative array to csv string
+     * @param array $data
+     * @return string
+     */
+    protected function convertToCsv($data)
+    {
+        $fz = fopen('/tmp/fhsk.csv', 'w');
+        $needsHeaders = true;
+        foreach ($data as $row) {
+            if ($needsHeaders) {
+                fputcsv($fz, array_keys($row), ';', '"');
+                $needsHeaders = false;
+            }
+            foreach ($row as $key => $value) {
+                if (preg_match('/^0[0-9]*$/', $value)) {
+                    $row[$key] = sprintf("='%s'", $value);
+                }
+            }
+            fputcsv($fz, $row, ';', '"');
+        }
+        fclose($fz);
+
+        $content = file_get_contents('/tmp/fhsk.csv');
+        unlink('/tmp/fhsk.csv');
+        $content = preg_replace("/='([0-9]+)'/", '="$1"', $content);
+
+        return $content;
+    }
 }
