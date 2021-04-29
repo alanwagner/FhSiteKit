@@ -34,6 +34,9 @@ class Site
         } else {
             $pathParts = explode('/', substr($_SERVER['REQUEST_URI'], 1));
             $siteKey = $pathParts[0];
+            if (strstr($siteKey, '?')) {
+                $siteKey = substr($siteKey, 0, strpos($siteKey, '?'));
+            }
         }
 
         return $siteKey;
