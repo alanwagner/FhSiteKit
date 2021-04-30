@@ -11,7 +11,6 @@
 namespace FhSiteKit\FhskVitamin\Model;
 
 use FhSiteKit\FhskVitamin\Core\BaseComponent;
-use Zend\Filter\Int;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
