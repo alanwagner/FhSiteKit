@@ -90,10 +90,8 @@ class Config extends Entity
 
         $inputFilter->add(array(
             'name'     => 'id',
-            'required' => true,
-            'filters'  => array(
-                array('name' => 'Int'),
-            ),
+            'required' => false,
+            'filters'  => array(),
         ));
 
         $inputFilter->add(array(
