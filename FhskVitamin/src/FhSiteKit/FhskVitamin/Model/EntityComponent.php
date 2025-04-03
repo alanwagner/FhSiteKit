@@ -11,10 +11,10 @@
 namespace FhSiteKit\FhskVitamin\Model;
 
 use FhSiteKit\FhskVitamin\Core\BaseComponent;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\InputFilterAwareInterface;
-use Zend\InputFilter\InputFilterInterface;
-use Zend\Stdlib\ArrayObject;
+use Laminas\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilterAwareInterface;
+use Laminas\InputFilter\InputFilterInterface;
+use Laminas\Stdlib\ArrayObject;
 
 /**
  * Vitamin component for Entity
@@ -132,7 +132,7 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
 
     /**
      * Get the input filter
-     * @return \Zend\InputFilter\InputFilter
+     * @return \Laminas\InputFilter\InputFilter
      */
     public function getInputFilter()
     {
@@ -150,7 +150,7 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
 
     /**
      * Set the input filter, or modify the existing one
-     * @return \Zend\InputFilter\InputFilter
+     * @return \Laminas\InputFilter\InputFilter
      */
     public function declareInputFilter()
     {
@@ -162,8 +162,8 @@ class EntityComponent extends BaseComponent implements InputFilterAwareInterface
 
     /**
      * Enhance the holder's input filter
-     * @param \Zend\InputFilter\InputFilter $inputFilter
-     * @return \Zend\InputFilter\InputFilter
+     * @param \Laminas\InputFilter\InputFilter $inputFilter
+     * @return \Laminas\InputFilter\InputFilter
      */
     public function enhanceInputFilter($inputFilter)
     {

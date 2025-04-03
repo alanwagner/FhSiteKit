@@ -11,7 +11,7 @@
 namespace FhSiteKit\FhskConfig\Model;
 
 use FhSiteKit\FhskCore\Model\EntityTable;
-use Zend\Db\Sql\Where;
+use Laminas\Db\Sql\Where;
 
 /**
  * Config table gateway
@@ -20,7 +20,7 @@ class ConfigTable extends EntityTable implements ConfigTableInterface
 {
     /**
      * Fetch all config rows
-     * @return \Zend\Db\ResultSet\ResultSet
+     * @return \Laminas\Db\ResultSet\ResultSet
      */
     public function fetchAll()
     {

@@ -17,7 +17,7 @@ interface EntityTableInterface
 {
     /**
      * Get table gateway
-     * @return \Zend\Db\TableGateway\TableGateway
+     * @return \Laminas\Db\TableGateway\TableGateway
      */
     public function getTableGateway();
 }

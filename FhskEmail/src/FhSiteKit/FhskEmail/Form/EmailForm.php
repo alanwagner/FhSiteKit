@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskEmail\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 /**
  * The Email form class

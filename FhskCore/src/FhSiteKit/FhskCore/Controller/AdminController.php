@@ -11,7 +11,7 @@
 namespace FhSiteKit\FhskCore\Controller;
 
 use FhSiteKit\FhskVitamin\Controller\BaseController as VitaminBaseController;
-use Zend\View\Model\ViewModel;
+use Laminas\View\Model\ViewModel;
 
 /**
  * Base admin controller
@@ -44,7 +44,7 @@ class AdminController extends VitaminBaseController
      * Take care of menu in layout as well
      *
      * @param string $action
-     * @return \Zend\View\Model\ViewModel
+     * @return \Laminas\View\Model\ViewModel
      */
     protected function generateViewModel($action = null)
     {

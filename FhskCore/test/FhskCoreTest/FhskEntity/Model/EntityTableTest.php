@@ -22,7 +22,7 @@ class EntityTableTest extends PHPUnit_Framework_TestCase
     public function testGetTableGateway()
     {
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('select'),
             array(),
             '',

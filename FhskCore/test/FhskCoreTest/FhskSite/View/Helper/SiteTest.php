@@ -34,13 +34,13 @@ class SiteTest extends PHPUnit_Framework_TestCase
     public function testGetServiceLocator()
     {
         $serviceLocator = $this->helper->getServiceLocator();
-        $this->assertInstanceOf('Zend\View\HelperPluginManager', $serviceLocator);
+        $this->assertInstanceOf('Laminas\View\HelperPluginManager', $serviceLocator);
     }
 
     public function testGetGlobalServiceLocator()
     {
         $serviceLocator = $this->helper->getGlobalServiceLocator();
-        $this->assertInstanceOf('Zend\ServiceManager\ServiceManager', $serviceLocator);
+        $this->assertInstanceOf('Laminas\ServiceManager\ServiceManager', $serviceLocator);
     }
 
     public function testGetPath()

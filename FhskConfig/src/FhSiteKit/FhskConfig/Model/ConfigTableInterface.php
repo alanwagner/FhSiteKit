@@ -19,7 +19,7 @@ interface ConfigTableInterface extends EntityTableInterface
 {
     /**
      * Fetch all config rows
-     * @return \Zend\Db\ResultSet\ResultSet
+     * @return \Laminas\Db\ResultSet\ResultSet
      */
     public function fetchAll();
 

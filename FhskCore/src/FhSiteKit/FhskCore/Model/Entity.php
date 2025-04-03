@@ -11,7 +11,7 @@
 namespace FhSiteKit\FhskCore\Model;
 
 use FhSiteKit\FhskVitamin\Model\EntityComponent;
-use Zend\Stdlib\ArrayObject;
+use Laminas\Stdlib\ArrayObject;
 
 /**
  * Common model entity functions

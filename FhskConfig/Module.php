@@ -15,10 +15,10 @@ use FhSiteKit\FhskCore\Controller\BaseController;
 use FhSiteKit\FhskConfig\Form\ConfigForm;
 use FhSiteKit\FhskConfig\Model\Config;
 use FhSiteKit\FhskConfig\Model\ConfigTable;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\TableGateway;
-use Zend\ModuleManager\Feature\FormElementProviderInterface;
-use Zend\Mvc\MvcEvent;
+use Laminas\Db\ResultSet\ResultSet;
+use Laminas\Db\TableGateway\TableGateway;
+use Laminas\ModuleManager\Feature\FormElementProviderInterface;
+use Laminas\Mvc\MvcEvent;
 
 /**
  * Fhsk Config module setup class
@@ -72,10 +72,10 @@ class Module extends AbstractModule implements FormElementProviderInterface
     public function getAutoloaderConfig()
     {
         return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
+            'Laminas\Loader\ClassMapAutoloader' => array(
                 __DIR__ . '/autoload_classmap.php',
             ),
-            'Zend\Loader\StandardAutoloader' => array(
+            'Laminas\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     'FhSiteKit\FhskConfig'             => __DIR__ . '/src/FhSiteKit/FhskConfig',
                 ),
@@ -119,7 +119,7 @@ class Module extends AbstractModule implements FormElementProviderInterface
                     return $config;
                 },
                 'Config\Model\ConfigTableGateway' => function ($sm) {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $dbAdapter = $sm->get('Laminas\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype($sm->get('Config\Model\ConfigEntity'));
 

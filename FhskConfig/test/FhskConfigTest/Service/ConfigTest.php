@@ -12,7 +12,7 @@ namespace FhskConfigTest\Service;
 
 use FhSiteKit\FhskConfig\Model\Config as ConfigEntity;
 use FhSiteKit\FhskConfig\Service\Config as ConfigService;
-use Zend\Db\ResultSet\ResultSet;
+use Laminas\Db\ResultSet\ResultSet;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -49,7 +49,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     public function testGetConfigByKeyReturnsConfig()
     {
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('getResultSetPrototype'),
             array(),
             '',
@@ -87,7 +87,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
         $resultSet->setArrayObjectPrototype(new ConfigEntity());
 
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('getResultSetPrototype'),
             array(),
             '',
@@ -125,7 +125,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
         $config::reset();
 
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('getResultSetPrototype'),
             array(),
             '',
@@ -156,7 +156,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     public function testGetConfigFormattedByKeyReturnsFormattedConfig()
     {
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('getResultSetPrototype'),
             array(),
             '',
@@ -187,7 +187,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     public function testGetConfigFormattedByKeyReturnsConfigWithQuotes()
     {
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('getResultSetPrototype'),
             array(),
             '',
@@ -221,7 +221,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     public function testGetConfigFormattedByKeyReturnsConfigWithEmptyString()
     {
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('getResultSetPrototype'),
             array(),
             '',
@@ -258,7 +258,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
         $config::reset();
 
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('getResultSetPrototype'),
             array(),
             '',

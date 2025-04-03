@@ -11,7 +11,7 @@
 namespace FhskCoreTest\FhskEntity\Controller;
 
 use FhskCoreTest\Bootstrap;
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 /**
  * Tests on the Entity Admin Controller

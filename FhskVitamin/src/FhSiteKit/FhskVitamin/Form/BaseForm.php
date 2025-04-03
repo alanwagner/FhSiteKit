@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskVitamin\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 /**
  * Generic form vitamin swallower consumer class

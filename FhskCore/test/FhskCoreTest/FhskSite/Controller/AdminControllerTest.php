@@ -12,7 +12,7 @@ namespace FhskCoreTest\FhskSite\Controller;
 
 use FhSiteKit\FhskCore\Model\Entity;
 use FhskCoreTest\Bootstrap;
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 /**
  * Tests on the base Admin Controller

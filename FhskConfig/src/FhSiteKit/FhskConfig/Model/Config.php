@@ -11,7 +11,7 @@
 namespace FhSiteKit\FhskConfig\Model;
 
 use FhSiteKit\FhskCore\Model\Entity;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 /**
  * The Config entity
@@ -79,7 +79,7 @@ class Config extends Entity
 
     /**
      * Set the input filter, or modify the existing one
-     * @return \Zend\InputFilter\InputFilter
+     * @return \Laminas\InputFilter\InputFilter
      */
     public function declareInputFilter()
     {
