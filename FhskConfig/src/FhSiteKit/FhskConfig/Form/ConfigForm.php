@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskConfig\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 /**
  * The Config form class

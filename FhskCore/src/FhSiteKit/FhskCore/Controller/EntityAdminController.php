@@ -29,7 +29,7 @@ class EntityAdminController extends FhskAdminController
         $queryLibrary = $this->getServiceLocator()->get('FhskQueryLibrary');
         $query = $queryLibrary->getQueryByName($queryName);
 
-        $adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+        $adapter = $this->getServiceLocator()->get('Laminas\Db\Adapter\Adapter');
         $statement = $adapter->query($query);
 
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -64,7 +64,7 @@ class EntityAdminController extends FhskAdminController
 
     /**
      * Handle a list page request
-     * @return \Zend\View\Model\ViewModel
+     * @return \Laminas\View\Model\ViewModel
      */
     public function listAction() {
         $view = $this->generateViewModel('list');
@@ -74,7 +74,7 @@ class EntityAdminController extends FhskAdminController
 
     /**
      * Handle an add form page request or post submission
-     * @return \Zend\View\Model\ViewModel
+     * @return \Laminas\View\Model\ViewModel
      */
     public function addAction() {
         $view = $this->generateViewModel('create');

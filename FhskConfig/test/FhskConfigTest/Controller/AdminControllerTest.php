@@ -14,8 +14,8 @@ use FhSiteKit\FhskConfig\Controller\AdminController;
 use FhSiteKit\FhskConfig\Model\Config;
 use FhskConfigTest\Bootstrap;
 use MockConfig\Service\Config as MockConfig;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\Db\ResultSet\ResultSet;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 /**
  * Tests on the Admin Controller

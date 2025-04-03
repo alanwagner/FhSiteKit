@@ -10,7 +10,7 @@
 
 namespace FhSiteKit\FhskCore\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * Helper to provide string excerpt cut at word boundary

@@ -33,10 +33,10 @@ class Module extends AbstractModule
     public function getAutoloaderConfig()
     {
         return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
+            'Laminas\Loader\ClassMapAutoloader' => array(
                 __DIR__ . '/autoload_classmap.php',
             ),
-            'Zend\Loader\StandardAutoloader' => array(
+            'Laminas\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     'FhSiteKit\FhskVitamin' => __DIR__ . '/src/FhSiteKit/FhskVitamin',
                 ),

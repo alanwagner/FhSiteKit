@@ -16,8 +16,8 @@ use FhSiteKit\FhskEmail\Form\EmailForm;
 use FhSiteKit\FhskEmail\Model\Email;
 use FhSiteKit\FhskEmail\Model\EmailTableInterface;
 use FhSiteKit\FhskEmail\Service\EmailManager;
-use Zend\Form\FormInterface;
-use Zend\Mvc\Controller\Plugin\FlashMessenger;
+use Laminas\Form\FormInterface;
+use Laminas\Mvc\Controller\Plugin\FlashMessenger;
 
 /**
  * Email admin controller
@@ -47,7 +47,7 @@ class AdminController extends FhskAdminController
      *
      * This shows only active patterns
      *
-     * @return \Zend\View\Model\ViewModel
+     * @return \Laminas\View\Model\ViewModel
      */
     public function listAction()
     {
@@ -62,7 +62,7 @@ class AdminController extends FhskAdminController
 
     /**
      * Handle an edit form page request or post submission
-     * @return \Zend\View\Model\ViewModel|\Zend\Http\Response
+     * @return \Laminas\View\Model\ViewModel|\Laminas\Http\Response
      */
     public function editAction()
     {

@@ -15,11 +15,11 @@ use FhSiteKit\FhskCore\Controller\BaseController;
 use FhSiteKit\FhskEmail\Form\EmailForm;
 use FhSiteKit\FhskEmail\Model\Email;
 use FhSiteKit\FhskEmail\Model\EmailTable;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\TableGateway;
-use Zend\Mail\Transport\Sendmail as SendmailTransport;
-use Zend\ModuleManager\Feature\FormElementProviderInterface;
-use Zend\Mvc\MvcEvent;
+use Laminas\Db\ResultSet\ResultSet;
+use Laminas\Db\TableGateway\TableGateway;
+use Laminas\Mail\Transport\Sendmail as SendmailTransport;
+use Laminas\ModuleManager\Feature\FormElementProviderInterface;
+use Laminas\Mvc\MvcEvent;
 
 /**
  * Fhsk Config module setup class
@@ -73,10 +73,10 @@ class Module extends AbstractModule implements FormElementProviderInterface
     public function getAutoloaderConfig()
     {
         return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
+            'Laminas\Loader\ClassMapAutoloader' => array(
                 __DIR__ . '/autoload_classmap.php',
             ),
-            'Zend\Loader\StandardAutoloader' => array(
+            'Laminas\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     'FhSiteKit\FhskEmail' => __DIR__ . '/src/FhSiteKit/FhskEmail',
                 ),
@@ -123,7 +123,7 @@ class Module extends AbstractModule implements FormElementProviderInterface
                     return $email;
                 },
                 'Email\Model\EmailTableGateway' => function ($sm) {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $dbAdapter = $sm->get('Laminas\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype($sm->get('Email\Model\EmailEntity'));
 

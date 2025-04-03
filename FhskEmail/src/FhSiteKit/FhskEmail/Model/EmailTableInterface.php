@@ -19,7 +19,7 @@ interface EmailTableInterface extends EntityTableInterface
 {
     /**
      * Fetch all email rows
-     * @return \Zend\Db\ResultSet\ResultSet
+     * @return \Laminas\Db\ResultSet\ResultSet
      */
     public function fetchAll();
 

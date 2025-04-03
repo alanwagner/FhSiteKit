@@ -10,10 +10,10 @@
 
 namespace FhSiteKit\FhskCore\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Mvc\Controller\Plugin\FlashMessenger;
-use Zend\Mvc\MvcEvent;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\Plugin\FlashMessenger;
+use Laminas\Mvc\MvcEvent;
+use Laminas\View\Model\ViewModel;
 
 /**
  * Base controller
@@ -69,7 +69,7 @@ class BaseController extends AbstractActionController
 
     /**
      * Handle an index page request
-     * @return \Zend\View\Model\ViewModel
+     * @return \Laminas\View\Model\ViewModel
      */
     public function indexAction()
     {
@@ -91,7 +91,7 @@ class BaseController extends AbstractActionController
      * Take care of menu in layout as well
      *
      * @param string $action
-     * @return \Zend\View\Model\ViewModel
+     * @return \Laminas\View\Model\ViewModel
      */
     protected function generateViewModel($action = null)
     {
@@ -144,7 +144,7 @@ class BaseController extends AbstractActionController
             $namespace = static::$templateNamespace;
         }
 
-        $templatePathStack = $this->getServiceLocator()->get('Zend\View\Resolver\TemplatePathStack');
+        $templatePathStack = $this->getServiceLocator()->get('Laminas\View\Resolver\TemplatePathStack');
 
         if (!empty($action)) {
             $template = sprintf(

@@ -10,10 +10,10 @@
 
 namespace FhSiteKit\FhskCore\Module;
 
-use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
-use Zend\ModuleManager\Feature\ServiceProviderInterface;
+use Laminas\ModuleManager\Feature\AutoloaderProviderInterface;
+use Laminas\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\ModuleManager\Feature\DependencyIndicatorInterface;
+use Laminas\ModuleManager\Feature\ServiceProviderInterface;
 
 /**
  * Abstract FhSiteKit module class

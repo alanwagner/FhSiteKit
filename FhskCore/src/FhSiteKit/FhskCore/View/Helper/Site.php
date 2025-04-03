@@ -11,9 +11,9 @@
 namespace FhSiteKit\FhskCore\View\Helper;
 
 use FhSiteKit\FhskCore\Site as FhskSite;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\ServiceManager\ServiceLocatorAwareInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * Helper to provide Site properties to the view
@@ -63,7 +63,7 @@ class Site extends AbstractHelper implements ServiceLocatorAwareInterface
     /**
      * Set service locator
      *
-     * Is set with Zend\View\HelperPluginManager
+     * Is set with Laminas\View\HelperPluginManager
      *
      * @param ServiceLocatorInterface $serviceLocator
      */
@@ -75,7 +75,7 @@ class Site extends AbstractHelper implements ServiceLocatorAwareInterface
     /**
      * Get service locator
      *
-     * Returns Zend\View\HelperPluginManager
+     * Returns Laminas\View\HelperPluginManager
      *
      * @return ServiceLocatorInterface
      */
@@ -87,10 +87,10 @@ class Site extends AbstractHelper implements ServiceLocatorAwareInterface
     /**
      * Get application-wide service locator
      *
-     * $services is set with Zend\View\HelperPluginManager
+     * $services is set with Laminas\View\HelperPluginManager
      * so we need to call its getServiceLocator() to get the application-wide one
      *
-     * @return \Zend\ServiceManager\ServiceManager
+     * @return \Laminas\ServiceManager\ServiceManager
      */
     public function getGlobalServiceLocator()
     {

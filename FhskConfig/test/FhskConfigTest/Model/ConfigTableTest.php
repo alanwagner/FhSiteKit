@@ -12,7 +12,7 @@ namespace FhskConfigTest\Model;
 
 use FhSiteKit\FhskConfig\Model\ConfigTable;
 use FhSiteKit\FhskConfig\Model\Config;
-use Zend\Db\ResultSet\ResultSet;
+use Laminas\Db\ResultSet\ResultSet;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -24,7 +24,7 @@ class ConfigTableTest extends PHPUnit_Framework_TestCase
     {
         $resultSet = new ResultSet();
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('select'),
             array(),
             '',
@@ -48,7 +48,7 @@ class ConfigTableTest extends PHPUnit_Framework_TestCase
         $resultSet->initialize(array($config));
 
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('select'),
             array(),
             '',
@@ -72,7 +72,7 @@ class ConfigTableTest extends PHPUnit_Framework_TestCase
         $resultSet->initialize(array($config));
 
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('select'),
             array(),
             '',
@@ -95,7 +95,7 @@ class ConfigTableTest extends PHPUnit_Framework_TestCase
         $resultSet->initialize(array());
 
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('select'),
             array(),
             '',
@@ -114,7 +114,7 @@ class ConfigTableTest extends PHPUnit_Framework_TestCase
     public function testCanDeleteAConfigByItsId()
     {
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('delete'),
             array(),
             '',
@@ -140,7 +140,7 @@ class ConfigTableTest extends PHPUnit_Framework_TestCase
         $configData['created_at'] = $created;
 
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('insert', 'select'),
             array(),
             '',
@@ -169,7 +169,7 @@ class ConfigTableTest extends PHPUnit_Framework_TestCase
         $resultSet->initialize(array($config));
 
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('select', 'update'),
             array(),
             '',
@@ -199,7 +199,7 @@ class ConfigTableTest extends PHPUnit_Framework_TestCase
         $resultSet->initialize(array());
 
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('select'),
             array(),
             '',
@@ -226,7 +226,7 @@ class ConfigTableTest extends PHPUnit_Framework_TestCase
     public function testGetTableGateway()
     {
         $mockTableGateway = $this->getMock(
-            'Zend\Db\TableGateway\TableGateway',
+            'Laminas\Db\TableGateway\TableGateway',
             array('select'),
             array(),
             '',

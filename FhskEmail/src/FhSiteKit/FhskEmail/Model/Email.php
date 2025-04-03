@@ -11,7 +11,7 @@
 namespace FhSiteKit\FhskEmail\Model;
 
 use FhSiteKit\FhskCore\Model\Entity;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 /**
  * The Email entity
@@ -103,7 +103,7 @@ class Email extends Entity
 
     /**
      * Set the input filter, or modify the existing one
-     * @return \Zend\InputFilter\InputFilter
+     * @return \Laminas\InputFilter\InputFilter
      */
     public function declareInputFilter()
     {

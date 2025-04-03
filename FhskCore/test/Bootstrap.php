@@ -10,9 +10,9 @@
 
 namespace FhskCoreTest;
 
-use Zend\Loader\AutoloaderFactory;
-use Zend\Mvc\Service\ServiceManagerConfig;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\Loader\AutoloaderFactory;
+use Laminas\Mvc\Service\ServiceManagerConfig;
+use Laminas\ServiceManager\ServiceManager;
 use RuntimeException;
 
 error_reporting(E_ALL | E_STRICT);
@@ -104,10 +104,10 @@ class Bootstrap
         include $zf2Path . '/Zend/Loader/AutoloaderFactory.php';
         include $zf2Path . '/Zend/Loader/ClassMapAutoloader.php';
         AutoloaderFactory::factory(array(
-            'Zend\Loader\ClassMapAutoloader' => array(
+            'Laminas\Loader\ClassMapAutoloader' => array(
                 __DIR__ . '/autoload_classmap.php',
             ),
-            'Zend\Loader\StandardAutoloader' => array(
+            'Laminas\Loader\StandardAutoloader' => array(
                 'autoregister_zf' => true,
                 'namespaces' => array(
                     'FhSiteKit\FhskCore' => __DIR__ . '/../../FhskCore/src/FhSiteKit/FhskCore',

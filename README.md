@@ -20,7 +20,7 @@ require 'init_autoloader.php';
 + $loader->add('FhSiteKit\FhskCore', 'vendor/FhSiteKit/FhskCore/src');
 
 // Run the application!
-Zend\Mvc\Application::init(require 'config/application.config.php')->run();
+Laminas\Mvc\Application::init(require 'config/application.config.php')->run();
 ```
 
 ### 3.  Modify `application.config.php`

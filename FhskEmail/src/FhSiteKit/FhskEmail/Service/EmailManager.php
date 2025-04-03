@@ -11,9 +11,9 @@
 namespace FhSiteKit\FhskEmail\Service;
 
 use FhSiteKit\FhskEmail\Model\EmailTableInterface;
-use Zend\Mail\Message;
-use Zend\Mail\Transport\TransportInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\Mail\Message;
+use Laminas\Mail\Transport\TransportInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Centralized email manager service
@@ -172,7 +172,7 @@ class EmailManager
             $emailTransport = $this->getServiceLocator()
                 ->get('FhSiteKit\EmailTransport');
             if (! $emailTransport instanceof TransportInterface) {
-                throw new \Exception(sprintf('Email table must be an instance of Zend\Mail\Transport\TransportInterface, "%s" given.', get_class($emailTransport)));
+                throw new \Exception(sprintf('Email table must be an instance of Laminas\Mail\Transport\TransportInterface, "%s" given.', get_class($emailTransport)));
             }
             $this->emailTransport = $emailTransport;
         }

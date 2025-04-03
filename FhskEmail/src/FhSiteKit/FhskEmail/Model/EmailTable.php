@@ -11,7 +11,7 @@
 namespace FhSiteKit\FhskEmail\Model;
 
 use FhSiteKit\FhskCore\Model\EntityTable;
-use Zend\Db\Sql\Where;
+use Laminas\Db\Sql\Where;
 
 /**
  * Email table gateway
@@ -20,7 +20,7 @@ class EmailTable extends EntityTable implements EmailTableInterface
 {
     /**
      * Fetch all email rows
-     * @return \Zend\Db\ResultSet\ResultSet
+     * @return \Laminas\Db\ResultSet\ResultSet
      */
     public function fetchAll()
     {
